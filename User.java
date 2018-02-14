@@ -40,7 +40,7 @@ public class User
         retStr += "Hometown: \t" + hometown + "\n";
         
         //Need to include schools and friendslist
-        
+        for(int i = 1; i <= school.size(); i ++)
         
         
         return retStr;
