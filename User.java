@@ -36,7 +36,9 @@ public class User
         } 
     }
     
-    
+    public void addFriend(User other) {
+        friendsList.add(other);
+    }
     
 
     
