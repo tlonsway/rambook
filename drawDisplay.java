@@ -9,7 +9,8 @@ public class drawDisplay {
         display login = new display();
         frame.add(login);
         login.setView("login");
+
+        
         login.drawing();
     }
-    
 }

@@ -25,6 +25,13 @@ public class display extends JPanel
             g.fillRect(480,255,960,510);
             g.setColor(Color.BLACK);
             g.drawRect(480,255,960,510);
+            g.setColor(Color.BLACK);
+            JLabel Wordz = new JLabel();
+            Font f = new Font("Username: ", Font.BOLD, 20);
+            Wordz.setSize(10,20);
+            g.setFont(f);
+            g.drawString(f.getName(), 500, 300);
+            g.drawString("Password: ", 500, 320);
         }
     }
 }
