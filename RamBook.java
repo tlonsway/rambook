@@ -68,7 +68,9 @@ public class RamBook
         }
     }//END printUsers
         
-    
+    public ArrayList<User> getUsers() {
+        return allUsers;
+    }
     
     
 }//END CLASS

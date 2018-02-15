@@ -1,5 +1,5 @@
 import java.util.*;
-
+import java.lang.Math.*;
 public class User
 {
     //INSTANCE FIELDS
@@ -91,8 +91,6 @@ public class User
         }
         return mutlist;
     }
-        
-
 
     public String toString()
     {
@@ -110,6 +108,39 @@ public class User
         return retStr;
     }//END toString
     
+    public User suggestAFriend() {
+        ArrayList<User> friendfriend = new ArrayList<User>();
+        ArrayList<User> nonfriends = new ArrayList<User>();
+        for (User f : friendsList) {
+            for (User ff : f.getFriendsList()) {
+                if (!this.equals(ff)) {
+                   nonfriends.add(ff); 
+                }
+                friendfriend.add(ff);
+            }
+        }
+        ArrayList<User> nfht = new ArrayList<User>();
+        for (User nf : nonfriends) {
+            if (nf.getHometown().equals(this.hometown)) {
+                nfht.add(nf);
+            }
+        }
+        if (nfht.size()>1) {
+            return (nfht.get((int)(Math.random()*(nfht.size()+1))));
+        } else 
+        if (nfht.size()==1) {
+            return nfht.get(0);
+        } else {
+            if (friendfriend.size() > 1) {
+                return (friendfriend.get((int)(Math.random()*(friendfriend.size()+1))));
+            } else
+            if (friendfriend.size() == 1) {
+                return friendfriend.get(0);
+            }else {
+                return null;
+            }
+        }
+    }
     
 
     public String getName()
