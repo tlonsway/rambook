@@ -21,8 +21,7 @@ public class User
         
     }//END Constructor
     
-    // DONE FOR YOU
-    // Accepts a List of Users that will replace the current friendsList
+
     public void bulkAddFriends(ArrayList<User> u)
     {
         friendsList = u;
@@ -52,30 +51,39 @@ public class User
         return friendsList.size(); //this should work I think
     }
     
-    // STARTED FOR YOU
-    // Should print out all information for the user, nicely formatted
+    public ArrayList<User> getMutualFriends(User other) {
+        ArrayList<User> mutlist = new ArrayList<User>();
+        for (User u1 : friendsList) {
+            for (User u2 : other.getFriendsList()) {
+                if (u1.equals(u2)) {
+                    mutlist.add(u1);
+                } 
+            }
+        }
+        return mutlist;
+    }
+
+
+
+
     public String toString()
     {
         String retStr = "";
         retStr += "Name: \t\t" + name + "\n";
         retStr += "Age: \t\t" + age + "\n";
         retStr += "Hometown: \t" + hometown + "\n";
-        
-        //Need to include schools and friendslist
         for(int i = 1; i <= schools.length; i ++)
         {
             retStr += "School " + i + ": " + schools[i-1] + "\n";
         }
         for (int i=0; i<friendsList.size(); i++) {
             retStr += "Friends with " + friendsList.get(i).getName() + "\n";
-        }
-        
+        }        
         return retStr;
     }//END toString
     
     
-    // DONE FOR YOU
-    // Returns the User's name
+
     public String getName()
     {
         return name;
