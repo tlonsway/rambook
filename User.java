@@ -72,6 +72,26 @@ public class User
         }
         return mutlist;
     }
+    
+    public ArrayList<User> getSchoolMates(User other) {
+        ArrayList<User> mutlist = new ArrayList<User>();
+        boolean temp;
+        for (User of : other.getFriendsList()) {
+            temp = false;
+            for (int i=0; i<this.schools.length; i++) {
+                for (int i2=0; i<other.getSchools().length; i++) {
+                    if (this.schools[i].equals(other.getSchools()[i2])) {
+                        temp=true;
+                    }
+                }
+            }
+            if (temp) {
+                mutlist.add(of);
+            }
+        }
+        return mutlist;
+    }
+        
 
 
     public String toString()
