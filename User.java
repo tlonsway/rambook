@@ -63,7 +63,15 @@ public class User
         return mutlist;
     }
 
-
+    public ArrayList<User> getHometownFriends(User other) {
+        ArrayList<User> mutlist = new ArrayList<User>();
+        for (User of : other.getFriendsList()) {
+            if (this.hometown.equals(of.getHometown())) {
+                mutlist.add(of);
+            }
+        }
+        return mutlist;
+    }
 
 
     public String toString()
