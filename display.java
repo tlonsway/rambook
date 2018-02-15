@@ -3,7 +3,7 @@ import java.awt.*;
 public class display extends JPanel
 {
     String view = "";
-    JTextField UserName;
+    JTextField UserName = new JTextField();
     public void drawing()
     {
         repaint();
