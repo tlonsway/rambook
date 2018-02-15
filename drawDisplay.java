@@ -1,5 +1,6 @@
 import java.util.*;
 import javax.swing.*;
+import java.awt.*;
 public class drawDisplay {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Login");
@@ -9,8 +10,9 @@ public class drawDisplay {
         display login = new display();
         frame.add(login);
         login.setView("login");
-
-        
+        JTextField UsernameInput = new JTextField();
+        frame.add(UsernameInput);
+        login.setUserTextField(UsernameInput);
         login.drawing();
     }
 }
