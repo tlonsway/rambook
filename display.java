@@ -30,8 +30,9 @@ public class display extends JPanel
             Font f = new Font("Username: ", Font.BOLD, 20);
             Wordz.setSize(10,20);
             g.setFont(f);
-            g.drawString(f.getName(), 500, 300);
-            g.drawString("Password: ", 500, 320);
+            g.drawString(f.getName(), 850, 300);
+            g.drawString("Password: ", 850, 500);
+            JTextField UsernameInput = new JTextField(5);
         }
     }
 }
