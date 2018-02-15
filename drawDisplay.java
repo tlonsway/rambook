@@ -11,8 +11,11 @@ public class drawDisplay {
         frame.add(login);
         login.setView("login");
         JTextField UsernameInput = new JTextField();
+        JTextField Password = new JTextField();
+        frame.add(Password);
         frame.add(UsernameInput);
-        login.setUserTextField(UsernameInput);
+        login.setTextField(UsernameInput, 1);
+        login.setTextField(Password, 2);
         login.drawing();
     }
 }

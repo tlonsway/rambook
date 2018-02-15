@@ -4,14 +4,24 @@ public class display extends JPanel
 {
     String view = "";
     JTextField UserName;
+    JTextField password;
     public void drawing()
     {
         repaint();
     }
-    public void setUserTextField(JTextField U)
+
+    public void setTextField(JTextField U, int i)
     {
-        UserName = U;
+        if(i == 1)
+        {
+            UserName = U;
+        }
+        else if(i == 2)
+        {
+            password = U;
+        }
     }
+
     public void setView(String v)
     {
         view = v;
@@ -36,8 +46,13 @@ public class display extends JPanel
             g.drawString(f.getName(), 850, 300);
             g.drawString("Password: ", 850, 500);
             UserName.setBounds(850, 400, 100, 20);
+            password.setBounds(850, 600, 100, 20);
             UserName.setEditable(true);
+            password.setEditable(true);
             UserName.setVisible(true);
+            password.setVisible(true);
+            g.drawRect(850,400,100,20);
+            g.drawRect(850,600,100,20);
         }
     }
 }
