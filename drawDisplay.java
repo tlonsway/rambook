@@ -13,6 +13,7 @@ public class drawDisplay {
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
         JButton enter = new JButton("ENTER");
+        frame.add(enter);
         frame.add(Password);
         frame.add(UsernameInput);
         login.setTextField(UsernameInput, 1);
