@@ -48,6 +48,10 @@ public class User
         }
     } 
     
+    public int countFriends() {
+        return friendsList.size(); //this should work I think
+    }
+    
     // STARTED FOR YOU
     // Should print out all information for the user, nicely formatted
     public String toString()
