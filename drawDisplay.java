@@ -12,10 +12,12 @@ public class drawDisplay {
         login.setView("login");
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
+        JButton enter = new JButton("ENTER");
         frame.add(Password);
         frame.add(UsernameInput);
         login.setTextField(UsernameInput, 1);
         login.setTextField(Password, 2);
+        login.setButton(enter);
         login.drawing();
     }
 }

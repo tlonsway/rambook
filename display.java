@@ -5,6 +5,7 @@ public class display extends JPanel
     String view = "";
     JTextField UserName;
     JTextField password;
+    JButton enter;
     public void drawing()
     {
         repaint();
@@ -26,7 +27,10 @@ public class display extends JPanel
     {
         view = v;
     }
-
+    public void setButton(JButton g)
+    {
+        enter = g;
+    }
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
@@ -53,6 +57,10 @@ public class display extends JPanel
             password.setVisible(true);
             g.drawRect(850,400,100,20);
             g.drawRect(850,600,100,20);
+            enter.setVisible(true);
+            enter.setBounds(1000, 450, 50,50);
+            enter.setText("ENTER");
+            g.drawRect(1000,475,50,50);
         }
     }
 }
