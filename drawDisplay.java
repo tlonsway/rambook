@@ -7,6 +7,7 @@ public class drawDisplay {
         frame.setSize(1920, 1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display login = new display();
+        frame.add(login);
         login.setView("login");
         login.drawing();
     }
