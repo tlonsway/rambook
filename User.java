@@ -40,7 +40,13 @@ public class User
         friendsList.add(other);
     }
     
-
+    public void unfriend(String friend) {
+        for (int i=0; i<friendsList.size(); i++) {
+            if (friendsList.get(i).equals(friend)) {
+                friendsList.remove(i);
+            }   
+        }
+    } 
     
     // STARTED FOR YOU
     // Should print out all information for the user, nicely formatted
