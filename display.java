@@ -11,14 +11,11 @@ public class display extends JPanel
     {
         view = v;
     }
-    public void draw(Graphics g)
+    public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        if(view.equals("login"))
-        {
-            g.setColor(Color.BLACK);
-            g.fillRect(480,270,960,510);
-            
-        }
+        g.setColor(Color.BLACK);
+        g.fillRect(480,270,960,510);
+
     }
 }
