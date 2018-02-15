@@ -10,7 +10,7 @@ public class display extends JPanel
     }
     public void setUserTextField(JTextField U)
     {
-        JTextField UserName = U;
+        UserName = U;
     }
     public void setView(String v)
     {
