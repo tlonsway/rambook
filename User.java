@@ -44,6 +44,9 @@ public class User
         {
             retStr += "School " + i + ": " + schools[i-1] + "\n";
         }
+        for (int i=0; i<friendsList.size(); i++) {
+            retStr += "Friends with " + friendsList.get(i).getName() + "\n";
+        }
         
         return retStr;
     }//END toString
