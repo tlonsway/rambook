@@ -3,6 +3,7 @@ import java.awt.*;
 public class display extends JPanel
 {
     String view = "";
+    
     public void drawing()
     {
         repaint();
@@ -14,8 +15,7 @@ public class display extends JPanel
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
-        g.setColor(Color.BLACK);
-        g.fillRect(480,270,960,510);
-
+        g.setColor(Color.RED);
+        g.fillRect(10,10,10,10);
     }
 }
