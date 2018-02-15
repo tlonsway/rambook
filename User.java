@@ -28,6 +28,16 @@ public class User
         friendsList = u;
     }//END bulkAddFriends
     
+    public boolean equals(User other) {
+        if (name.equals(other.getName()) && age == other.getAge() && hometown.equals(other.getHometown())) {
+            return true;
+        } else {
+            return false;
+        } 
+    }
+    
+    
+    
 
     
     // STARTED FOR YOU
@@ -58,7 +68,18 @@ public class User
     {
         return name;
     }//END getName
-    
+    public int getAge() {
+        return age;
+    }
+    public String getHometown() {
+        return hometown;
+    }
+    public String[] getSchools() {
+        return schools;
+    }
+    public ArrayList<User> getFriendsList() {
+        return friendsList;
+    }
     
     
     
