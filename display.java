@@ -8,13 +8,17 @@ public class display extends JPanel
     JTextField password;
     JButton enter;
     boolean online = true;
+    String Name = "";
+    String aboutMe = "";
     public void drawing()
     {
         repaint();
     }
-    public void setOnline(boolean bop)
+    public void setUserinfo(boolean bop,String name,String bio )
     {
         online = bop;
+        Name = name;
+        aboutMe = bio;
     }
     public void setTextField(JTextField U, int i)
     {
@@ -86,7 +90,9 @@ public class display extends JPanel
             g.setFont(f);
             g.setColor(Color.WHITE);
             g.drawString("Name: ", 250, 25);
-            g.drawString("About Me: ", 250, 50);
+            g.drawString(Name, 325, 25);
+            g.drawString("About Me: ", 250, 60);
+            g.drawString(aboutMe,350, 60);
             g.drawString("Current Status: ", 10, 250);
             if(online == true)
             {
@@ -96,6 +102,7 @@ public class display extends JPanel
             {
                 g.drawString("Offline", 175, 250);
             }
+            
         }
     }
 }

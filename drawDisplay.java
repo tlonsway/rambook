@@ -22,6 +22,7 @@ public class drawDisplay {
         window.setButton(enter);
         String Usernamewindow = "";
         login account = new login();
+        window.setUserinfo(true, "brian","I like to snowboard.");
         enter.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent arg0) 
