@@ -100,6 +100,7 @@ public class User
         retStr += "Hometown: \t" + hometown + "\n";
         for(int i = 1; i <= schools.length; i ++)
         {
+            if (schools[i-1] != null) 
             retStr += "School " + i + ": " + schools[i-1] + "\n";
         }
         for (int i=0; i<friendsList.size(); i++) {
