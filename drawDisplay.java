@@ -31,7 +31,7 @@ public class drawDisplay {
                     try {
                         if(view.equals("login"))
                             System.out.println(login.verify(window.getUsername(), window.getPassword()));
-                        else if(view.equals("sign in"))
+                        else if(view.equals("sign up"))
                         {
                             window.setSignUpValid(false, true);
                             window.drawing();
