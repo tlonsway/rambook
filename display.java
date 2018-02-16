@@ -55,8 +55,8 @@ public class display extends JPanel
             Font f = new Font("Username: ", Font.BOLD, 20);
             Wordz.setSize(10,20);
             g.setFont(f);
-            g.drawString(f.getName(), 850, 300);
-            g.drawString("Password: ", 850, 500);
+            g.drawString(f.getName(), 850, 350);
+            g.drawString("Password: ", 850, 550);
             UserName.setBounds(850, 400, 100, 20);
             password.setBounds(850, 600, 100, 20);
             UserName.setEditable(true);
@@ -69,6 +69,20 @@ public class display extends JPanel
             enter.setBounds(1000, 475, 100,50);
             enter.setText("ENTER");
             g.drawRect(1000,475,100,50);
+        }
+        else if(view.equals("home screen"))
+        {
+            g.setColor(Color.RED);
+            g.fillRect(0,0, 1920, 1020);
+            g.setColor(Color.BLACK);
+            g.fillRect(10,10,200,200);
+            Font f = new Font("Name: ", Font.BOLD, 20);
+            g.setFont(f);
+            g.setColor(Color.WHITE);
+            g.drawString("Name: ", 250, 25);
+            g.drawString("", 250, 50);
+            g.drawString("Current Status: ", 10, 250);
+            
         }
     }
 }

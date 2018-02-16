@@ -10,7 +10,7 @@ public class drawDisplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display window = new display();
         frame.add(window);
-        window.setView("login");
+        window.setView("home screen");
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
         JButton enter = new JButton("ENTER");
@@ -21,7 +21,6 @@ public class drawDisplay {
         window.setTextField(Password, 2);
         window.setButton(enter);
         String Usernamewindow = "";
-        window.drawing();
         login account = new login();
         enter.addActionListener(new ActionListener()
             {
@@ -35,5 +34,6 @@ public class drawDisplay {
                     }
                 }
             } );
+        window.drawing();
     }
 }
