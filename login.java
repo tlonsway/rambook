@@ -2,7 +2,7 @@ import java.security.*;
 import java.io.*;
 public class login {
     private static final String FILENAME = "loginlist.txt";
-    public static String hash(String input) throws Exception {
+    private static String hash(String input) throws Exception {
         String original = input;
 	MessageDigest md = MessageDigest.getInstance("MD5");
 	md.update(original.getBytes());
