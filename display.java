@@ -7,11 +7,15 @@ public class display extends JPanel
     JTextField UserName;
     JTextField password;
     JButton enter;
+    boolean online = true;
     public void drawing()
     {
         repaint();
     }
-
+    public void setOnline(boolean bop)
+    {
+        online = bop;
+    }
     public void setTextField(JTextField U, int i)
     {
         if(i == 1)
@@ -80,9 +84,16 @@ public class display extends JPanel
             g.setFont(f);
             g.setColor(Color.WHITE);
             g.drawString("Name: ", 250, 25);
-            g.drawString("", 250, 50);
+            g.drawString("About Me: ", 250, 50);
             g.drawString("Current Status: ", 10, 250);
-            
+            if(online == true)
+            {
+                g.drawString("Online", 10, 350);
+            }
+            else if(online == false)
+            {
+                g.drawString("Offline", 10, 350);
+            }
         }
     }
 }
