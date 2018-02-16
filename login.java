@@ -4,21 +4,21 @@ public class login {
     private static final String FILENAME = "loginlist.txt";
     private static String hash(String input) throws Exception {
         String original = input;
-    MessageDigest md = MessageDigest.getInstance("MD5");
-    md.update(original.getBytes());
-    byte[] digest = md.digest();
-    StringBuffer sb = new StringBuffer();
-    for (byte b : digest) {
-        sb.append(String.format("%02x", b & 0xff));
-    }
-    return sb.toString();
+        MessageDigest md = MessageDigest.getInstance("MD5");
+        md.update(original.getBytes());
+        byte[] digest = md.digest();
+        StringBuffer sb = new StringBuffer();
+        for (byte b : digest) {
+            sb.append(String.format("%02x", b & 0xff));
+        }
+        return sb.toString();
     }
     public static void addUser(String username, String password) throws Exception {
         String hash = hash(password);
         BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME, true));
-    bw.write(username + ":" + hash);
-    bw.newLine();
-    bw.flush();        
+        bw.write(username + ":" + hash);
+        bw.newLine();
+        bw.flush();        
     }
     public static void clearList()  throws Exception {
         BufferedWriter bw = new BufferedWriter(new FileWriter(FILENAME, false));
@@ -54,7 +54,6 @@ public class login {
             if (currentLine.substring(0, currentLine.indexOf(":")).equals(username))
                 exist = true;
         }
-        return exist;
-        
+        return exist;        
     }
 }
