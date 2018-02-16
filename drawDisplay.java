@@ -1,24 +1,34 @@
 import java.util.*;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.*;
 public class drawDisplay {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("Login");
+        JFrame frame = new JFrame("window");
         frame.setVisible(true);
         frame.setSize(1920, 1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        display login = new display();
-        frame.add(login);
-        login.setView("login");
+        display window = new display();
+        frame.add(window);
+        window.setView("window");
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
         JButton enter = new JButton("ENTER");
         frame.add(enter);
         frame.add(Password);
         frame.add(UsernameInput);
-        login.setTextField(UsernameInput, 1);
-        login.setTextField(Password, 2);
-        login.setButton(enter);
-        login.drawing();
+        window.setTextField(UsernameInput, 1);
+        window.setTextField(Password, 2);
+        window.setButton(enter);
+        String Usernamewindow = "";
+        window.drawing();
+        login account = new login();
+        enter.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent arg0)
+                {
+                    
+                }
+            } );
     }
 }
