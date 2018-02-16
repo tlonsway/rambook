@@ -82,7 +82,7 @@ public class display extends JPanel
             g.fillRect(0,0, 1920, 1020);
             g.setColor(Color.BLACK);
             g.fillRect(10,10,200,200);
-            Font f = new Font("Name: ", Font.BOLD, 20);
+            Font f = new Font("", Font.BOLD, 20);
             g.setFont(f);
             g.setColor(Color.WHITE);
             g.drawString("Name: ", 250, 25);
@@ -90,11 +90,11 @@ public class display extends JPanel
             g.drawString("Current Status: ", 10, 250);
             if(online == true)
             {
-                g.drawString("Online", 10, 350);
+                g.drawString("Online", 175, 250);
             }
             else if(online == false)
             {
-                g.drawString("Offline", 10, 350);
+                g.drawString("Offline", 175, 250);
             }
         }
     }
