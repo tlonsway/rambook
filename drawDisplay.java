@@ -10,7 +10,8 @@ public class drawDisplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display window = new display();
         frame.add(window);
-        String view = "sign up";
+        //String view = "sign up";
+        String view = "login";
         window.setView(view);
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();

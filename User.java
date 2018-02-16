@@ -41,7 +41,7 @@ public class User
     
     public void unfriend(String friend) {
         for (int i=0; i<friendsList.size(); i++) {
-            if (friendsList.get(i).equals(friend)) {
+            if (friendsList.get(i).getName().equals(friend)) {
                 friendsList.remove(i);
             }   
         }

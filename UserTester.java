@@ -10,4 +10,4 @@ public class UserTester
         test1.unfriend(test2.getName());
         System.out.println(test1.toString());
     }
-}
+}   
