@@ -25,9 +25,14 @@ public class drawDisplay {
         login account = new login();
         enter.addActionListener(new ActionListener()
             {
-                public void actionPerformed(ActionEvent arg0) //throws Exception
+                public void actionPerformed(ActionEvent arg0) 
                 {
-                    //login.verify(window.getUsername(), window.getPassword());
+                    try {
+                        System.out.println(login.verify(window.getUsername(), window.getPassword()));
+                    }
+                    catch (Exception e) {
+                        System.out.println(e);
+                    }
                 }
             } );
     }
