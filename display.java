@@ -1,5 +1,11 @@
 import javax.swing.*;
 import java.awt.*;
+import javax.swing.JOptionPane;
+import javax.swing.JComponent.*;
+import java.awt.*;
+import java.awt.event.*;
+import java.lang.String.*;
+import java.lang.Object.*;
 public class display extends JPanel
 {
     String view = "";
@@ -22,7 +28,13 @@ public class display extends JPanel
             password = U;
         }
     }
-
+    /*enter.addActionListener(new ActionListener()
+    {
+        public void actionPerformed(ActionEvent arg0)
+        {
+            
+        }
+    } );*/
     public void setView(String v)
     {
         view = v;
