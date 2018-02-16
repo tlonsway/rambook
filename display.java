@@ -76,6 +76,8 @@ public class display extends JPanel
         }
         else if(view.equals("home screen"))
         {
+            UserName.setVisible(false);
+            password.setVisible(false);
             g.setColor(Color.RED);
             g.fillRect(0,0, 1920, 1020);
             g.setColor(Color.BLACK);
