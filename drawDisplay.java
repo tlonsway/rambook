@@ -23,12 +23,12 @@ public class drawDisplay {
         String Usernamewindow = "";
         window.drawing();
         login account = new login();
-        /*enter.addActionListener(new ActionListener()
+        enter.addActionListener(new ActionListener()
             {
-                public void actionPerformed(ActionEvent arg0)
+                public void actionPerformed(ActionEvent arg0) //throws Exception
                 {
-                    
+                    //login.verify(window.getUsername(), window.getPassword());
                 }
-            } );*/
+            } );
     }
 }
