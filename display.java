@@ -11,6 +11,8 @@ public class display extends JPanel
     String Name = "";
     String aboutMe = "";
     int numberOfFriends = 0;
+    boolean isValidUsername = false;
+    boolean enterClicked = false;
     public void drawing()
     {
         repaint();
@@ -49,6 +51,11 @@ public class display extends JPanel
     {
         enter = g;
     }
+    public void setSignUpValid(boolean valid, boolean clicked)
+    {
+        isValidUsername = valid;
+        enterClicked = clicked;
+    }   
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
@@ -136,6 +143,11 @@ public class display extends JPanel
             enter.setBounds(1000, 475, 100,50);
             enter.setText("ENTER");
             g.drawRect(1000,475,100,50);
+            if(isValidUsername == false && enterClicked == true)
+            {
+                g.setColor(Color.RED);
+                g.drawString("Username Already Taken",600,400);
+            }
         }
     }
 }

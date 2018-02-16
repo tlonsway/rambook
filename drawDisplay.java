@@ -10,7 +10,8 @@ public class drawDisplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display window = new display();
         frame.add(window);
-        window.setView("sign up");
+        String view = "sign up";
+        window.setView(view);
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
         JButton enter = new JButton("ENTER");
@@ -28,11 +29,12 @@ public class drawDisplay {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try {
-                        if(window.view.equals("login"))
+                        if(view.equals("login"))
                             System.out.println(login.verify(window.getUsername(), window.getPassword()));
-                        else if(window.view.equals("sign in"))
+                        else if(view.equals("sign in"))
                         {
-                            
+                            window.setSignUpValid(false, true);
+                            window.drawing();
                         }
                     }
                     catch (Exception e) {
