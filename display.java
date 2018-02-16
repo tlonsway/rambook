@@ -10,15 +10,17 @@ public class display extends JPanel
     boolean online = true;
     String Name = "";
     String aboutMe = "";
+    int numberOfFriends = 0;
     public void drawing()
     {
         repaint();
     }
-    public void setUserinfo(boolean bop,String name,String bio )
+    public void setUserinfo(boolean bop,String name,String bio, int numFriends )
     {
         online = bop;
         Name = name;
         aboutMe = bio;
+        numberOfFriends = numFriends;
     }
     public void setTextField(JTextField U, int i)
     {
@@ -91,8 +93,11 @@ public class display extends JPanel
             g.setColor(Color.WHITE);
             g.drawString("Name: ", 250, 25);
             g.drawString(Name, 325, 25);
-            g.drawString("About Me: ", 250, 60);
-            g.drawString(aboutMe,350, 60);
+            g.drawString("About Me: ", 250, 95);
+            g.drawString(aboutMe,350, 95);
+            g.drawString("Number Of Friends:", 250, 60);
+            String temp = "" + numberOfFriends;
+            g.drawString(temp, 440, 60);
             g.drawString("Current Status: ", 10, 250);
             if(online == true)
             {
@@ -103,6 +108,34 @@ public class display extends JPanel
                 g.drawString("Offline", 175, 250);
             }
             
+        }
+        else if(view.equals("sign up"))
+        {
+            g.setColor(Color.RED);
+            g.fillRect(0,0,1920, 1020);
+            g.setColor(Color.WHITE);
+            g.fillRect(480,255,960,510);
+            g.setColor(Color.BLACK);
+            g.drawRect(480,255,960,510);
+            Font f = new Font("", Font.BOLD, 20);
+            g.setFont(f);
+            g.drawString("Sign Up",500, 310);
+            JLabel Wordz = new JLabel();
+            Wordz.setSize(10,20);
+            g.drawString("Username: ", 850, 350);
+            g.drawString("Password: ", 850, 550);
+            UserName.setBounds(850, 400, 100, 20);
+            password.setBounds(850, 600, 100, 20);
+            UserName.setEditable(true);
+            password.setEditable(true);
+            UserName.setVisible(true);
+            password.setVisible(true);
+            g.drawRect(850,400,100,20);
+            g.drawRect(850,600,100,20);
+            enter.setVisible(true);
+            enter.setBounds(1000, 475, 100,50);
+            enter.setText("ENTER");
+            g.drawRect(1000,475,100,50);
         }
     }
 }
