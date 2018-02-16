@@ -10,7 +10,7 @@ public class drawDisplay {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display window = new display();
         frame.add(window);
-        window.setView("window");
+        window.setView("login");
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
         JButton enter = new JButton("ENTER");
@@ -23,12 +23,12 @@ public class drawDisplay {
         String Usernamewindow = "";
         window.drawing();
         login account = new login();
-        enter.addActionListener(new ActionListener()
+        /*enter.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent arg0)
                 {
                     
                 }
-            } );
+            } );*/
     }
 }
