@@ -6,6 +6,7 @@ public class display extends JPanel
     String view = "";
     JTextField UserName;
     JTextField password;
+    JTextField checkpassword;
     JButton enter;
     JButton signUp;
     boolean online = true;
@@ -14,6 +15,7 @@ public class display extends JPanel
     int numberOfFriends = 0;
     boolean isValidUsername = false;
     boolean enterClicked = false;
+    boolean passwordsMatch = true;
     public void drawing()
     {
         repaint();
@@ -35,6 +37,14 @@ public class display extends JPanel
         {
             password = U;
         }
+        else if(i == 3)
+        {
+            checkpassword = U;
+        }
+    }
+    public void setPasswordMatch(boolean i)
+    {
+        passwordsMatch = i;
     }
     public void setView(String v)
     {
@@ -66,6 +76,7 @@ public class display extends JPanel
         super.paintComponent(g);
         if(view.equals("login"))
         {
+            checkpassword.setVisible(false);
             g.setColor(Color.RED);
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
@@ -143,6 +154,7 @@ public class display extends JPanel
         {
             UserName.setVisible(true);
             password.setVisible(true);
+            checkpassword.setVisible(true);
             signUp.setVisible(false);
             enter.setVisible(true);
             g.setColor(Color.RED);
@@ -157,19 +169,27 @@ public class display extends JPanel
             JLabel Wordz = new JLabel();
             Wordz.setSize(10,20);
             g.drawString("Username: ", 850, 350);
-            g.drawString("Password: ", 850, 550);
+            g.drawString("Password: ", 800, 550);
+            g.drawString("Retype Password: ", 1000 , 550);
             UserName.setBounds(850, 400, 100, 20);
-            password.setBounds(850, 600, 100, 20);
+            password.setBounds(800, 600, 100, 20);
+            checkpassword.setBounds(1000, 600, 100, 20);
             UserName.setEditable(true);
             password.setEditable(true);
             UserName.setVisible(true);
             password.setVisible(true);
             g.drawRect(850,400,100,20);
-            g.drawRect(850,600,100,20);
+            g.drawRect(800,600,100,20);
+            g.drawRect(1000,600,100,20);
             enter.setVisible(true);
             enter.setBounds(1000, 475, 100,50);
             enter.setText("ENTER");
             g.drawRect(1000,475,100,50);
+            if(passwordsMatch == false)
+            {
+                g.setColor(Color.RED);
+                g.drawString("Passwords Don't Match",550,620);
+            }
             if(isValidUsername == false && enterClicked == true)
             {
                 g.setColor(Color.RED);

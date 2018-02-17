@@ -15,14 +15,17 @@ public class drawDisplay {
         window.setView(view);
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
+        JTextField checkPassword = new JTextField();
         JButton enter = new JButton("ENTER");
         JButton SignUp = new JButton("Create Account");
         frame.add(enter);
+        frame.add(checkPassword);
         frame.add(SignUp);
         frame.add(Password);
         frame.add(UsernameInput);
         window.setTextField(UsernameInput, 1);
         window.setTextField(Password, 2);
+        window.setTextField(checkPassword, 3);
         window.setEnterButton(enter);
         window.setSignUpButton(SignUp);
         String Usernamewindow = "";
@@ -35,7 +38,7 @@ public class drawDisplay {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try {
-                        
+
                         if(window.view.equals("login"))
                         {
                             System.out.println(login.verify(window.getUsername(), window.getPassword()));
@@ -43,7 +46,7 @@ public class drawDisplay {
                             {
                                 window.setView("home screen");
                                 /*currentUser = server.getUser(window.getUsername());
-                                  window.setUserinfo(currentUser.getStatus(), currentUser.getName(), currentUser.getBio(), currentUser.countFriends());
+                                window.setUserinfo(currentUser.getStatus(), currentUser.getName(), currentUser.getBio(), currentUser.countFriends());
                                  */
                             }
                             window.drawing();
@@ -54,8 +57,15 @@ public class drawDisplay {
                                 window.setSignUpValid(false, true);
                             else 
                             {
-                                login.addUser(UsernameInput.getText(), Password.getText());
-                                window.setView("login");
+                                if(Password.getText().equals(checkPassword.getText()))
+                                    window.setPasswordMatch(true);
+                                else
+                                    window.setPasswordMatch(false);
+                                if(window.passwordsMatch == true)
+                                {
+                                    login.addUser(UsernameInput.getText(), Password.getText());
+                                    window.setView("login");
+                                }
                             }
                             window.drawing();
                         }
