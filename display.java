@@ -155,7 +155,7 @@ public class display extends JPanel
             UserName.setVisible(true);
             password.setVisible(true);
             checkpassword.setVisible(true);
-            signUp.setVisible(false);
+            signUp.setVisible(true);
             enter.setVisible(true);
             g.setColor(Color.RED);
             g.fillRect(0,0,1920, 1020);
@@ -181,9 +181,11 @@ public class display extends JPanel
             g.drawRect(850,400,100,20);
             g.drawRect(800,600,100,20);
             g.drawRect(1000,600,100,20);
-            enter.setVisible(true);
             enter.setBounds(1000, 475, 100,50);
             enter.setText("ENTER");
+            signUp.setBounds(1000,400,100,50);
+            signUp.setText("BACK");
+            g.drawRect(1000,400,100,50);
             g.drawRect(1000,475,100,50);
             if(passwordsMatch == false)
             {

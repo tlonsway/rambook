@@ -57,6 +57,7 @@ public class drawDisplay {
                                 window.setSignUpValid(false, true);
                             else 
                             {
+                                window.setSignUpValid(true, true);
                                 if(Password.getText().equals(checkPassword.getText()))
                                     window.setPasswordMatch(true);
                                 else
@@ -80,9 +81,16 @@ public class drawDisplay {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try {
-                        window.setView("sign up");
-                        window.drawing();
-                        System.out.println(window.view);
+                        if(window.view.equals("login"))
+                        {
+                            window.setView("sign up");
+                            window.drawing();
+                        }
+                        else if(window.view.equals("sign up"))
+                        {
+                            window.setView("login");
+                            window.drawing();
+                        }
                     }
                     catch (Exception e) {
                         System.out.println(e);
