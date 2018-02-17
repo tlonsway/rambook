@@ -41,7 +41,8 @@ public class drawDisplay {
                         }
                         else if(window.view.equals("sign up"))
                         {
-                            //window.setSignUpValid(false, true);
+                           // if(login.userExist(UsernameInput.getText()) == true)
+                              //  window.setSignUpValid(false, true);
                             login.addUser(UsernameInput.getText(), Password.getText());
                             window.setView("login");
                             window.drawing();
