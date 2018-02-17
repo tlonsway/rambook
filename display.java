@@ -7,6 +7,7 @@ public class display extends JPanel
     JTextField UserName;
     JTextField password;
     JButton enter;
+    JButton signUp;
     boolean online = true;
     String Name = "";
     String aboutMe = "";
@@ -47,9 +48,13 @@ public class display extends JPanel
     {
         return password.getText();
     }
-    public void setButton(JButton g)
+    public void setEnterButton(JButton g)
     {
         enter = g;
+    }
+    public void setSignUpButton(JButton g)
+    {
+        signUp = g;
     }
     public void setSignUpValid(boolean valid, boolean clicked)
     {
@@ -73,6 +78,7 @@ public class display extends JPanel
             Wordz.setSize(10,20);
             g.setFont(f);
             g.drawString(f.getName(), 850, 350);
+            g.drawString("Login",500, 310);
             g.drawString("Password: ", 850, 550);
             UserName.setBounds(850, 400, 100, 20);
             password.setBounds(850, 600, 100, 20);
@@ -83,14 +89,20 @@ public class display extends JPanel
             g.drawRect(850,400,100,20);
             g.drawRect(850,600,100,20);
             enter.setVisible(true);
+            signUp.setVisible(true);
             enter.setBounds(1000, 475, 100,50);
+            signUp.setBounds(1000, 575, 100,50);
+            signUp.setText("Sign Up");
             enter.setText("ENTER");
             g.drawRect(1000,475,100,50);
+            g.drawRect(1000,575,100,50);
         }
         else if(view.equals("home screen"))
         {
             UserName.setVisible(false);
             password.setVisible(false);
+            signUp.setVisible(false);
+            enter.setVisible(false);
             g.setColor(Color.RED);
             g.fillRect(0,0, 1920, 1020);
             g.setColor(Color.BLACK);
@@ -118,6 +130,10 @@ public class display extends JPanel
         }
         else if(view.equals("sign up"))
         {
+            UserName.setVisible(true);
+            password.setVisible(true);
+            signUp.setVisible(false);
+            enter.setVisible(true);
             g.setColor(Color.RED);
             g.fillRect(0,0,1920, 1020);
             g.setColor(Color.WHITE);

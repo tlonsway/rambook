@@ -16,12 +16,15 @@ public class drawDisplay {
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
         JButton enter = new JButton("ENTER");
+        JButton SignUp = new JButton("Create Account");
         frame.add(enter);
+        frame.add(SignUp);
         frame.add(Password);
         frame.add(UsernameInput);
         window.setTextField(UsernameInput, 1);
         window.setTextField(Password, 2);
-        window.setButton(enter);
+        window.setEnterButton(enter);
+        window.setSignUpButton(SignUp);
         String Usernamewindow = "";
         login account = new login();
         window.setUserinfo(false, "Tristan","I have mad hax.", 50);
@@ -30,13 +33,33 @@ public class drawDisplay {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try {
-                        if(view.equals("login"))
-                            System.out.println(login.verify(window.getUsername(), window.getPassword()));
-                        else if(view.equals("sign up"))
+                        
+                        if(window.view.equals("login"))
                         {
-                            window.setSignUpValid(false, true);
+                            System.out.println(login.verify(window.getUsername(), window.getPassword()));
                             window.drawing();
                         }
+                        else if(window.view.equals("sign up"))
+                        {
+                            //window.setSignUpValid(false, true);
+                            login.addUser(UsernameInput.getText(), Password.getText());
+                            window.setView("login");
+                            window.drawing();
+                        }
+                    }
+                    catch (Exception e) {
+                        System.out.println(e);
+                    }
+                }
+            } );
+        SignUp.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent arg0) 
+                {
+                    try {
+                        window.setView("sign up");
+                        window.drawing();
+                        System.out.println(window.view);
                     }
                     catch (Exception e) {
                         System.out.println(e);
