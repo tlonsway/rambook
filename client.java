@@ -4,8 +4,8 @@ import java.net.*;
 public class client {
     Socket sock;
     public static void main(String[] args) throws Exception {
-        Socket sock = new Socket("127.0.0.1", 4445);
         client client = new client();
+        client.initialize();
         while(true)
         client.run();
     }
@@ -21,6 +21,8 @@ public class client {
         System.out.println(message);
         
     }
-    public void initialize(
+    public void initialize() throws Exception {
+        sock = new Socket("127.0.0.1", 4445);
+    }
 }
         
