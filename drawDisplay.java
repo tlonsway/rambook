@@ -27,7 +27,9 @@ public class drawDisplay {
         window.setSignUpButton(SignUp);
         String Usernamewindow = "";
         login account = new login();
-        window.setUserinfo(false, "Tristan","I have mad hax.", 50);
+        window.setUserinfo(false, "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
+        User currentUser;
+        Server server = new Server();
         enter.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent arg0) 
@@ -37,14 +39,24 @@ public class drawDisplay {
                         if(window.view.equals("login"))
                         {
                             System.out.println(login.verify(window.getUsername(), window.getPassword()));
+                            if(login.verify(window.getUsername(), window.getPassword()) == true)
+                            {
+                                window.setView("home screen");
+                                /*currentUser = server.getUser(window.getUsername());
+                                  window.setUserinfo(currentUser.getStatus(), currentUser.getName(), currentUser.getBio(), currentUser.countFriends());
+                                 */
+                            }
                             window.drawing();
                         }
                         else if(window.view.equals("sign up"))
                         {
-                           // if(login.userExist(UsernameInput.getText()) == true)
-                              //  window.setSignUpValid(false, true);
-                            login.addUser(UsernameInput.getText(), Password.getText());
-                            window.setView("login");
+                            if(login.userExist(UsernameInput.getText()) == true)
+                                window.setSignUpValid(false, true);
+                            else 
+                            {
+                                login.addUser(UsernameInput.getText(), Password.getText());
+                                window.setView("login");
+                            }
                             window.drawing();
                         }
                     }

@@ -113,7 +113,16 @@ public class display extends JPanel
             g.drawString("Name: ", 250, 25);
             g.drawString(Name, 325, 25);
             g.drawString("About Me: ", 250, 95);
-            g.drawString(aboutMe,350, 95);
+            String editBio = "";
+            if(aboutMe.length() > 20 )
+            {
+                editBio = aboutMe.substring(0, 21);
+                editBio += "\n";
+                editBio += aboutMe.substring(21);
+            }
+            aboutMe = editBio;
+            g.drawString(aboutMe.substring(0,aboutMe.indexOf("\n")),250, 120);
+            g.drawString(aboutMe.substring(aboutMe.indexOf("\n")),250,150);
             g.drawString("Number Of Friends:", 250, 60);
             String temp = "" + numberOfFriends;
             g.drawString(temp, 440, 60);
@@ -126,6 +135,8 @@ public class display extends JPanel
             {
                 g.drawString("Offline", 175, 250);
             }
+            g.setColor(Color.WHITE);
+            g.drawLine(960, 0, 960, 1020);
             
         }
         else if(view.equals("sign up"))
