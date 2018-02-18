@@ -2,26 +2,44 @@ import java.net.*;
 import java.io.*;
 
 public class Server {
+    ServerSocket ss;
+    Socket s;
+    DataInputStream din;
+    DataOutputStream dout;
+    
     public static void main(String[] args) throws Exception {
-        Server svr = new Server();
-        svr.run();
+        new Server();     
     }
-    public void run() throws Exception {
-        ServerSocket serversocket = new ServerSocket(5555);
-        Socket sock = serversocket.accept();
-        InputStreamReader ir = new InputStreamReader(sock.getInputStream());
-        BufferedReader br = new BufferedReader(ir);
-        while(true) {
-            ir = new InputStreamReader(sock.getInputStream());
-            br = new BufferedReader(ir);
-            System.out.println(br.readLine());
-        }
+    public Server() {
+        try {
+            ss = new ServerSocket(8888);
+            s = ss.accept();
+            din = new DataInputStream(s.getInputStream());
+            dout = new DataOutputStream(s.getOutputStream());
+            //listenForData();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }       
+    }
+    // public void listenForData() {
+        // while (true) {
+            // try {
+                // while (din.available() == 0) {
+                    // try {
+                        // Thread.sleep(1);
+                    // } catch (InterruptedException e) {
+                        // e.printStackTrace();
+                    // }
+                // }
+                    
+                
+            // }
         
-        //String message = br.readLine();
-        //System.out.println(message);
-        //if (message != null) {
-        //    PrintStream ps = new PrintStream(sock.getOutputStream());
-        //    ps.println("MESSAGE RECEIVED");
-        //}
+        // }
     }
-}
+
+    
+    
+    
+    
+    
