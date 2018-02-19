@@ -8,7 +8,7 @@ public class User
     private String hometown;
     private String[] schools;
     private ArrayList<User> friendsList;
-    
+    private ArrayList<post> UserPosts = new ArrayList<post>();
     //CONSTRUCTOR - DONE FOR YOU
     //NOTE - it leaves the friendsList empty
     public User(String n, int a, String h, String[] s)
@@ -160,7 +160,10 @@ public class User
         return friendsList;
     }
     
-    
+    public void addPost(String image, String time, String name)
+    {
+        UserPosts.add(new post(image, time, name));
+    }
     
     
 }//END CLASS
