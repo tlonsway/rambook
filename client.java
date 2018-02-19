@@ -2,18 +2,30 @@ import java.io.*;
 import java.net.*;
 import cs1.*;
 public class client {
+    Socket sock;    
+    PrintStream ps;  
+    
     public static void main(String[] args) throws Exception {
-        client client = new client();
-        while(true)
-        client.run("a:b:tristan"); //a:add, g:get, d:del
+        new client();
+        
+        //while(true)
+        //client.run("a:b:tristan"); //a:add, g:get, d:del
                                    //b:bio, n:name, o:online, p:post
                                    //name of user
                                    //if applies, number of data
     }
+    public client() {
+        try {
+            sock = new Socket("127.0.0.1", 8888);
+            ps = new PrintStream(sock.getOutputStream());
+            ps.println("HELLO");
+            run("a:b:tristan");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
     public void run(String input) throws Exception {
-        Socket sock = new Socket("127.0.0.1", 5555);        
-        PrintStream ps = new PrintStream(sock.getOutputStream());
-        ps.println("Hello to SERVER from CLIENT");
+        while(true) {
         
         
         //String message;
@@ -30,6 +42,9 @@ public class client {
             String name = input;
         }
         
+        String input1 = Keyboard.readString();
+        ps.println(input1);
+        
         
         
         
@@ -45,7 +60,7 @@ public class client {
         
         //String message = br.readLine();
         //System.out.println(message);
-        
+    }
     }
 }
         

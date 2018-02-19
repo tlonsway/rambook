@@ -30,8 +30,9 @@ public class ClientTesting {
                 }
             }
             String input = console.nextLine();
-            if (input.toLowerCase().equals("end"))
+            if (input.toLowerCase().equals("end")) {
                 break;
+            }
             try {
                 dout.writeUTF(input);
                 while (din.available() == 0) {
