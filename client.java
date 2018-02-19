@@ -19,25 +19,23 @@ public class client {
             e.printStackTrace();
         }
     }
-    public void getData(String name, String type, int number) {
-        String t = 
-        
-        
-        if (number==0) {
-            
-       
-        } else {
-     
+    public String getData(String name, String type, int number) {
+        String t = type.toLowerCase().substring(0, 1);
+        String ret = "";
+        try {
+            if (number==0) {
+                ret = run("g:" + name + ":" + type);
+                
+            } else {
+                ret = run("g" + name + ":" + type + ":" + number);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
-        
-
-        
-        
+        return ret;
     }
     public String run(String input) throws Exception {
         String output = "";
-        
         ps.println(input);
         
 

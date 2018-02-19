@@ -46,7 +46,7 @@ public class drawDisplay {
                             {
                                 window.setView("home screen");
                                 String currentUser = window.getUsername();;
-                                window.setUserinfo(Client.getData(currentUser,"status", 0), currentUser, Client.getData(currentUser,"bio", 0), parsInt(Client.getData(currentUser, "friends", 0)));
+                                window.setUserinfo(Client.getData(currentUser,"status", 0), currentUser, Client.getData(currentUser,"bio", 0), Integer.parseInt(Client.getData(currentUser, "friends", 0)));
                                 
                             }
                             window.drawing();
