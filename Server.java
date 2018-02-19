@@ -22,14 +22,25 @@ public class Server {
     }
     public void run() throws IOException{
         while(true) {
-            //din = new BufferedReader(new InputStreamReader(s.getInputStream()));
-            System.out.println(din.readLine());
-        }
+            String input = (din.readLine());
+            int number = -9999;
+            String name;
+            String action = input.substring(0,input.indexOf(":"));
+            input = input.substring(input.indexOf(":")+1);
+            String type = input.substring(0, input.indexOf(":"));
+            input = input.substring(input.indexOf(":")+1);
+            if (input.indexOf(":") != -1) {
+                name = input.substring(0, input.indexOf(":"));
+                input = input.substring(input.indexOf(":")+1);
+                number = Integer.parseInt(input);
+            } else {
+                name = input;
+            }
+            System.out.println("action: " + action + "\ntype: " + type);
+            if (number != -9999) {
+                System.out.println("number: " + number);
+            }
+            System.out.println("name: " + name);
+            }
     }
 }
-
-    
-    
-    
-    
-    
