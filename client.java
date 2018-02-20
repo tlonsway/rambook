@@ -12,7 +12,7 @@ public class client {
     }
     public client() {
         try {
-            sock = new Socket("192.168.1.17", 8888);
+            sock = new Socket("71.115.228.195", 8888);
             ps = new PrintStream(sock.getOutputStream());
             din = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             //ps.println("HELLO");
