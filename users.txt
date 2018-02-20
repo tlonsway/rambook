@@ -1,0 +1,28 @@
+tristan
+status:offline
+name:tristan
+friends:1274
+age:15
+bio:Java is cool
+}
+bob
+status:online
+name:bob
+friends:4
+age:21
+bio: I enjoy coding
+}
+bill
+status:offline
+name:bill
+friends:42
+age:14
+bio: Computer Science is awesome
+}
+brian
+status:offline
+name:brian
+friends:12
+age:15
+bio:I am brian
+}
