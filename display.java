@@ -134,12 +134,32 @@ public class display extends JPanel
             g.drawString("Name: ", 250, 25);
             g.drawString(Name, 325, 25);
             g.drawString("About Me: ", 250, 95);
-            String editBio = "";
-            if(aboutMe.length() > 36 )
+            String editBio = aboutMe;
+            int count = 0;
+            int newLine = 15;
+            int numLines = 0;
+            while(count < aboutMe.length())
             {
-                editBio = aboutMe.substring(0, 37);
-                editBio += "|";
-                editBio += aboutMe.substring(37);
+                if(newLine == 36)
+                {
+                    newLine = 0;
+                    editBio += editBio.substring(0, (newLine) * numLines + 1) + "|" + editBio.substring(((newLine) * numLines + 1) + 1);
+                    newLine = 0;
+                    numLines ++;
+                }
+                count ++;
+                newLine ++;
+            }
+            count = 120;
+            int stringPlace = 0;
+            while(count <= (numLines * 30) + 90)
+            {
+                if(stringPlace == -1)
+                    g.drawString(editBio.substring(stringPlace), 250, count);
+                else
+                    g.drawString(editBio.substring(stringPlace, editBio.indexOf("|")), 250, count);
+                count += 30;
+                stringPlace = editBio.substring(stringPlace).indexOf("|") + 1;
             }
             aboutMe = editBio;
             g.drawString(aboutMe.substring(0,aboutMe.indexOf("|")),250, 120);
