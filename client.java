@@ -3,7 +3,8 @@ import java.net.*;
 import cs1.*;
 public class client {
     Socket sock;    
-    PrintStream ps;  
+    PrintStream ps;
+    BufferedReader din;    
     public static void main(String[] args) throws Exception {
         new client();
         //types:B:bio, F:#friends, S:status
@@ -13,6 +14,7 @@ public class client {
         try {
             sock = new Socket("127.0.0.1", 8888);
             ps = new PrintStream(sock.getOutputStream());
+            din = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             //ps.println("HELLO");
             //run(input);
         } catch (Exception e) {
@@ -33,22 +35,26 @@ public class client {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        String get = "";
         try {
-            run(ret);
+            get = run(ret);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        try {
-            Thread.sleep(1);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        return null;
+        System.out.println("data recieved: " + get);
+        return get;
     }
     public String run(String input) throws Exception {
         String output = "";
         ps.println(input);
-        return output;
+        String line;
+        while(true) {
+            line = din.readLine();
+            if (line != null) 
+                break;
+        }
+        //String line = din.readLine(); 
+        return line;
     }
 }
         
