@@ -4,11 +4,11 @@ public class netTest {
             (new client()).getData("tristan", "bio", 0);
             (new client()).getData("brian", "friends", 0);
             (new client()).getData("bob", "status", 0);
-            /*try {
+            try {
                 Thread.sleep(5000);
             } catch (Exception e) {
                 e.printStackTrace();
-            }*/
+            }
        }
     }
 }

@@ -32,7 +32,7 @@ public class drawDisplay {
         login account = new login();
         window.setUserinfo("true", "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
         User currentUser;
-        client Client = new client();
+        //client Client = new client();
         enter.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent arg0) 
@@ -46,7 +46,7 @@ public class drawDisplay {
                             {
                                 window.setView("home screen");
                                 String currentUser = window.getUsername();
-                                window.setUserinfo(Client.getData(currentUser,"status", 0), currentUser, Client.getData(currentUser,"bio", 0), Integer.parseInt(Client.getData(currentUser, "friends", 0)));
+                                window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
                                 
                             }
                             else if(login.verify(window.getUsername(), window.getPassword()) == false)
