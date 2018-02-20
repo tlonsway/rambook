@@ -9,18 +9,19 @@ public class display extends JPanel
     JTextField checkpassword;
     JButton enter;
     JButton signUp;
-    boolean online = true;
+    String online = "";
     String Name = "";
     String aboutMe = "";
     int numberOfFriends = 0;
     boolean isValidUsername = false;
     boolean enterClicked = false;
     boolean passwordsMatch = true;
+    boolean failedLogin = false;
     public void drawing()
     {
         repaint();
     }
-    public void setUserinfo(boolean bop,String name,String bio, int numFriends )
+    public void setUserinfo(String bop,String name,String bio, int numFriends )
     {
         online = bop;
         Name = name;
@@ -45,6 +46,10 @@ public class display extends JPanel
     public void setPasswordMatch(boolean i)
     {
         passwordsMatch = i;
+    }
+    public void setFailedLogin(boolean i)
+    {
+        failedLogin = i;
     }
     public void setView(String v)
     {
@@ -107,6 +112,11 @@ public class display extends JPanel
             enter.setText("ENTER");
             g.drawRect(1000,475,100,50);
             g.drawRect(1000,575,100,50);
+            if(failedLogin == true)
+            {
+                g.setColor(Color.RED);
+                g.drawString("Incorrect Username or Password",500, 500);
+            }
         }
         else if(view.equals("home screen"))
         {
@@ -138,14 +148,7 @@ public class display extends JPanel
             String temp = "" + numberOfFriends;
             g.drawString(temp, 440, 60);
             g.drawString("Current Status: ", 10, 250);
-            if(online == true)
-            {
-                g.drawString("Online", 175, 250);
-            }
-            else if(online == false)
-            {
-                g.drawString("Offline", 175, 250);
-            }
+            g.drawString(online, 175, 250);
             g.setColor(Color.WHITE);
             g.drawLine(960, 0, 960, 1020);
             
