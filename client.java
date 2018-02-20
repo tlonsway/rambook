@@ -12,7 +12,7 @@ public class client {
     }
     public client() {
         try {
-            sock = new Socket("127.0.0.1", 8888);
+            sock = new Socket("192.168.1.17", 8888);
             ps = new PrintStream(sock.getOutputStream());
             din = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             //ps.println("HELLO");
@@ -47,11 +47,12 @@ public class client {
     public String run(String input) throws Exception {
         String output = "";
         ps.println(input);
-        String line;
-        while(true) {
+        String line = "";
+        boolean temp = false;
+        while(temp == false) {
             line = din.readLine();
             if (line != null) 
-                break;
+                temp = true;
         }
         //String line = din.readLine(); 
         return line;
