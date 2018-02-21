@@ -1,6 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
-
+import org.apache.commons.lang.WordUtils;
 public class display extends JPanel
 {
     String view = "";
@@ -134,8 +134,10 @@ public class display extends JPanel
             g.drawString("Name: ", 250, 25);
             g.drawString(Name, 325, 25);
             g.drawString("About Me: ", 250, 95);
-            String editBio = aboutMe;
-            //String editBio = "";
+            String bio = WordUtils.wrap(aboutMe, 40);
+            /*
+            //String editBio = aboutMe;
+            String editBio = "";
             int count = 0;
             int newLine = 15;
             int numLines = 0;
@@ -144,13 +146,14 @@ public class display extends JPanel
                 if(newLine == 36)
                 {
                     newLine = 0;
-                    editBio += editBio.substring(0, (newLine) * numLines + 1) + "|" + editBio.substring(((newLine) * numLines + 1) + 1);
+                    editBio += aboutMe.substring(0, (newLine) * numLines + 1) + "|" + aboutMe.substring(((newLine) * numLines + 1) + 1);
                     newLine = 0;
                     numLines ++;
                 }
                 count ++;
                 newLine ++;
             }
+            System.out.println("1: " + editBio);
             count = 120;
             int stringPlace = 0;
             while(count <= (numLines * 30) + 90)
@@ -162,9 +165,10 @@ public class display extends JPanel
                 count += 30;
                 stringPlace = editBio.substring(stringPlace).indexOf("|") + 1;
             }
-            aboutMe = editBio;
-            g.drawString(aboutMe.substring(0,aboutMe.indexOf("|")),250, 120);
-            g.drawString(aboutMe.substring(aboutMe.indexOf("|")+1),250,150);
+            aboutMe = editBio;*/
+            g.drawString(bio, 250,120);
+            //g.drawString(aboutMe.substring(0,aboutMe.indexOf("|")),250, 120);
+            //g.drawString(aboutMe.substring(aboutMe.indexOf("|")+1),250,150);
             //g.drawString(aboutMe, 250, 120);
             //
             g.drawString("Number Of Friends:", 250, 60);
