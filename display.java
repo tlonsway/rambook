@@ -135,6 +135,7 @@ public class display extends JPanel
             g.drawString(Name, 325, 25);
             g.drawString("About Me: ", 250, 95);
             String editBio = aboutMe;
+            //String editBio = "";
             int count = 0;
             int newLine = 15;
             int numLines = 0;
