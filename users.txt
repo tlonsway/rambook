@@ -3,7 +3,7 @@ status:offline
 name:tristan
 friends:1274
 age:15
-bio:Java is cool
+bio:Java is cool, Java is cool, Java is cool, Java is cool, Java is cool
 }
 bob
 status:online

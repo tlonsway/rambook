@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
-import org.apache.commons.lang.WordUtils;
+import org.apache.commons.text.*;
+import org.apache.commons.lang3.*;
 public class display extends JPanel
 {
     String view = "";
@@ -135,6 +136,19 @@ public class display extends JPanel
             g.drawString(Name, 325, 25);
             g.drawString("About Me: ", 250, 95);
             String bio = WordUtils.wrap(aboutMe, 40);
+            System.out.println(bio);
+            int count = 120;
+            int last = 0;
+            bio += "\n";
+            
+            for (int i=0; i<bio.length(); i++) {
+                if (bio.substring(i,i+1).indexOf("\n") != -1) {
+                    g.drawString(bio.substring(last, i),250,count);          
+                    count += 30;         
+                    last = i;
+                }
+            }
+            
             /*
             //String editBio = aboutMe;
             String editBio = "";
@@ -166,7 +180,7 @@ public class display extends JPanel
                 stringPlace = editBio.substring(stringPlace).indexOf("|") + 1;
             }
             aboutMe = editBio;*/
-            g.drawString(bio, 250,120);
+            //g.drawString(bio, 250,120);
             //g.drawString(aboutMe.substring(0,aboutMe.indexOf("|")),250, 120);
             //g.drawString(aboutMe.substring(aboutMe.indexOf("|")+1),250,150);
             //g.drawString(aboutMe, 250, 120);
