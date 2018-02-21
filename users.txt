@@ -26,3 +26,10 @@ friends:12
 age:15
 bio:I am brian
 }
+billy123
+status:offline
+name:William
+friends:0
+age:13
+bio:I like animals
+}
