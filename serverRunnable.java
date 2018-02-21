@@ -51,6 +51,14 @@ public class serverRunnable implements Runnable{
                     e.printStackTrace();
                 }
             }
+            if (action.equals("p")) {
+                try {
+                    ret = checkPassword(name, type);
+                    System.out.println(ret);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
             try {
                 ps.println(new String());
                 ps.println(ret);
@@ -60,32 +68,46 @@ public class serverRunnable implements Runnable{
         }
     }
     public String getData(String name, String type) throws Exception{
-	FileReader fr = new FileReader("users.txt");
-	BufferedReader br = new BufferedReader(fr);
+    FileReader fr = new FileReader("users.txt");
+    BufferedReader br = new BufferedReader(fr);
         String line;
-	int amt;
+    int amt;
         while(!br.readLine().equals(name)) {
-	}
-	if (type.equals("s")) {
-	    amt = 0;
-	} else 
-	if (type.equals("n")) {
-	    amt = 1;
-	} else
-	if (type.equals("f")) {
-	    amt = 2;
-	} else
-	if (type.equals("a")) {
-	    amt = 3;
-	} else {
-	    amt = 4;
-	}
-	for (int i=0; i<=amt-1; i++) {
-	    br.readLine();
-	}
-	line = br.readLine();
-	System.out.println("line: " + line);
-	String ret = line.substring(line.indexOf(":")+1);
-	return ret;
+    }
+    if (type.equals("s")) {
+        amt = 0;
+    } else 
+    if (type.equals("n")) {
+        amt = 1;
+    } else
+    if (type.equals("f")) {
+        amt = 2;
+    } else
+    if (type.equals("a")) {
+        amt = 3;
+    } else {
+        amt = 4;
+    }
+    for (int i=0; i<=amt-1; i++) {
+        br.readLine();
+    }
+    line = br.readLine();
+    System.out.println("line: " + line);
+    String ret = line.substring(line.indexOf(":")+1);
+    return ret;
     }    
+    public String checkPassword(String name, String hash) throws Exception {
+        BufferedReader br = new BufferedReader(new FileReader("loginlist.txt"));
+        String currentLine;
+        String user;
+        String pass;
+        while ((currentLine = br.readLine()) != null) {
+            if (currentLine.substring(0, currentLine.indexOf(":")).equals(name)) {
+                if (currentLine.substring(currentLine.indexOf(":")+1).equals(hash)) {
+                    return "true"; //returns true if the given user:pass is valid
+                }
+            }
+        }
+        return "false"; //returns false if the given user:pass is invalid
+    }
 }
