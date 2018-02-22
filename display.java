@@ -130,6 +130,7 @@ public class display extends JPanel
             g.setColor(Color.BLACK);
             g.fillRect(10,10,200,200);
             Font f = new Font("", Font.BOLD, 20);
+            Font biofont = new Font("", Font.ROMAN_BASELINE, 18);
             g.setFont(f);
             g.setColor(Color.WHITE);
             g.drawString("Name: ", 250, 25);
@@ -140,7 +141,8 @@ public class display extends JPanel
             int count = 120;
             int last = 0;
             bio += "\n";
-            
+            g.setFont(biofont);
+            g.setColor(Color.CYAN);
             for (int i=0; i<bio.length(); i++) {
                 if (bio.substring(i,i+1).indexOf("\n") != -1) {
                     g.drawString(bio.substring(last, i),250,count);          
@@ -148,6 +150,8 @@ public class display extends JPanel
                     last = i;
                 }
             }
+            g.setFont(f);
+            g.setColor(Color.WHITE);
             
             /*
             //String editBio = aboutMe;
