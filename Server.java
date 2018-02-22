@@ -20,6 +20,7 @@ public class Server implements Runnable {
         while(true) {
             try {
                 s = ss.accept();
+                System.out.println("new connection from " + s.getInetAddress());
                 (new Thread(new serverRunnable(s))).start();                
             } catch (Exception e) {
                 e.printStackTrace();

@@ -41,15 +41,15 @@ public class drawDisplay {
 
                         if(window.view.equals("login"))
                         {
-                            System.out.println(login.verify(window.getUsername(), window.getPassword()));
-                            if(login.verify(window.getUsername(), window.getPassword()) == true)
+                            System.out.println((new client()).checkPassword(window.getUsername(), (window.getPassword())));
+                            if((new client()).checkPassword(window.getUsername(), window.getPassword()) == true)
                             {
                                 window.setView("home screen");
                                 String currentUser = window.getUsername();
                                 window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
                                 
                             }
-                            else if(login.verify(window.getUsername(), window.getPassword()) == false)
+                            else if((new client()).checkPassword(window.getUsername(), (window.getPassword())) == false)
                             {
                                 window.setFailedLogin(true);
                             }
@@ -57,7 +57,7 @@ public class drawDisplay {
                         }
                         else if(window.view.equals("sign up"))
                         {
-                            if(login.userExist(UsernameInput.getText()) == true)
+                            if((new client()).checkUserExist(UsernameInput.getText()) == true)
                                 window.setSignUpValid(false, true);
                             else 
                             {
@@ -68,7 +68,8 @@ public class drawDisplay {
                                     window.setPasswordMatch(false);
                                 if(window.passwordsMatch == true)
                                 {
-                                    login.addUser(UsernameInput.getText(), Password.getText());
+                                    String uname = UsernameInput.getText();
+                                    (new client()).addUser(uname, uname, 20, "This is a sample bio until we make it so you can create your own bio", (Password.getText()));
                                     window.setView("login");
                                 }
                             }

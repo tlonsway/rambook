@@ -57,5 +57,42 @@ public class client {
         //String line = din.readLine(); 
         return line;
     }
+    public boolean checkPassword(String username, String password) throws Exception {
+        String hash = login.hash(password);
+        String ret = "";
+        ret = "p:" + username + ":" + hash;
+        String line = run(ret);
+        if (line.equals("true")) {
+            return true;
+        } else 
+        if (line.equals("false")) {
+            return false;
+        }
+        return false;
+    }
+    public void addUser(String username, String name, int age, String bio, String password) throws Exception {
+        System.out.println("Adding new user");
+        String ret;
+        ret = "a:u:" + username + ":" + name + ":" + age + ":" + bio + ":" + login.hash(password);
+        try {
+            System.out.println("Sending request to create user " + username);
+            ps.println(ret);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public boolean checkUserExist(String name) throws Exception {
+        String ret;
+        ret = "e:" + name;
+        String line = run(ret);
+        if (line.equals("true")) {
+            return true;
+        }
+        if (line.equals("false")) {
+            return false;
+        }
+        return false;
+    }
+    
 }
         

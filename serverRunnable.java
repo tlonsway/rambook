@@ -18,12 +18,12 @@ public class serverRunnable implements Runnable{
         try {
             din = new BufferedReader(new InputStreamReader(client.getInputStream()));               
             line = din.readLine();
+            System.out.println("Message recieved: " + line + "|");            
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
         if (line.substring(0,1).indexOf("g") != -1) { 
-            System.out.println("Message recieved: " + line + "|");
+            //
             String input = line;
             int number = -9999;
             String name;
@@ -61,6 +61,7 @@ public class serverRunnable implements Runnable{
         } //Decoding get requests, grabbing data, and replying
         
         if (line.substring(0,1).indexOf("a") != -1) {
+            //System.out.println("got this far");
             //format - a:u:username:name:age:bio
             String input = line;
             if (line.substring(2,3).indexOf("u") != -1) {
@@ -74,9 +75,12 @@ public class serverRunnable implements Runnable{
                 input = input.substring(input.indexOf(":")+1);
                 String age = input.substring(0, input.indexOf(":"));
                 input = input.substring(input.indexOf(":")+1);
-                String bio = input;
+                String bio = input.substring(0, input.indexOf(":"));
+                input = input.substring(input.indexOf(":")+1);
+                String password = input;
+                System.out.println("Adding user " + username);
                 try {
-                    addUser(username, name, Integer.parseInt(age), bio);
+                    addUser(username, name, Integer.parseInt(age), bio, password);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
@@ -90,6 +94,8 @@ public class serverRunnable implements Runnable{
             input = input.substring(input.indexOf(":")+1);
             String hash = input;
             String ret = "";
+            System.out.println("received username: " + username);
+            System.out.println("received password: " + hash);
             try {
                 ret = checkPassword(username, hash);
             } catch (Exception e) {
@@ -97,6 +103,18 @@ public class serverRunnable implements Runnable{
             }
             ps.println(ret);
         } //Decode and reply to password checks
+        
+        if (line.substring(0,1).indexOf("e") != -1) {
+            //format - e:username
+            String user = line.substring(line.indexOf(":"));
+            String ret = "";
+            try {
+                ret = userExist(user);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            ps.println(ret);  
+        } //Decode and reply to user checks
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -141,18 +159,31 @@ public class serverRunnable implements Runnable{
         }
         return "false"; //returns false if the given user:pass is invalid
     }
-    public void addUser(String username, String name, int age, String bio) throws Exception{
+    public void addUser(String username, String name, int age, String bio, String password) throws Exception{
         BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true));
-        bw.append(username);
+        BufferedWriter pw = new BufferedWriter(new FileWriter("loginlist.txt", true));
+        bw.append("\n" + username);
         bw.append("\nstatus:offline");
         bw.append("\nname:" + name);
         bw.append("\nfriends:0");
         bw.append("\nage:" + age);
         bw.append("\nbio:" + bio);
         bw.append("\n}");
+        pw.append("\n" + username + ":" + password);
         bw.close();
+        pw.close();
     }
     public void setStatus() {
         
+    }
+    public String userExist(String username) throws Exception{
+        BufferedReader br = new BufferedReader(new FileReader("loginlist.txt"));
+        String exist = "false";
+        String currentLine;
+        while ((currentLine = br.readLine()) != null) {
+            if (currentLine.substring(0, currentLine.indexOf(":")).equals(username))
+                exist = "true";
+        }
+        return exist;         
     }
 }
