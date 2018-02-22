@@ -83,7 +83,7 @@ public class display extends JPanel
         if(view.equals("login"))
         {
             checkpassword.setVisible(false);
-            g.setColor(Color.RED);
+            g.setColor(new Color(239,100,50));
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
             g.fillRect(480,255,960,510);
@@ -125,7 +125,7 @@ public class display extends JPanel
             password.setVisible(false);
             signUp.setVisible(false);
             enter.setVisible(false);
-            g.setColor(Color.RED);
+            g.setColor(new Color(239,100,50));
             g.fillRect(0,0, 1920, 1020);
             g.setColor(Color.BLACK);
             g.fillRect(10,10,200,200);
@@ -142,7 +142,7 @@ public class display extends JPanel
             int last = 0;
             bio += "\n";
             g.setFont(biofont);
-            g.setColor(Color.CYAN);
+            g.setColor(new Color(209, 193, 190));
             for (int i=0; i<bio.length(); i++) {
                 if (bio.substring(i,i+1).indexOf("\n") != -1) {
                     g.drawString(bio.substring(last, i),250,count);          
@@ -205,7 +205,7 @@ public class display extends JPanel
             checkpassword.setVisible(true);
             signUp.setVisible(true);
             enter.setVisible(true);
-            g.setColor(Color.RED);
+            g.setColor(new Color(239,100,50));
             g.fillRect(0,0,1920, 1020);
             g.setColor(Color.WHITE);
             g.fillRect(480,255,960,510);
