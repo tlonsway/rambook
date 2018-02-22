@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import org.apache.commons.text.*;
 import org.apache.commons.lang3.*;
+import java.io.*;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.awt.image.BufferedImage;
 public class display extends JPanel
 {
     String view = "";
@@ -128,7 +132,14 @@ public class display extends JPanel
             g.setColor(new Color(239,100,50));
             g.fillRect(0,0, 1920, 1020);
             g.setColor(Color.BLACK);
-            g.fillRect(10,10,200,200);
+            //g.fillRect(10,10,200,200);
+            BufferedImage profile;
+            try {
+                profile = ImageIO.read(new File("default.png"));
+                g.drawImage(resize(profile, 200, 200), 10, 10, null);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             Font f = new Font("", Font.BOLD, 20);
             Font biofont = new Font("", Font.ROMAN_BASELINE, 18);
             g.setFont(f);
@@ -247,4 +258,14 @@ public class display extends JPanel
             }
         }
     }
+    public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
+        Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
+        BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
+    
+        Graphics2D g2d = dimg.createGraphics();
+        g2d.drawImage(tmp, 0, 0, null);
+        g2d.dispose();
+    
+        return dimg;
+    }      
 }
