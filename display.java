@@ -136,6 +136,7 @@ public class display extends JPanel
             BufferedImage profile;
             try {
                 //profile = ImageIO.read(new File("default.png"));
+                System.out.println("preparing to get profile image for " + Name);
                 profile = (new client()).getProfile(Name);                
                 g.drawImage(resize(profile, 200, 200), 10, 10, null);
             } catch (Exception e) {

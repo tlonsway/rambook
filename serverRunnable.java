@@ -124,13 +124,15 @@ public class serverRunnable implements Runnable{
         
         if (line.substring(0,1).indexOf("i") != -1) {
             //i:type:name/number
-            String input = line.substring(line.indexOf(":"));
+            String input = line.substring(line.indexOf(":")+1);
             String type = input.substring(0, input.indexOf(":"));
-            input = input.substring(input.indexOf(":"));
+            input = input.substring(input.indexOf(":")+1);
             String n = input;
+            System.out.println("request for the profile picture of " + n);
             if (line.substring(2,3).indexOf("p") != -1) {
                 try {
-                    sendImage("profiles/" + n);
+                    System.out.println("request for the profile picture of " + n);
+                    sendImage("profiles/" + n + ".png");
                 }catch (Exception e) {
                     e.printStackTrace();
                 }

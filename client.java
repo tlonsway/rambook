@@ -103,11 +103,14 @@ public class client {
     public BufferedImage getProfile(String name) throws Exception{
         String ret;
         ret = "i:p:" + name;
+        ps.println(ret);
         System.out.println("Reading: " + System.currentTimeMillis());
         byte[] sizeAr = new byte[4];
         is.read(sizeAr);
+        System.out.println("created sizeAR successfully with length " + sizeAr.length);
         int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
         byte[] imageAr = new byte[size];
+        System.out.println("created imageAR successfully with length " + imageAr.length);
         is.read(imageAr);
         BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
         return image;
