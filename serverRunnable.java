@@ -5,6 +5,7 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
+import javax.imageio.*;
 public class serverRunnable implements Runnable{
     BufferedReader din;
     Socket client;
@@ -220,4 +221,10 @@ public class serverRunnable implements Runnable{
         os.flush();
         System.out.println("Flushed: " + System.currentTimeMillis());        
     }
+    public void addProfile(String url, String name) throws Exception {
+        URL site = new URL(url);
+        BufferedImage image = ImageIO.read(site);        
+        
+    }
+    
 }
