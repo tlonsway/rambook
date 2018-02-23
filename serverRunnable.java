@@ -6,6 +6,7 @@ import java.io.File;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import javax.imageio.*;
+import java.awt.Image;
 public class serverRunnable implements Runnable{
     BufferedReader din;
     Socket client;
@@ -29,6 +30,7 @@ public class serverRunnable implements Runnable{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        
         if (line.substring(0,1).indexOf("g") != -1) { 
             //
             String input = line;
@@ -129,7 +131,7 @@ public class serverRunnable implements Runnable{
             String type = input.substring(0, input.indexOf(":"));
             input = input.substring(input.indexOf(":")+1);
             String n = input;
-            System.out.println("request for the profile picture of " + n);
+            //System.out.println("request for the profile picture of " + n);
             if (line.substring(2,3).indexOf("p") != -1) {
                 try {
                     System.out.println("request for the profile picture of " + n);
@@ -138,8 +140,22 @@ public class serverRunnable implements Runnable{
                     e.printStackTrace();
                 }
             }
-        } //Decode and reply to image requests
-        
+            
+            //i:a:p/g:name:url
+            if (line.substring(2,3).indexOf("a") != -1) {
+                if (line.substring(4,5).indexOf("p") != -1) {
+                    String in = line.substring(6);
+                    String name = in.substring(0, in.indexOf(":"));
+                    String url = in.substring(in.indexOf(":")+1);
+                    System.out.println("user " + name + " adding image at " + url);
+                    try {
+                        addProfile(url, name);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        } //Decode and reply to image transmissions
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -212,7 +228,12 @@ public class serverRunnable implements Runnable{
         return exist;         
     }
     public void sendImage(String location) throws Exception{
-        BufferedImage image = ImageIO.read(new File(location));        
+        File fl = new File(location);
+        if (!fl.exists()) {
+            location = "profiles/default.png";
+        }
+        File file = new File(location);
+        BufferedImage image = ImageIO.read(file);   
         ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();        
         ImageIO.write(image, "png", byteArrayOutputStream);
         byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
@@ -223,8 +244,13 @@ public class serverRunnable implements Runnable{
     }
     public void addProfile(String url, String name) throws Exception {
         URL site = new URL(url);
-        BufferedImage image = ImageIO.read(site);        
-        
+        System.out.println("reading image from internet location " + url);
+        Image image = ImageIO.read(site);
+        File of = new File("profiles/" + name + ".png");
+        if (of.exists()) {
+            of.delete();
+        }
+        BufferedImage bf = (BufferedImage)(image);
+        ImageIO.write(bf, "png", of);
     }
-    
 }

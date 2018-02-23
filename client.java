@@ -6,6 +6,12 @@ import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
+import javax.swing.JFileChooser;
+import java.awt.Component;
+import javax.swing.JComponent;
+import java.awt.event.*;
+import javax.swing.SwingUtilities;
+import javax.swing.filechooser.*;
 public class client {
     Socket sock;    
     PrintStream ps;
@@ -114,6 +120,18 @@ public class client {
         is.read(imageAr);
         BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
         return image;
+    }
+    public void addImage(String name, String url) {
+        String ret;
+        ret = "i:a:p:" + name + ":" + url;
+        ps.println(ret);
+    }
+    public void loadImage(String name) {
+        JFileChooser chooser = new JFileChooser();
+        FileNameExtensionFilter filter = new FileNameExtensionFilter("png");
+        
+        
+        
     }
 }
         

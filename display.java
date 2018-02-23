@@ -12,6 +12,11 @@ public class display extends JPanel
     JTextField UserName;
     JTextField password;
     JTextField checkpassword;
+    
+    JTextField age;
+    JTextField bio;
+    JTextField name;
+    
     JButton enter;
     JButton signUp;
     String online = "";
@@ -46,6 +51,18 @@ public class display extends JPanel
         else if(i == 3)
         {
             checkpassword = U;
+        }
+        else if(i == 4)
+        {
+            age = U;
+        }
+        else if(i == 5)
+        {
+            bio = U;
+        }
+        else if(i == 6)
+        {
+            name = U;
         }
     }
     public void setPasswordMatch(boolean i)
@@ -87,6 +104,9 @@ public class display extends JPanel
         if(view.equals("login"))
         {
             checkpassword.setVisible(false);
+            age.setVisible(false);
+            bio.setVisible(false);
+            name.setVisible(false);
             g.setColor(new Color(239,100,50));
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
@@ -215,6 +235,11 @@ public class display extends JPanel
         {
             UserName.setVisible(true);
             password.setVisible(true);
+            age.setVisible(true);
+            bio.setVisible(true);
+            name.setVisible(true);
+            
+            
             checkpassword.setVisible(true);
             signUp.setVisible(true);
             enter.setVisible(true);
@@ -232,16 +257,45 @@ public class display extends JPanel
             g.drawString("Username: ", 850, 350);
             g.drawString("Password: ", 800, 550);
             g.drawString("Retype Password: ", 1000 , 550);
+            
             UserName.setBounds(850, 400, 100, 20);
             password.setBounds(800, 600, 100, 20);
             checkpassword.setBounds(1000, 600, 100, 20);
+            
+            g.drawString("Name: ", 600, 375);
+            g.drawString("Age: ", 600, 475);
+            g.drawString("Bio: ", 600, 625);
+            
+            
+            name.setBounds(600,400,100,20);
+            age.setBounds(600,500,100,20);
+            bio.setBounds(600,650,200,40);
+            
             UserName.setEditable(true);
             password.setEditable(true);
+            
+            name.setEditable(true);
+            bio.setEditable(true);
+            age.setEditable(true);
+            
+            
             UserName.setVisible(true);
             password.setVisible(true);
+            
+            name.setVisible(true);
+            bio.setVisible(true);
+            age.setVisible(true);
+            
+            
             g.drawRect(850,400,100,20);
             g.drawRect(800,600,100,20);
             g.drawRect(1000,600,100,20);
+            
+            g.drawRect(600,400,100,20);
+            g.drawRect(600,500,100,20);
+            g.drawRect(600,650,200,40);
+            
+            
             enter.setBounds(1000, 475, 100,50);
             enter.setText("ENTER");
             signUp.setBounds(1000,400,100,50);

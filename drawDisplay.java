@@ -16,6 +16,10 @@ public class drawDisplay {
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
         JTextField checkPassword = new JTextField();
+        JTextField age = new JTextField();
+        JTextField bio = new JTextField();
+        JTextField name = new JTextField();
+        
         JButton enter = new JButton("ENTER");
         JButton SignUp = new JButton("Create Account");
         frame.add(enter);
@@ -23,9 +27,20 @@ public class drawDisplay {
         frame.add(SignUp);
         frame.add(Password);
         frame.add(UsernameInput);
+        
+        frame.add(age);
+        frame.add(bio);
+        frame.add(name);
+        
+        
         window.setTextField(UsernameInput, 1);
         window.setTextField(Password, 2);
         window.setTextField(checkPassword, 3);
+        
+        window.setTextField(age, 4);
+        window.setTextField(bio, 5);
+        window.setTextField(name, 6);
+        
         window.setEnterButton(enter);
         window.setSignUpButton(SignUp);
         String Usernamewindow = "";
@@ -69,7 +84,7 @@ public class drawDisplay {
                                 if(window.passwordsMatch == true)
                                 {
                                     String uname = UsernameInput.getText();
-                                    (new client()).addUser(uname, uname, 20, "This is a sample bio until we make it so you can create your own bio", (Password.getText()));
+                                    (new client()).addUser(uname, name.getText(), Integer.parseInt(age.getText()), bio.getText(), (Password.getText()));
                                     window.setView("login");
                                 }
                             }
