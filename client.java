@@ -1,10 +1,16 @@
 import java.io.*;
 import java.net.*;
 import cs1.*;
+import java.io.*;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import java.nio.ByteBuffer;
 public class client {
     Socket sock;    
     PrintStream ps;
     BufferedReader din;    
+    InputStream is;
     public static void main(String[] args) throws Exception {
         new client();
         //types:B:bio, F:#friends, S:status
@@ -15,6 +21,7 @@ public class client {
             sock = new Socket("127.0.0.1", 8888);
             ps = new PrintStream(sock.getOutputStream());
             din = new BufferedReader(new InputStreamReader(sock.getInputStream()));
+            is = sock.getInputStream();
             //ps.println("HELLO");
             //run(input);
         } catch (Exception e) {
@@ -93,6 +100,17 @@ public class client {
         }
         return false;
     }
-    
+    public BufferedImage getProfile(String name) throws Exception{
+        String ret;
+        ret = "i:p:" + name;
+        System.out.println("Reading: " + System.currentTimeMillis());
+        byte[] sizeAr = new byte[4];
+        is.read(sizeAr);
+        int size = ByteBuffer.wrap(sizeAr).asIntBuffer().get();
+        byte[] imageAr = new byte[size];
+        is.read(imageAr);
+        BufferedImage image = ImageIO.read(new ByteArrayInputStream(imageAr));
+        return image;
+    }
 }
         

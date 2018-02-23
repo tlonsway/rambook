@@ -1,14 +1,20 @@
 import java.io.*;
 import java.net.*;
-
+import java.io.*;
+import javax.imageio.ImageIO;
+import java.io.File;
+import java.awt.image.BufferedImage;
+import java.nio.ByteBuffer;
 public class serverRunnable implements Runnable{
     BufferedReader din;
     Socket client;
     PrintStream ps;
+    OutputStream os;
     public serverRunnable(Socket clientsocket) {
         client = clientsocket;
         try {
-            ps = new PrintStream(client.getOutputStream());     
+            ps = new PrintStream(client.getOutputStream());
+            os = client.getOutputStream();
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -115,6 +121,22 @@ public class serverRunnable implements Runnable{
             }
             ps.println(ret);  
         } //Decode and reply to user checks
+        
+        if (line.substring(0,1).indexOf("i") != -1) {
+            //i:type:name/number
+            String input = line.substring(line.indexOf(":"));
+            String type = input.substring(0, input.indexOf(":"));
+            input = input.substring(input.indexOf(":"));
+            String n = input;
+            if (line.substring(2,3).indexOf("p") != -1) {
+                try {
+                    sendImage("profiles/" + n);
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } //Decode and reply to image requests
+        
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -185,5 +207,15 @@ public class serverRunnable implements Runnable{
                 exist = "true";
         }
         return exist;         
+    }
+    public void sendImage(String location) throws Exception{
+        BufferedImage image = ImageIO.read(new File(location));        
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();        
+        ImageIO.write(image, "png", byteArrayOutputStream);
+        byte[] size = ByteBuffer.allocate(4).putInt(byteArrayOutputStream.size()).array();
+        os.write(size);
+        os.write(byteArrayOutputStream.toByteArray());
+        os.flush();
+        System.out.println("Flushed: " + System.currentTimeMillis());        
     }
 }
