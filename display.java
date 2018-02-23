@@ -17,8 +17,13 @@ public class display extends JPanel
     JTextField bio;
     JTextField name;
     
+    JTextField searchfield;
+    
     JButton enter;
     JButton signUp;
+    JButton search;
+    JButton signout;
+    
     String online = "";
     String Name = "";
     String aboutMe = "";
@@ -64,6 +69,10 @@ public class display extends JPanel
         {
             name = U;
         }
+        else if(i == 7)
+        {
+            searchfield = U;
+        }
     }
     public void setPasswordMatch(boolean i)
     {
@@ -93,6 +102,15 @@ public class display extends JPanel
     {
         signUp = g;
     }
+    public void setSearchButton(JButton g)
+    {
+        search = g;
+    }
+    public void setSignOutButton(JButton g)
+    {
+        signout = g;
+    }
+    
     public void setSignUpValid(boolean valid, boolean clicked)
     {
         isValidUsername = valid;
@@ -105,6 +123,9 @@ public class display extends JPanel
         {
             checkpassword.setVisible(false);
             age.setVisible(false);
+            search.setVisible(false);
+            searchfield.setVisible(false);
+            signout.setVisible(false);
             bio.setVisible(false);
             name.setVisible(false);
             g.setColor(new Color(239,100,50));
@@ -129,14 +150,17 @@ public class display extends JPanel
             password.setVisible(true);
             g.drawRect(850,400,100,20);
             g.drawRect(850,600,100,20);
-            enter.setVisible(true);
-            signUp.setVisible(true);
-            enter.setBounds(1000, 475, 100,50);
-            signUp.setBounds(1000, 575, 100,50);
+
             signUp.setText("Sign Up");
             enter.setText("ENTER");
             g.drawRect(1000,475,100,50);
             g.drawRect(1000,575,100,50);
+            enter.setBounds(1000, 475, 100,50);
+            signUp.setBounds(1000, 575, 100,50);            
+            enter.setVisible(true);
+            signUp.setVisible(true);
+
+            
             if(failedLogin == true)
             {
                 g.setColor(Color.RED);
@@ -147,6 +171,10 @@ public class display extends JPanel
         {
             UserName.setVisible(false);
             password.setVisible(false);
+            //signout.setVisible(true);
+            //searchfield.setVisible(true);
+            //search.setVisible(true);
+            searchfield.setEditable(true);
             signUp.setVisible(false);
             enter.setVisible(false);
             g.setColor(new Color(239,100,50));
@@ -186,6 +214,10 @@ public class display extends JPanel
             g.setFont(f);
             g.setColor(Color.WHITE);
             
+
+            
+            
+            //signout.setBounds(600,100,100,50);
             /*
             //String editBio = aboutMe;
             String editBio = "";
@@ -228,8 +260,26 @@ public class display extends JPanel
             g.drawString("Current Status: ", 10, 250);
             g.drawString(online, 175, 250);
             g.setColor(Color.WHITE);
-            g.drawLine(960, 0, 960, 1020);
+            //g.drawLine(960, 0, 960, 1020);
             
+            
+            search.setBounds(800,150,100,50);
+            g.drawRect(800,150,100,50);
+            search.setVisible(true);
+            g.drawString("View another user's page", 800,100);
+            searchfield.setBounds(800,125,100,20);
+            g.drawRect(800,125,100,20);
+            searchfield.setVisible(true);
+            g.drawRect(800,125,100,20);
+            searchfield.setEditable(true);
+            
+            //g.drawRect(400,125,100,50);
+    
+            signout.setBounds(1200,100,100,50);
+            signout.setText("Sign out");
+            signout.setVisible(true);
+            
+            g.drawRect(1200,100,100,50);
         }
         else if(view.equals("sign up"))
         {

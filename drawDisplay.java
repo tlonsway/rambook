@@ -20,8 +20,15 @@ public class drawDisplay {
         JTextField bio = new JTextField();
         JTextField name = new JTextField();
         
+        JTextField searchfield = new JTextField();
+        
         JButton enter = new JButton("ENTER");
         JButton SignUp = new JButton("Create Account");
+        
+        JButton search = new JButton("Search");
+        
+        JButton signout = new JButton("Sign out");
+        
         frame.add(enter);
         frame.add(checkPassword);
         frame.add(SignUp);
@@ -32,6 +39,10 @@ public class drawDisplay {
         frame.add(bio);
         frame.add(name);
         
+        frame.add(search);
+        frame.add(searchfield);
+        
+        frame.add(signout);
         
         window.setTextField(UsernameInput, 1);
         window.setTextField(Password, 2);
@@ -41,8 +52,13 @@ public class drawDisplay {
         window.setTextField(bio, 5);
         window.setTextField(name, 6);
         
+        window.setTextField(searchfield, 7);
+        
         window.setEnterButton(enter);
         window.setSignUpButton(SignUp);
+        window.setSignOutButton(signout);
+        window.setSearchButton(search);
+        
         String Usernamewindow = "";
         login account = new login();
         window.setUserinfo("true", "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
@@ -118,5 +134,24 @@ public class drawDisplay {
                 }
             } );
         window.drawing();
-    }
+    
+        search.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent arg0) 
+                {
+                    window.setView("home screen");
+                    String currentUser = searchfield.getText();
+                    window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
+                    window.drawing();
+                }
+            } );
+        signout.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent arg0) 
+                {
+                    window.setView("login");
+                    window.drawing();
+                }
+            } );
+        }
 }
