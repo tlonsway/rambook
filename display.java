@@ -264,13 +264,13 @@ public class display extends JPanel
             
             
             search.setBounds(800,150,100,50);
-            g.drawRect(800,150,100,50);
+            g.fillRect(800,150,100,50);
             search.setVisible(true);
             g.drawString("View another user's page", 800,100);
             searchfield.setBounds(800,125,100,20);
-            g.drawRect(800,125,100,20);
+            g.fillRect(800,125,100,20);
             searchfield.setVisible(true);
-            g.drawRect(800,125,100,20);
+            g.fillRect(800,125,100,20);
             searchfield.setEditable(true);
             
             //g.drawRect(400,125,100,50);
@@ -279,7 +279,7 @@ public class display extends JPanel
             signout.setText("Sign out");
             signout.setVisible(true);
             
-            g.drawRect(1200,100,100,50);
+            g.fillRect(1200,100,100,50);
         }
         else if(view.equals("sign up"))
         {
