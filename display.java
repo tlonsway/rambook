@@ -32,6 +32,7 @@ public class display extends JPanel
     boolean enterClicked = false;
     boolean passwordsMatch = true;
     boolean failedLogin = false;
+    boolean InvalidSearch = false;
     public void drawing()
     {
         repaint();
@@ -121,14 +122,8 @@ public class display extends JPanel
         super.paintComponent(g);
         if(view.equals("login"))
         {
-            checkpassword.setVisible(false);
-            age.setVisible(false);
-            search.setVisible(false);
-            searchfield.setVisible(false);
-            signout.setVisible(false);
-            bio.setVisible(false);
-            name.setVisible(false);
-            g.setColor(new Color(239,100,50));
+            
+            g.setColor(Color.RED);
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
             g.fillRect(480,255,960,510);
@@ -142,30 +137,45 @@ public class display extends JPanel
             g.drawString(f.getName(), 850, 350);
             g.drawString("Login",500, 310);
             g.drawString("Password: ", 850, 550);
-            UserName.setBounds(850, 400, 100, 20);
-            password.setBounds(850, 600, 100, 20);
-            UserName.setEditable(true);
-            password.setEditable(true);
-            UserName.setVisible(true);
-            password.setVisible(true);
+            
+            
             g.drawRect(850,400,100,20);
             g.drawRect(850,600,100,20);
-
+            g.setColor(Color.WHITE);
+            g.drawString("RAMBOOK", 900, 200);
+            
             signUp.setText("Sign Up");
             enter.setText("ENTER");
+            g.setColor(Color.BLACK);
             g.drawRect(1000,475,100,50);
             g.drawRect(1000,575,100,50);
-            enter.setBounds(1000, 475, 100,50);
-            signUp.setBounds(1000, 575, 100,50);            
-            enter.setVisible(true);
-            signUp.setVisible(true);
-
+            
             
             if(failedLogin == true)
             {
                 g.setColor(Color.RED);
                 g.drawString("Incorrect Username or Password",500, 500);
             }
+            checkpassword.setVisible(false);
+            age.setVisible(false);
+            search.setVisible(false);
+            searchfield.setVisible(false);
+            signout.setVisible(false);
+            bio.setVisible(false);
+            name.setVisible(false);
+            
+            UserName.setBounds(850, 400, 100, 20);
+            password.setBounds(850, 600, 100, 20);
+            UserName.setEditable(true);
+            password.setEditable(true);
+            UserName.setVisible(true);
+            password.setVisible(true);
+            
+            enter.setBounds(1000, 475, 100,50);
+            signUp.setBounds(1000, 575, 100,50);            
+            enter.setVisible(true);
+            signUp.setVisible(true);
+
         }
         else if(view.equals("home screen"))
         {
@@ -212,6 +222,11 @@ public class display extends JPanel
                 }
             }
             g.setFont(f);
+            if(InvalidSearch == true)
+            {
+                g.setColor(Color.RED);
+                g.drawString("User Doesn't Exist", 800, 170);
+            }
             g.setColor(Color.WHITE);
             
 
@@ -283,17 +298,8 @@ public class display extends JPanel
         }
         else if(view.equals("sign up"))
         {
-            UserName.setVisible(true);
-            password.setVisible(true);
-            age.setVisible(true);
-            bio.setVisible(true);
-            name.setVisible(true);
             
-            
-            checkpassword.setVisible(true);
-            signUp.setVisible(true);
-            enter.setVisible(true);
-            g.setColor(new Color(239,100,50));
+            g.setColor(Color.RED);
             g.fillRect(0,0,1920, 1020);
             g.setColor(Color.WHITE);
             g.fillRect(480,255,960,510);
@@ -352,6 +358,9 @@ public class display extends JPanel
             signUp.setText("BACK");
             g.drawRect(1000,400,100,50);
             g.drawRect(1000,475,100,50);
+            
+            g.setColor(Color.WHITE);
+            g.drawString("RAMBOOK", 900, 200);
             if(passwordsMatch == false)
             {
                 g.setColor(Color.RED);
@@ -362,7 +371,12 @@ public class display extends JPanel
                 g.setColor(Color.RED);
                 g.drawString("Username Already Taken",600,400);
             }
+           
         }
+    }
+    public String getSearchfieldText()
+    {
+        return searchfield.getText();
     }
     public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
         Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);

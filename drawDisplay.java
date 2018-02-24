@@ -19,46 +19,46 @@ public class drawDisplay {
         JTextField age = new JTextField();
         JTextField bio = new JTextField();
         JTextField name = new JTextField();
-        
+
         JTextField searchfield = new JTextField();
-        
+
         JButton enter = new JButton("ENTER");
         JButton SignUp = new JButton("Create Account");
-        
+
         JButton search = new JButton("Search");
-        
+
         JButton signout = new JButton("Sign out");
-        
+
         frame.add(enter);
         frame.add(checkPassword);
         frame.add(SignUp);
         frame.add(Password);
         frame.add(UsernameInput);
-        
+
         frame.add(age);
         frame.add(bio);
         frame.add(name);
-        
+
         frame.add(search);
         frame.add(searchfield);
-        
+
         frame.add(signout);
-        
+
         window.setTextField(UsernameInput, 1);
         window.setTextField(Password, 2);
         window.setTextField(checkPassword, 3);
-        
+
         window.setTextField(age, 4);
         window.setTextField(bio, 5);
         window.setTextField(name, 6);
-        
+
         window.setTextField(searchfield, 7);
-        
+
         window.setEnterButton(enter);
         window.setSignUpButton(SignUp);
         window.setSignOutButton(signout);
         window.setSearchButton(search);
-        
+
         String Usernamewindow = "";
         login account = new login();
         window.setUserinfo("true", "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
@@ -78,7 +78,7 @@ public class drawDisplay {
                                 window.setView("home screen");
                                 String currentUser = window.getUsername();
                                 window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
-                                
+
                             }
                             else if((new client()).checkPassword(window.getUsername(), (window.getPassword())) == false)
                             {
@@ -134,15 +134,25 @@ public class drawDisplay {
                 }
             } );
         window.drawing();
-    
+
         search.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent arg0) 
                 {
-                    window.setView("home screen");
-                    String currentUser = searchfield.getText();
-                    window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
-                    window.drawing();
+                    try{
+                        window.setView("home screen");
+                        String currentUser = searchfield.getText();
+                        window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
+                        if((new client()).checkUserExist(window.getSearchfieldText()) == false)
+                            window.InvalidSearch = true;
+                        else if((new client()).checkUserExist(window.getSearchfieldText()) == true)
+                            window.InvalidSearch = false;
+                        window.drawing();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println(e);
+                    }
                 }
             } );
         signout.addActionListener(new ActionListener()
@@ -153,5 +163,5 @@ public class drawDisplay {
                     window.drawing();
                 }
             } );
-        }
+    }
 }
