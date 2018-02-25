@@ -70,7 +70,7 @@ public class main {
         String Usernamewindow = "";
         login account = new login();
         window.setUserinfo("true", "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
-        User currentUser;
+        String UserSignedIn;
         //client Client = new client();
         enter.addActionListener(new ActionListener()
             {
@@ -85,8 +85,8 @@ public class main {
                             {
                                 window.setView("home screen");
                                 String currentUser = window.getUsername();
+                                window.setUserSignedIn(currentUser); 
                                 window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
-
                             }
                             else if((new client()).checkPassword(window.getUsername(), (window.getPassword())) == false)
                             {
@@ -122,12 +122,13 @@ public class main {
             } );
         SignUp.addActionListener(new ActionListener()
             {
-                public void actionPerformed(ActionEvent arg0) 
+                public void actionPerformed(ActionEvent arg0)  
                 {
                     try {
                         if(window.view.equals("login"))
                         {
                             window.setView("sign up");
+                            window.failedLogin = false;
                             window.drawing();
                         }
                         else if(window.view.equals("sign up"))

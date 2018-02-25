@@ -6,6 +6,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.BufferedImage;
+import java.util.*;
 public class display extends JPanel
 {
     String view = "";
@@ -30,6 +31,7 @@ public class display extends JPanel
     String online = "";
     String Name = "";
     String aboutMe = "";
+    String UserSignedIn = "";
     int numberOfFriends = 0;
     boolean isValidUsername = false;
     boolean enterClicked = false;
@@ -81,6 +83,14 @@ public class display extends JPanel
         {
             UserChoice = U;
         }
+    }
+    public void setUserSignedIn(String s)
+    {
+        UserSignedIn = s;
+    }
+    public String getUserSignedIn()
+    {
+        return UserSignedIn;
     }
     public void setPasswordMatch(boolean i)
     {
@@ -248,7 +258,7 @@ public class display extends JPanel
                 g.drawString("User Doesn't Exist", 800, 170);
             }
             g.setColor(Color.WHITE);
-            
+            g.drawLine(960,0, 960, 1020);
             g.drawString("Number Of Friends:", 250, 60);
             String temp = "" + numberOfFriends;
             g.drawString(temp, 440, 60);
@@ -256,8 +266,13 @@ public class display extends JPanel
             g.drawString(online, 175, 250);
             g.setColor(Color.WHITE);
             //g.drawLine(960, 0, 960, 1020);
-            
-            
+            Font x = new Font("", Font.PLAIN, 20);
+            int numPosts = new client.getNumPost();
+            ArrayList<String> PostList = new ArrayList<String>();
+            for(int i = 1; i <= numPosts; i++)
+            {
+                PostList.add(new client().getPost(UserSignedIn, i));
+            }
             search.setBounds(800,150,100,50);
             g.fillRect(800,150,100,50);
             search.setVisible(true);
