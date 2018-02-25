@@ -157,6 +157,7 @@ public class main {
                         {
                             window.InvalidSearch = false;
                             window.setUserView(window.getSearchfieldText());
+                            System.out.print("It set the user view");
                         }
                         else if((new client()).checkUserExist(window.getSearchfieldText()) == false)
                         {
