@@ -153,12 +153,14 @@ public class main {
                         window.setView("home screen");
                         String currentUser = searchfield.getText();
                         window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
-                        if((new client()).checkUserExist(window.getSearchfieldText()) == false)
-                            window.InvalidSearch = true;
-                        else if((new client()).checkUserExist(window.getSearchfieldText()) == true)
+                        if((new client()).checkUserExist(window.getSearchfieldText()) == true)
                         {
                             window.InvalidSearch = false;
                             window.setUserView(window.getSearchfieldText());
+                        }
+                        else if((new client()).checkUserExist(window.getSearchfieldText()) == false)
+                        {
+                            window.InvalidSearch = true;
                         }
                         window.drawing();
                     }
