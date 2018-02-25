@@ -155,7 +155,10 @@ public class main {
                         if((new client()).checkUserExist(window.getSearchfieldText()) == false)
                             window.InvalidSearch = true;
                         else if((new client()).checkUserExist(window.getSearchfieldText()) == true)
+                        {
                             window.InvalidSearch = false;
+                            window.setUserView(window.getSearchfieldText());
+                        }
                         window.drawing();
                     }
                     catch(Exception e)

@@ -32,6 +32,7 @@ public class display extends JPanel
     String Name = "";
     String aboutMe = "";
     String UserSignedIn = "";
+    String userView = "";
     int numberOfFriends = 0;
     boolean isValidUsername = false;
     boolean enterClicked = false;
@@ -131,6 +132,10 @@ public class display extends JPanel
     public void setMessageButton(JButton g)
     {
         message = g;
+    }
+    public void setUserView(String s)
+    {
+        userView = s;
     }
     public void setSignUpValid(boolean valid, boolean clicked)
     {
@@ -286,7 +291,7 @@ public class display extends JPanel
             for(int i = 1; i <= numPosts; i++)
             {
                 try {
-                    post = new client().getPost(UserSignedIn, i);
+                    post = new client().getPost(userView, i);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
