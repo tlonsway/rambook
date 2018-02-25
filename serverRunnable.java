@@ -253,4 +253,23 @@ public class serverRunnable implements Runnable{
         BufferedImage bf = (BufferedImage)(image);
         ImageIO.write(bf, "png", of);
     }
+    public void addPost(String name, String ip, String subject, String content) throws Exception {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("posts.txt"));
+        BufferedReader br = new BufferedReader(new FileReader("posts.txt"));
+        boolean b = false;
+        String rline;
+        while(b == false) {
+            rline = br.readLine();
+            if (rline == null) {
+                b = true;
+            }
+            
+            
+            
+            
+            
+        }
+        
+        
+    }
 }
