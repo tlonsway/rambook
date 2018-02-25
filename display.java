@@ -280,7 +280,7 @@ public class display extends JPanel
             g.setColor(Color.BLACK);
             for(int i = 1; i <= numPosts; i++)
             {
-                post = new client.getPost(UserSignedIn, i);
+                post = new client().getPost(UserSignedIn, i);
                 index = post.indexOf(":") + 1;
                 date = post.substring(index, post.substring(index).indexOf(":"));
                 index = post.substring(index).indexOf(":") + 1;
