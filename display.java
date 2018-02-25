@@ -278,6 +278,7 @@ public class display extends JPanel
             message.setText("Message");
             message.setVisible(true);
             
+            UserChoice.setBounds(10,350, 100, 20);
             UserChoice.setVisible(true);
             UserChoice.setEditable(true);
             

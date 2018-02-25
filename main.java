@@ -58,7 +58,9 @@ public class main {
         window.setTextField(name, 6);
 
         window.setTextField(searchfield, 7);
-
+        
+        window.setTextField(messageUser, 8);
+        
         window.setEnterButton(enter);
         window.setSignUpButton(SignUp);
         window.setSignOutButton(signout);
