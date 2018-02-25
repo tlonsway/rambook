@@ -267,7 +267,7 @@ public class display extends JPanel
             g.setColor(Color.WHITE);
             //g.drawLine(960, 0, 960, 1020);
             Font x = new Font("", Font.PLAIN, 20);
-            int numPosts = new client().getNumPost(UserSignedIn);
+            int numPosts = new client().getNumPosts(UserSignedIn);
             String post;
             String date;
             String location;
