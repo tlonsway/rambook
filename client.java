@@ -133,5 +133,11 @@ public class client {
         
         
     }
+    public String getPost(String name, int number) throws Exception{
+        String ret;
+        ret = "u:g:" + name + ":" + number;
+        String line = run(ret);
+        return line;
+    }
 }
         

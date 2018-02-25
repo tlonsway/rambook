@@ -158,9 +158,17 @@ public class serverRunnable implements Runnable{
         } //Decode and reply to image transmissions
         
         if (line.substring(0,1).indexOf("u") != -1) {
-            //u:g"
-            String input = (line.substring(line.indexOf(":")));
-            //input = 
+            //u:g:name:number
+            String input = (line.substring(line.indexOf(":")+1));
+            input = input.substring(input.indexOf(":")+1);
+            String name = input.substring(0, input.indexOf(":"));
+            String number = input.substring(input.indexOf(":")+1);
+            try {
+                String ret = getPost(name, number);
+                ps.println(ret);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
             
         }
         
@@ -283,6 +291,7 @@ public class serverRunnable implements Runnable{
     }
     public String getPost(String name, String number) throws Exception{
         //returns the entire line of the post
+        System.out.println("Getting post number " + number + " from user " + name);
         BufferedReader br = new BufferedReader(new FileReader("posts.txt"));
         boolean b = false;
         boolean bo = false;
@@ -291,17 +300,19 @@ public class serverRunnable implements Runnable{
         String ret = "";
         while (b == false) {
             rline = br.readLine();
-            if (rline.equals("{" + name)) {
+            if (rline != null & rline.equals("{" + name)) {
                 d = true;
                 while (bo == false) {
                     rline = br.readLine();
                     if (rline.equals("|")) {
                         ret = "false";
                         bo = false;
+                        b = false;
                     }
                     if (rline.equals("]p" + number)) {
                         ret = rline;
                         bo = false;
+                        b = false;
                     }
                 }
             }
@@ -310,6 +321,9 @@ public class serverRunnable implements Runnable{
             ret = "false";
         }
         return ret;
+    }
+    public int getNumPosts(String name) {
+        return 0;
     }
     
     
