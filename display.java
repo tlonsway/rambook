@@ -274,7 +274,7 @@ public class display extends JPanel
             Font x = new Font("", Font.PLAIN, 20);
             int numPosts = 0;
             try {
-                numPosts = new client().getNumPosts(UserSignedIn);
+                numPosts = new client().getNumPosts(Name);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -291,7 +291,7 @@ public class display extends JPanel
             for(int i = 1; i <= numPosts; i++)
             {
                 try {
-                    post = new client().getPost(userView, i);
+                    post = new client().getPost(Name, i);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
