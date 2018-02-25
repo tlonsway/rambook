@@ -290,6 +290,7 @@ public class display extends JPanel
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
+                System.out.println("Post received: " + post);
                 index = post.indexOf(":") + 1;
                 date = post.substring(index, post.substring(index).indexOf(":"));
                 index = post.substring(index).indexOf(":") + 1;
