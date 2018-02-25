@@ -118,19 +118,19 @@ public class display extends JPanel
     {
         signout = g;
     }
-    public void setMessageButton(JButton g)
+    /*public void setMessageButton(JButton g)
     {
         message = g;
-    }
+    }*/
     public void setSignUpValid(boolean valid, boolean clicked)
     {
         isValidUsername = valid;
         enterClicked = clicked;
     }   
-    public String getUserChoice()
-    {
-        return UserChoice.getText();
-    }
+    //public String getUserChoice()
+    //{
+      //  return UserChoice.getText();
+    //}
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
