@@ -291,7 +291,7 @@ public class display extends JPanel
                     e.printStackTrace();
                 }
                 System.out.println("Post received: " + post);
-                index = post.indexOf(":") + 1;
+                /*index = post.indexOf(":") + 1;
                 date = post.substring(index, post.substring(index).indexOf(":"));
                 index = post.substring(index).indexOf(":") + 1;
                 location = post.substring(index, post.substring(index).indexOf(":"));
@@ -300,6 +300,19 @@ public class display extends JPanel
                 index = post.substring(index).indexOf(":") + 1;
                 content = post.substring(index, post.substring(index).indexOf(":"));
                 index = post.substring(index).indexOf(":") + 1;
+                */
+                String in = post.substring(post.indexOf(":")+1);
+                date = in.substring(0, in.indexOf(":"));
+                in = in.substring(in.indexOf(":")+1);
+                location = in.substring(0, in.indexOf(":"));
+                in = in.substring(in.indexOf(":")+1);
+                subject = in.substring(0, in.indexOf(":"));
+                in = in.substring(in.indexOf(":")+1);
+                content = in;
+                
+                
+                
+               
                 g.drawString("Subject: " + subject,X,Y);
                 Y += 25;
                 g.drawString("Content: " + content,X,Y);
