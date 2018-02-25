@@ -267,11 +267,41 @@ public class display extends JPanel
             g.setColor(Color.WHITE);
             //g.drawLine(960, 0, 960, 1020);
             Font x = new Font("", Font.PLAIN, 20);
-            int numPosts = new client.getNumPost();
-            ArrayList<String> PostList = new ArrayList<String>();
+            int numPosts = new client().getNumPost(UserSignedIn);
+            String post;
+            String date;
+            String location;
+            String subject; 
+            String content;
+            int index;
+            g.setFont(x);
+            int X = 1000;
+            int Y = 50;
+            g.setColor(Color.BLACK);
             for(int i = 1; i <= numPosts; i++)
             {
-                PostList.add(new client().getPost(UserSignedIn, i));
+                post = new client.getPost(UserSignedIn, i);
+                index = post.indexOf(":") + 1;
+                date = post.substring(index, post.substring(index).indexOf(":"));
+                index = post.substring(index).indexOf(":") + 1;
+                location = post.substring(index, post.substring(index).indexOf(":"));
+                index = post.substring(index).indexOf(":") + 1;
+                subject = post.substring(index, post.substring(index).indexOf(":"));
+                index = post.substring(index).indexOf(":") + 1;
+                content = post.substring(index, post.substring(index).indexOf(":"));
+                index = post.substring(index).indexOf(":") + 1;
+                g.drawString("Subject: " + subject,X,Y);
+                Y += 25;
+                g.drawString("Content: " + content,X,Y);
+                Y += 25;
+                g.drawString("Post Date: " + date, X, Y);
+                Y += 25;
+                g.drawString("Post Location: " + location, X, Y);
+                Y += 25;
+                g.setColor(Color.WHITE);
+                g.drawLine(X,Y, 1920, Y);
+                g.setColor(Color.BLACK);
+                Y += 25;
             }
             search.setBounds(800,150,100,50);
             g.fillRect(800,150,100,50);
