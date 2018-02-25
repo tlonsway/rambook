@@ -156,6 +156,14 @@ public class serverRunnable implements Runnable{
                 }
             }
         } //Decode and reply to image transmissions
+        
+        if (line.substring(0,1).indexOf("u") != -1) {
+            //u:g"
+            String input = (line.substring(line.indexOf(":")));
+            //input = 
+            
+        }
+        
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -216,6 +224,7 @@ public class serverRunnable implements Runnable{
     }
     public void setStatus() {
         
+        
     }
     public String userExist(String username) throws Exception{
         BufferedReader br = new BufferedReader(new FileReader("loginlist.txt"));
@@ -272,4 +281,36 @@ public class serverRunnable implements Runnable{
         
         
     }
+    public String getPost(String name, String number) throws Exception{
+        //returns the entire line of the post
+        BufferedReader br = new BufferedReader(new FileReader("posts.txt"));
+        boolean b = false;
+        boolean bo = false;
+        boolean d = false;
+        String rline;
+        String ret = "";
+        while (b == false) {
+            rline = br.readLine();
+            if (rline.equals("{" + name)) {
+                d = true;
+                while (bo == false) {
+                    rline = br.readLine();
+                    if (rline.equals("|")) {
+                        ret = "false";
+                        bo = false;
+                    }
+                    if (rline.equals("]p" + number)) {
+                        ret = rline;
+                        bo = false;
+                    }
+                }
+            }
+        }
+        if (!d == true) {
+            ret = "false";
+        }
+        return ret;
+    }
+    
+    
 }
