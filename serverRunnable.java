@@ -163,15 +163,25 @@ public class serverRunnable implements Runnable{
             input = input.substring(input.indexOf(":")+1);
             String name = input.substring(0, input.indexOf(":"));
             String number = input.substring(input.indexOf(":")+1);
-            try {
-                String ret = getPost(name, number);
-                ps.println(ret);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
+            if (line.substring(2,3).indexOf("g") != -1) {
+                try {
+                    String ret = getPost(name, number);
+                    ps.println(ret);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } //Processes getting a post
             
-        }
-        
+            if (line.substring(2,3).indexOf("c") != -1) {
+                String ret = "";
+                try {
+                    ret += getNumPosts(name);
+                    ps.println(ret);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            } //Processes getting total number of posts
+        } //Processes data management for user posts, returns data per input
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -300,19 +310,23 @@ public class serverRunnable implements Runnable{
         String ret = "";
         while (b == false) {
             rline = br.readLine();
-            if (rline != null & rline.equals("{" + name)) {
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            }                
+            if (rline != null && rline.equals("}" + name)) {
                 d = true;
                 while (bo == false) {
                     rline = br.readLine();
                     if (rline.equals("|")) {
                         ret = "false";
-                        bo = false;
-                        b = false;
+                        bo = true;
+                        b = true;
                     }
-                    if (rline.equals("]p" + number)) {
+                    if (rline.substring(0, rline.indexOf(":")).equals("]p" + number)) {
                         ret = rline;
-                        bo = false;
-                        b = false;
+                        bo = true;
+                        b = true;
                     }
                 }
             }
@@ -322,8 +336,40 @@ public class serverRunnable implements Runnable{
         }
         return ret;
     }
-    public int getNumPosts(String name) {
-        return 0;
+    public int getNumPosts(String name) throws Exception{
+        System.out.println("Getting the total post count for " + name);
+        BufferedReader br = new BufferedReader(new FileReader("posts.txt"));
+        String rline;
+        String pline = "";
+        boolean b = false;
+        boolean bo = false;
+        int count = 0;
+        while(b == false) {
+            rline = br.readLine();
+            
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            }
+            if (rline != null && rline.equals("}" + name)) {
+                while(bo == false) {
+                    rline = br.readLine();
+                    if (rline.equals("|")) {
+                        if (pline.indexOf("]") == -1) {
+                            count = 0;
+                            bo = true;
+                            b = true;
+                        } else {
+                            count = Integer.parseInt(pline.substring(pline.indexOf("p")+1, pline.indexOf(":")));
+                            bo = true;
+                            b = true;
+                        }
+                    }
+                    pline = rline;
+                }
+            }
+        }
+        return count;
     }
     
     

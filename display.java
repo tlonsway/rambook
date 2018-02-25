@@ -267,8 +267,13 @@ public class display extends JPanel
             g.setColor(Color.WHITE);
             //g.drawLine(960, 0, 960, 1020);
             Font x = new Font("", Font.PLAIN, 20);
-            int numPosts = new client().getNumPosts(UserSignedIn);
-            String post;
+            int numPosts = 0;
+            try {
+                numPosts = new client().getNumPosts(UserSignedIn);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+            String post = "";
             String date;
             String location;
             String subject; 
@@ -280,7 +285,11 @@ public class display extends JPanel
             g.setColor(Color.BLACK);
             for(int i = 1; i <= numPosts; i++)
             {
-                post = new client().getPost(UserSignedIn, i);
+                try {
+                    post = new client().getPost(UserSignedIn, i);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 index = post.indexOf(":") + 1;
                 date = post.substring(index, post.substring(index).indexOf(":"));
                 index = post.substring(index).indexOf(":") + 1;

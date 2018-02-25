@@ -139,5 +139,11 @@ public class client {
         String line = run(ret);
         return line;
     }
+    public int getNumPosts(String name) throws Exception {
+        String ret;
+        ret  = "u:c:" + name + ":0";
+        String line = run(ret);
+        return Integer.parseInt(line);
+    }
 }
         
