@@ -87,6 +87,7 @@ public class main {
                                 String currentUser = window.getUsername();
                                 window.setUserSignedIn(currentUser); 
                                 window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
+                                window.setUserView(currentUser);
                             }
                             else if((new client()).checkPassword(window.getUsername(), (window.getPassword())) == false)
                             {
