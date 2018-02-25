@@ -17,12 +17,15 @@ public class display extends JPanel
     JTextField bio;
     JTextField name;
     
+    JTextField UserChoice;
+    
     JTextField searchfield;
     
     JButton enter;
     JButton signUp;
     JButton search;
     JButton signout;
+    JButton message;
     
     String online = "";
     String Name = "";
@@ -74,6 +77,10 @@ public class display extends JPanel
         {
             searchfield = U;
         }
+        else if(i == 8)
+        {
+            UserChoice = U;
+        }
     }
     public void setPasswordMatch(boolean i)
     {
@@ -111,12 +118,19 @@ public class display extends JPanel
     {
         signout = g;
     }
-    
+    public void setMessageButton(JButton g)
+    {
+        message = g;
+    }
     public void setSignUpValid(boolean valid, boolean clicked)
     {
         isValidUsername = valid;
         enterClicked = clicked;
     }   
+    public String getUserChoice()
+    {
+        return UserChoice.getText();
+    }
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
@@ -163,6 +177,8 @@ public class display extends JPanel
             signout.setVisible(false);
             bio.setVisible(false);
             name.setVisible(false);
+            message.setVisible(false);
+            UserChoice.setVisible(false);
             
             UserName.setBounds(850, 400, 100, 20);
             password.setBounds(850, 600, 100, 20);
@@ -175,7 +191,11 @@ public class display extends JPanel
             signUp.setBounds(1000, 575, 100,50);            
             enter.setVisible(true);
             signUp.setVisible(true);
-
+            
+            Font x = new Font("",Font.PLAIN, 15);
+            g.setFont(x);
+            
+            g.drawString("SignUp",1015,600);
         }
         else if(view.equals("home screen"))
         {
@@ -229,46 +249,6 @@ public class display extends JPanel
             }
             g.setColor(Color.WHITE);
             
-
-            
-            
-            //signout.setBounds(600,100,100,50);
-            /*
-            //String editBio = aboutMe;
-            String editBio = "";
-            int count = 0;
-            int newLine = 15;
-            int numLines = 0;
-            while(count < aboutMe.length())
-            {
-                if(newLine == 36)
-                {
-                    newLine = 0;
-                    editBio += aboutMe.substring(0, (newLine) * numLines + 1) + "|" + aboutMe.substring(((newLine) * numLines + 1) + 1);
-                    newLine = 0;
-                    numLines ++;
-                }
-                count ++;
-                newLine ++;
-            }
-            System.out.println("1: " + editBio);
-            count = 120;
-            int stringPlace = 0;
-            while(count <= (numLines * 30) + 90)
-            {
-                if(stringPlace == -1)
-                    g.drawString(editBio.substring(stringPlace), 250, count);
-                else
-                    g.drawString(editBio.substring(stringPlace, editBio.indexOf("|")), 250, count);
-                count += 30;
-                stringPlace = editBio.substring(stringPlace).indexOf("|") + 1;
-            }
-            aboutMe = editBio;*/
-            //g.drawString(bio, 250,120);
-            //g.drawString(aboutMe.substring(0,aboutMe.indexOf("|")),250, 120);
-            //g.drawString(aboutMe.substring(aboutMe.indexOf("|")+1),250,150);
-            //g.drawString(aboutMe, 250, 120);
-            //
             g.drawString("Number Of Friends:", 250, 60);
             String temp = "" + numberOfFriends;
             g.drawString(temp, 440, 60);
@@ -294,11 +274,19 @@ public class display extends JPanel
             signout.setText("Sign out");
             signout.setVisible(true);
             
+            message.setBounds(10, 275, 100, 50);
+            message.setText("Message");
+            message.setVisible(true);
+            
+            UserChoice.setVisible(true);
+            UserChoice.setEditable(true);
+            
             g.fillRect(1200,100,100,50);
         }
         else if(view.equals("sign up"))
         {
-            
+            message.setVisible(false);
+            UserChoice.setVisible(false);
             g.setColor(Color.RED);
             g.fillRect(0,0,1920, 1020);
             g.setColor(Color.WHITE);

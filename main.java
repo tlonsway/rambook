@@ -2,7 +2,7 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
-public class drawDisplay {
+public class main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("window");
         frame.setVisible(true);
@@ -19,7 +19,7 @@ public class drawDisplay {
         JTextField age = new JTextField();
         JTextField bio = new JTextField();
         JTextField name = new JTextField();
-
+        JTextField messageUser = new JTextField();
         JTextField searchfield = new JTextField();
 
         JButton enter = new JButton("ENTER");
@@ -29,11 +29,14 @@ public class drawDisplay {
 
         JButton signout = new JButton("Sign out");
 
+        JButton messaging = new JButton("Message");
+
         frame.add(enter);
         frame.add(checkPassword);
         frame.add(SignUp);
         frame.add(Password);
         frame.add(UsernameInput);
+        frame.add(messaging);
 
         frame.add(age);
         frame.add(bio);
@@ -41,6 +44,8 @@ public class drawDisplay {
 
         frame.add(search);
         frame.add(searchfield);
+
+        frame.add(messageUser);
 
         frame.add(signout);
 
@@ -58,6 +63,7 @@ public class drawDisplay {
         window.setSignUpButton(SignUp);
         window.setSignOutButton(signout);
         window.setSearchButton(search);
+        window.setMessageButton(messaging);
 
         String Usernamewindow = "";
         login account = new login();
@@ -161,6 +167,25 @@ public class drawDisplay {
                 {
                     window.setView("login");
                     window.drawing();
+                }
+            } );
+
+        messaging.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent arg0) 
+                {
+                    try{
+                        if(new client().checkUserExist(window.getUserChoice()) == true && new client().getData(window.getUserChoice(), "status", 0).equals("online"))
+                        {
+                            JFrame messagingFrame = new JFrame("Messaging");
+                            
+                        }
+                        window.drawing();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println(e);
+                    }
                 }
             } );
     }
