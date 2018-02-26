@@ -145,9 +145,5 @@ public class client {
         String line = run(ret);
         return Integer.parseInt(line);
     }
-    public void addPost(String name, String subject, String content) {
-        String ret;
-        ret = "u:a:" + name + ":" + subject + ":" + content;
-        ps.println(ret);
-    }
+
 }   
