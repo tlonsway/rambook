@@ -331,19 +331,18 @@ public class display extends JPanel
                 g.setColor(Color.BLACK);
                 Y += 25;
             }
-            search.setBounds(800,150,100,50);
-            g.fillRect(800,150,100,50);
+            search.setBounds(120,375,100,50);
+            g.fillRect(120,375,100,50);
             search.setVisible(true);
-            g.drawString("View another user's page", 800,100);
-            searchfield.setBounds(800,125,100,20);
-            g.fillRect(800,125,100,20);
+            g.drawString("View another user's page", 10, 350);
+            searchfield.setBounds(10,375,100,20);
+            g.fillRect(10,375,100,20);
             searchfield.setVisible(true);
-            g.fillRect(800,125,100,20);
             searchfield.setEditable(true);
             
             //g.drawRect(400,125,100,50);
     
-            signout.setBounds(1200,100,100,50);
+            signout.setBounds(1810,10,100,50);
             signout.setText("Sign out");
             signout.setVisible(true);
             
