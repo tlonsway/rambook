@@ -372,6 +372,10 @@ public class display extends JPanel
                g.fillRect(1000, 75, 100, 20);
                g.fillRect(1000, 120, 100, 20);
                g.fillRect(1000,165,100,50);
+               g.fillRect(1120, 165, 100,50);
+               signUp.setBounds(1120, 165, 100, 50);
+               signUp.setText("Back");
+               signUp.setVisible(true);
             }
             addapost.setBounds(10,420,100,50);
             g.fillRect(10,420,100,50);

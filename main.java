@@ -158,6 +158,11 @@ public class main {
                             Password.setText("");
                             window.drawing();
                         }
+                        else if(window.view.equals("home screen"))
+                        {
+                            window.setAddPost(false);
+                            window.drawing();
+                        }
                     }
                     catch (Exception e) {
                         System.out.println(e);
