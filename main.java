@@ -21,6 +21,8 @@ public class main {
         JTextField name = new JTextField();
         JTextField messageUser = new JTextField();
         JTextField searchfield = new JTextField();
+        JTextField postSubject = new JTextField();
+        JTextField postContent = new JTextField();
 
         JButton enter = new JButton("ENTER");
         JButton SignUp = new JButton("Create Account");
@@ -30,6 +32,8 @@ public class main {
         JButton signout = new JButton("Sign out");
 
         JButton messaging = new JButton("Message");
+        
+        JButton addPost = new JButton("Add A Post");
 
         frame.add(enter);
         frame.add(checkPassword);
@@ -37,6 +41,10 @@ public class main {
         frame.add(Password);
         frame.add(UsernameInput);
         frame.add(messaging);
+        
+        frame.add(postSubject);
+        frame.add(postContent);
+        frame.add(addPost);
 
         frame.add(age);
         frame.add(bio);
@@ -53,6 +61,9 @@ public class main {
         window.setTextField(Password, 2);
         window.setTextField(checkPassword, 3);
 
+        window.setTextField(postSubject, 9);
+        window.setTextField(postContent, 10);
+        
         window.setTextField(age, 4);
         window.setTextField(bio, 5);
         window.setTextField(name, 6);
@@ -68,6 +79,7 @@ public class main {
         window.setMessageButton(messaging);
 
         String Usernamewindow = "";
+        
         login account = new login();
         window.setUserinfo("true", "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
         String UserSignedIn;
@@ -85,6 +97,7 @@ public class main {
                             {
                                 window.setView("home screen");
                                 String currentUser = window.getUsername();
+                                window.setUsernameSignedIn(currentUser);
                                 window.setUserSignedIn(currentUser); 
                                 window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
                                 window.setUserView(currentUser);
@@ -115,6 +128,10 @@ public class main {
                             }
                             window.drawing();
                         }
+                        else if(window.view.equals("home screen"))
+                        {
+                            new client().addPost(window.UsernameSignedIn, window.getSubjectText(),window.getContentText());
+                        }
                     }
                     catch (Exception e) {
                         System.out.println(e);
@@ -130,11 +147,15 @@ public class main {
                         {
                             window.setView("sign up");
                             window.failedLogin = false;
+                            UsernameInput.setText("");
+                            Password.setText("");
                             window.drawing();
                         }
                         else if(window.view.equals("sign up"))
                         {
                             window.setView("login");
+                            UsernameInput.setText("");
+                            Password.setText("");
                             window.drawing();
                         }
                     }
@@ -143,8 +164,7 @@ public class main {
                     }
                 }
             } );
-        window.drawing();
-
+        
         search.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent arg0) 
@@ -198,5 +218,22 @@ public class main {
                     }
                 }
             } );
+         addPost.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent arg0) 
+                {
+                    try{
+                        window.setAddPostButton(addPost);
+                        window.setAddPost(true);
+                        
+                        window.drawing();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+            } );
+        window.drawing();
     }
 }

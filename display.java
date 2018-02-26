@@ -13,36 +13,43 @@ public class display extends JPanel
     JTextField UserName;
     JTextField password;
     JTextField checkpassword;
-    
+
     JTextField age;
     JTextField bio;
     JTextField name;
-    
+
     JTextField UserChoice;
-    
+
     JTextField searchfield;
+    
+    JTextField subjectPost;
+    JTextField contentPost;
     
     JButton enter;
     JButton signUp;
     JButton search;
     JButton signout;
     JButton message;
-    
+    JButton addapost;
+
     String online = "";
     String Name = "";
     String aboutMe = "";
     String UserSignedIn = "";
     String userView = "";
+    String UsernameSignedIn = "";
     int numberOfFriends = 0;
     boolean isValidUsername = false;
     boolean enterClicked = false;
     boolean passwordsMatch = true;
     boolean failedLogin = false;
     boolean InvalidSearch = false;
+    boolean addPost = false;
     public void drawing()
     {
         repaint();
     }
+
     public void setUserinfo(String bop,String name,String bio, int numFriends )
     {
         online = bop;
@@ -50,108 +57,123 @@ public class display extends JPanel
         aboutMe = bio;
         numberOfFriends = numFriends;
     }
+
     public void setTextField(JTextField U, int i)
     {
         if(i == 1)
-        {
             UserName = U;
-        }
         else if(i == 2)
-        {
             password = U;
-        }
         else if(i == 3)
-        {
             checkpassword = U;
-        }
         else if(i == 4)
-        {
             age = U;
-        }
         else if(i == 5)
-        {
             bio = U;
-        }
         else if(i == 6)
-        {
             name = U;
-        }
         else if(i == 7)
-        {
             searchfield = U;
-        }
         else if(i == 8)
-        {
             UserChoice = U;
-        }
+        else if(i == 9)
+            subjectPost = U;
+        else if(i == 10)
+            contentPost = U;
     }
+    
+    public void setAddPostButton(JButton u)
+    {
+        addapost = u;
+    }
+    
+    public void setAddPost(boolean i)
+    {
+        addPost = i;
+    }
+
     public void setUserSignedIn(String s)
     {
         UserSignedIn = s;
     }
+
     public String getUserSignedIn()
     {
         return UserSignedIn;
     }
+
     public void setPasswordMatch(boolean i)
     {
         passwordsMatch = i;
     }
+
     public void setFailedLogin(boolean i)
     {
         failedLogin = i;
     }
+
     public void setView(String v)
     {
         view = v;
     }
+
     public String getUsername()
     {
         return UserName.getText();
     }
+
     public String getPassword()
     {
         return password.getText();
     }
+
     public void setEnterButton(JButton g)
     {
         enter = g;
     }
+
     public void setSignUpButton(JButton g)
     {
         signUp = g;
     }
+
     public void setSearchButton(JButton g)
     {
         search = g;
     }
+
     public void setSignOutButton(JButton g)
     {
         signout = g;
     }
+
     public void setMessageButton(JButton g)
     {
         message = g;
     }
+
     public void setUserView(String s)
     {
         userView = s;
     }
+
     public void setSignUpValid(boolean valid, boolean clicked)
     {
         isValidUsername = valid;
         enterClicked = clicked;
     }   
+
     public String getUserChoice()
     {
         return UserChoice.getText();
     }
+
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
         if(view.equals("login"))
         {
-            
+
             g.setColor(Color.RED);
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
@@ -166,20 +188,18 @@ public class display extends JPanel
             g.drawString(f.getName(), 850, 350);
             g.drawString("Login",500, 310);
             g.drawString("Password: ", 850, 550);
-            
-            
+
             g.drawRect(850,400,100,20);
             g.drawRect(850,600,100,20);
             g.setColor(Color.WHITE);
             g.drawString("RAMBOOK", 900, 200);
-            
+
             signUp.setText("Sign Up");
             enter.setText("ENTER");
             g.setColor(Color.BLACK);
             g.drawRect(1000,475,100,50);
             g.drawRect(1000,575,100,50);
-            
-            
+
             if(failedLogin == true)
             {
                 g.setColor(Color.RED);
@@ -194,28 +214,31 @@ public class display extends JPanel
             name.setVisible(false);
             message.setVisible(false);
             UserChoice.setVisible(false);
-            
+            addapost.setVisible(false);
+
             UserName.setBounds(850, 400, 100, 20);
             password.setBounds(850, 600, 100, 20);
             UserName.setEditable(true);
             password.setEditable(true);
             UserName.setVisible(true);
             password.setVisible(true);
-            
+
             enter.setBounds(1000, 475, 100,50);
             signUp.setBounds(1000, 575, 100,50);            
             enter.setVisible(true);
             signUp.setVisible(true);
-            
+
             Font x = new Font("",Font.PLAIN, 15);
             g.setFont(x);
-            
+
             g.drawString("SignUp",1015,600);
         }
         else if(view.equals("home screen"))
         {
             UserName.setVisible(false);
             password.setVisible(false);
+            contentPost.setVisible(false);
+            subjectPost.setVisible(false);
             //signout.setVisible(true);
             //searchfield.setVisible(true);
             //search.setVisible(true);
@@ -288,49 +311,70 @@ public class display extends JPanel
             int X = 1000;
             int Y = 50;
             g.setColor(Color.BLACK);
-            for(int i = 1; i <= numPosts; i++)
-            {
-                try {
-                    post = new client().getPost(Name, i);
-                } catch (Exception e) {
-                    e.printStackTrace();
+            if(addPost == false){
+                for(int i = 1; i <= numPosts; i++)
+                {
+                    try {
+                        post = new client().getPost(Name, i);
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    System.out.println("Post received: " + post);
+                    /*index = post.indexOf(":") + 1;
+                    date = post.substring(index, post.substring(index).indexOf(":"));
+                    index = post.substring(index).indexOf(":") + 1;
+                    location = post.substring(index, post.substring(index).indexOf(":"));
+                    index = post.substring(index).indexOf(":") + 1;
+                    subject = post.substring(index, post.substring(index).indexOf(":"));
+                    index = post.substring(index).indexOf(":") + 1;
+                    content = post.substring(index, post.substring(index).indexOf(":"));
+                    index = post.substring(index).indexOf(":") + 1;
+                     */
+                    String in = post.substring(post.indexOf(":")+1);
+                    date = in.substring(0, in.indexOf(":"));
+                    in = in.substring(in.indexOf(":")+1);
+                    location = in.substring(0, in.indexOf(":"));
+                    in = in.substring(in.indexOf(":")+1);
+                    subject = in.substring(0, in.indexOf(":"));
+                    in = in.substring(in.indexOf(":")+1);
+                    content = in;
+
+                
+                    g.drawString("Subject: " + subject,X,Y);
+                    Y += 25;
+                    g.drawString("Content: " + content,X,Y);
+                    Y += 25;
+                    g.drawString("Post Date: " + date, X, Y);
+                    Y += 25;
+                    g.drawString("Post Location: " + location, X, Y);
+                    Y += 25;
+                    g.setColor(Color.WHITE);
+                    g.drawLine(X,Y, 1920, Y);
+                    g.setColor(Color.BLACK);
+                    Y += 25;
                 }
-                System.out.println("Post received: " + post);
-                /*index = post.indexOf(":") + 1;
-                date = post.substring(index, post.substring(index).indexOf(":"));
-                index = post.substring(index).indexOf(":") + 1;
-                location = post.substring(index, post.substring(index).indexOf(":"));
-                index = post.substring(index).indexOf(":") + 1;
-                subject = post.substring(index, post.substring(index).indexOf(":"));
-                index = post.substring(index).indexOf(":") + 1;
-                content = post.substring(index, post.substring(index).indexOf(":"));
-                index = post.substring(index).indexOf(":") + 1;
-                */
-                String in = post.substring(post.indexOf(":")+1);
-                date = in.substring(0, in.indexOf(":"));
-                in = in.substring(in.indexOf(":")+1);
-                location = in.substring(0, in.indexOf(":"));
-                in = in.substring(in.indexOf(":")+1);
-                subject = in.substring(0, in.indexOf(":"));
-                in = in.substring(in.indexOf(":")+1);
-                content = in;
-                
-                
-                
-               
-                g.drawString("Subject: " + subject,X,Y);
-                Y += 25;
-                g.drawString("Content: " + content,X,Y);
-                Y += 25;
-                g.drawString("Post Date: " + date, X, Y);
-                Y += 25;
-                g.drawString("Post Location: " + location, X, Y);
-                Y += 25;
-                g.setColor(Color.WHITE);
-                g.drawLine(X,Y, 1920, Y);
-                g.setColor(Color.BLACK);
-                Y += 25;
             }
+            else if(addPost == true)
+            {
+               g.setColor(Color.WHITE);
+               g.drawString("Post Topic", 1000, 50);
+               g.drawString("Post Content", 1000, 95);
+               subjectPost.setBounds(1000, 75, 100, 20);
+               subjectPost.setVisible(true);
+               contentPost.setBounds(1000, 120, 100, 20);
+               contentPost.setVisible(true);
+               enter.setBounds(1000, 165, 100, 50);
+               enter.setText("Enter");
+               enter.setVisible(true);
+               g.setColor(Color.BLACK);
+               g.fillRect(1000, 75, 100, 20);
+               g.fillRect(1000, 120, 100, 20);
+               g.fillRect(1000,165,100,50);
+            }
+            addapost.setBounds(10,420,100,50);
+            g.fillRect(10,420,100,50);
+            addapost.setVisible(true);
+            
             search.setBounds(120,375,100,50);
             g.fillRect(120,375,100,50);
             search.setVisible(true);
@@ -339,17 +383,17 @@ public class display extends JPanel
             g.fillRect(10,375,100,20);
             searchfield.setVisible(true);
             searchfield.setEditable(true);
-            
+
             //g.drawRect(400,125,100,50);
-    
+
             signout.setBounds(1810,10,100,50);
             signout.setText("Sign out");
             signout.setVisible(true);
-            
+
             message.setBounds(10, 275, 100, 50);
             message.setText("Message");
             message.setVisible(true);
-            
+
             UserChoice.setBounds(10,350, 100, 20);
             UserChoice.setVisible(true);
             UserChoice.setEditable(true);
@@ -359,6 +403,7 @@ public class display extends JPanel
         {
             message.setVisible(false);
             UserChoice.setVisible(false);
+            addapost.setVisible(false);
             g.setColor(Color.RED);
             g.fillRect(0,0,1920, 1020);
             g.setColor(Color.WHITE);
@@ -373,54 +418,50 @@ public class display extends JPanel
             g.drawString("Username: ", 850, 350);
             g.drawString("Password: ", 800, 550);
             g.drawString("Retype Password: ", 1000 , 550);
-            
+
             UserName.setBounds(850, 400, 100, 20);
             password.setBounds(800, 600, 100, 20);
             checkpassword.setBounds(1000, 600, 100, 20);
-            
+
             g.drawString("Name: ", 600, 375);
             g.drawString("Age: ", 600, 475);
             g.drawString("Bio: ", 600, 625);
-            
-            
+
             name.setBounds(600,400,100,20);
             age.setBounds(600,500,100,20);
             bio.setBounds(600,650,200,40);
-            
+
             UserName.setEditable(true);
             password.setEditable(true);
             checkpassword.setEditable(true);
-            
+
             name.setEditable(true);
             bio.setEditable(true);
             age.setEditable(true);
-            
-            
+
             UserName.setVisible(true);
             password.setVisible(true);
             checkpassword.setVisible(true);
-            
+
             name.setVisible(true);
             bio.setVisible(true);
             age.setVisible(true);
-            
-            
+
             g.drawRect(850,400,100,20);
             g.drawRect(800,600,100,20);
             g.drawRect(1000,600,100,20);
-            
+
             g.drawRect(600,400,100,20);
             g.drawRect(600,500,100,20);
             g.drawRect(600,650,200,40);
-            
-            
+
             enter.setBounds(1000, 475, 100,50);
             enter.setText("ENTER");
             signUp.setBounds(1000,400,100,50);
             signUp.setText("BACK");
             g.drawRect(1000,400,100,50);
             g.drawRect(1000,475,100,50);
-            
+
             g.setColor(Color.WHITE);
             g.drawString("RAMBOOK", 900, 200);
             if(passwordsMatch == false)
@@ -433,12 +474,25 @@ public class display extends JPanel
                 g.setColor(Color.RED);
                 g.drawString("Username Already Taken",600,400);
             }
-           
+            
         }
+        
+    }
+    public String getSubjectText()
+    {
+        return subjectPost.getText();
+    }
+    public String getContentText()
+    {
+        return contentPost.getText();
     }
     public String getSearchfieldText()
     {
         return searchfield.getText();
+    }
+    public void setUsernameSignedIn(String s)
+    {
+        UsernameSignedIn = s;
     }
     public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
         Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
