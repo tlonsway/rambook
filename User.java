@@ -63,9 +63,9 @@ public class User
         return mutlist;
     }
 
-    public ArrayList<User> getHometownFriends(User other) {
+    public ArrayList<User> getHometownFriends() {
         ArrayList<User> mutlist = new ArrayList<User>();
-        for (User of : other.getFriendsList()) {
+        for (User of : this.getFriendsList()) {
             if (this.hometown.equals(of.getHometown())) {
                 mutlist.add(of);
             }
@@ -73,16 +73,20 @@ public class User
         return mutlist;
     }
     
-    public ArrayList<User> getSchoolmates(User other) {
+    public ArrayList<User> getSchoolmates() {
         ArrayList<User> mutlist = new ArrayList<User>();
         boolean temp;
-        for (User of : other.getFriendsList()) {
+        for (User of : this.getFriendsList()) {
             temp = false;
             for (int i=0; i<this.schools.length; i++) {
-                for (int i2=0; i<other.getSchools().length; i++) {
-                    if (this.schools[i].equals(other.getSchools()[i2])) {
-                        temp=true;
+                for (int i2=0; i<of.getSchools().length; i2++) {
+                    if(!this.schools[i].equals(null) && !of.getSchools()[i2].equals(null))
+                    {
+                        if (this.schools[i].equals(of.getSchools()[i2])) {
+                            temp=true;
+                        }
                     }
+                    
                 }
             }
             if (temp) {
