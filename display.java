@@ -391,6 +391,7 @@ public class display extends JPanel
             
             UserName.setEditable(true);
             password.setEditable(true);
+            checkpassword.setEditable(true);
             
             name.setEditable(true);
             bio.setEditable(true);
@@ -399,6 +400,7 @@ public class display extends JPanel
             
             UserName.setVisible(true);
             password.setVisible(true);
+            checkpassword.setVisible(true);
             
             name.setVisible(true);
             bio.setVisible(true);
