@@ -7,6 +7,13 @@ import java.awt.image.BufferedImage;
 import java.nio.ByteBuffer;
 import javax.imageio.*;
 import java.awt.Image;
+import com.maxmind.db.Reader.FileMode;
+import com.maxmind.geoip2.DatabaseReader;
+import com.maxmind.geoip2.DatabaseReader.Builder;
+import com.maxmind.geoip2.model.CityResponse;
+import com.maxmind.*;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 public class serverRunnable implements Runnable{
     BufferedReader din;
     Socket client;
@@ -181,6 +188,21 @@ public class serverRunnable implements Runnable{
                     e.printStackTrace();
                 }
             } //Processes getting total number of posts
+            
+            //u:a:name:subject:content
+            if (line.substring(2,3).indexOf("a") != -1) {
+                String in = line.substring(4);
+                String name1 = in.substring(0, in.indexOf(":"));
+                in = in.substring(in.indexOf(":")+1);
+                String subject = in.substring(0, in.indexOf(":"));
+                in = in.substring(in.indexOf(":"));
+                String content = in;
+                try {
+                    addPost(name1, subject, content);
+                } catch (Exception e) {
+                    e.printStackTrace(); 
+                }
+            }
         } //Processes data management for user posts, returns data per input
     }
     public String getData(String name, String type) throws Exception{
@@ -280,24 +302,46 @@ public class serverRunnable implements Runnable{
         BufferedImage bf = (BufferedImage)(image);
         ImageIO.write(bf, "png", of);
     }
-    public void addPost(String name, String ip, String subject, String content) throws Exception {
-        BufferedWriter bw = new BufferedWriter(new FileWriter("posts.txt"));
+    public void addPost(String name, String subject, String content) throws Exception {
+        BufferedWriter bw = new BufferedWriter(new FileWriter("posts" + name + ".txt"));
         BufferedReader br = new BufferedReader(new FileReader("posts.txt"));
+        File database = new File("IPdb.mmdb");
+        DatabaseReader dbReader = new DatabaseReader.Builder(database).build();
+        CityResponse response = dbReader.city(client.getInetAddress());
+        String city = response.getCity().getName();
+        String country = response.getCountry().getName();
+        String location = city + ", " + country;
         boolean b = false;
+        boolean bo = false;
         String rline;
         while(b == false) {
             rline = br.readLine();
             if (rline == null) {
+                System.out.println("reading line is null");
                 b = true;
             }
-            
-            
-            
-            
-            
+            bw.write(rline);
+            if (rline != null && rline.equals("}" + name)) {
+                while (bo == false)  {
+                    rline = br.readLine();
+                    if (rline.equals("|")) {
+                        SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");//dd/MM/yyyy
+                        Date now = new Date();
+                        String strDate = sdfDate.format(now);
+                        bw.write("]p" + (getNumPosts(name)+1) + ":" + strDate + ":" + location + ":" + subject + ":" + content); 
+                        bw.write("|");
+                        bo = true;     
+                    } else {
+                        bw.write(rline);
+                    }            
+                } 
+            }
+            bw.write(rline);
         }
-        
-        
+        File oldpost = new File("posts.txt");
+        File newpost = new File("posts" + name + ".txt");
+        oldpost.delete();
+        newpost.renameTo(oldpost);
     }
     public String getPost(String name, String number) throws Exception{
         //returns the entire line of the post
