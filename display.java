@@ -354,7 +354,6 @@ public class display extends JPanel
             UserChoice.setVisible(true);
             UserChoice.setEditable(true);
             
-            g.fillRect(1200,100,100,50);
         }
         else if(view.equals("sign up"))
         {
