@@ -307,10 +307,16 @@ public class serverRunnable implements Runnable{
         BufferedReader br = new BufferedReader(new FileReader("posts.txt"));
         File database = new File("IPdb.mmdb");
         DatabaseReader dbReader = new DatabaseReader.Builder(database).build();
-        CityResponse response = dbReader.city(client.getInetAddress());
-        String city = response.getCity().getName();
-        String country = response.getCountry().getName();
-        String location = city + ", " + country;
+        String location = "";
+        try {
+            CityResponse response = dbReader.city(client.getInetAddress());
+            String city = response.getCity().getName();
+            String country = response.getCountry().getName();
+            location = city + ", " + country;
+        } catch (Exception e) {
+            location = "Local network";
+        }
+
         boolean b = false;
         boolean bo = false;
         String rline;
