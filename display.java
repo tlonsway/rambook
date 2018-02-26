@@ -361,8 +361,10 @@ public class display extends JPanel
                g.drawString("Post Content", 1000, 95);
                subjectPost.setBounds(1000, 75, 100, 20);
                subjectPost.setVisible(true);
+               subjectPost.setEditable(true);
                contentPost.setBounds(1000, 120, 100, 20);
                contentPost.setVisible(true);
+               contentPost.setEditable(true);
                enter.setBounds(1000, 165, 100, 50);
                enter.setText("Enter");
                enter.setVisible(true);
