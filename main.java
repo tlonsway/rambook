@@ -11,7 +11,7 @@ public class main {
         display window = new display();
         frame.add(window);
         //String view = "sign up";
-        String view = "login";
+        String view = "home";
         window.setView(view);
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
