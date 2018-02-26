@@ -133,6 +133,11 @@ public class client {
         
         
     }
+    public void addPost(String name, String subject, String content) {
+        String ret;
+        ret = "u:a:" + name + ":" + subject + ":" + content;
+        ps.println(ret);
+    }
     public String getPost(String name, int number) throws Exception{
         String ret;
         ret = "u:g:" + name + ":" + number;
