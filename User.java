@@ -73,7 +73,7 @@ public class User
         return mutlist;
     }
     
-    public ArrayList<User> getSchoolMates(User other) {
+    public ArrayList<User> getSchoolmates(User other) {
         ArrayList<User> mutlist = new ArrayList<User>();
         boolean temp;
         for (User of : other.getFriendsList()) {
