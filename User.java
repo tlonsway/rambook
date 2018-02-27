@@ -117,7 +117,7 @@ public class User
         ArrayList<User> nonfriends = new ArrayList<User>();
         for (User f : friendsList) {
             for (User ff : f.getFriendsList()) {
-                if (!this.equals(ff)) {
+                if (!f.equals(ff) && !f.equals(this)) {
                    nonfriends.add(ff); 
                 }
                 friendfriend.add(ff);
@@ -125,32 +125,17 @@ public class User
         }
         ArrayList<User> nfht = new ArrayList<User>();
         for (User nf : nonfriends) {
-            if (nf.getHometown().equals(this.hometown)) {
+            if (nf.getHometown().equals(this.hometown) && !nf.equals(this)) {
                 nfht.add(nf);
             }
         }
-        for(int i = 0; i < nfht.size(); i ++)
-        {
-            if(nfht.get(i).equals(this))
-            {
-                nfht.remove(i);
-                i--;
-            }
-        }
         if (nfht.size()>1) {
-            return (nfht.get((int)(Math.random()*(nfht.size()+1))));
+            return (nfht.get((int)(Math.random()*nfht.size())));
         } else 
         if (nfht.size()==1) {
             return nfht.get(0);
         } else {
-            if (friendfriend.size() > 1) {
-                return (friendfriend.get((int)(Math.random()*(friendfriend.size()+1))));
-            } else
-            if (friendfriend.size() == 1) {
-                return friendfriend.get(0);
-            }else {
-                return null;
-            }
+            return null;
         }
     }
     
