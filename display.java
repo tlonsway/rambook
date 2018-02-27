@@ -362,7 +362,6 @@ public class display extends JPanel
                subjectPost.setBounds(1000, 75, 100, 20);
                subjectPost.setEditable(true);
                
-               
                contentPost.setBounds(1000, 145, 100, 20);
                contentPost.setEditable(true);
                
@@ -409,13 +408,10 @@ public class display extends JPanel
             message.setText("Message");
             message.setVisible(true);
 
-            UserChoice.setBounds(10,350, 100, 20);
+            UserChoice.setBounds(120, 300, 100, 20);
             UserChoice.setVisible(true);
             UserChoice.setEditable(true);
-            if(addPost == true)
-            {
-                
-            }
+            
         }
         else if(view.equals("sign up"))
         {

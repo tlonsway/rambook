@@ -4,12 +4,12 @@ import java.awt.*;
 import java.awt.event.*;
 public class main {
     public static void main(String[] args) {
-        JFrame frame = new JFrame("window");
-        frame.setVisible(true);
-        frame.setSize(1920, 1080);
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame screen = new JFrame("window");
+        screen.setVisible(true);
+        screen.setSize(1920, 1080);
+        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display window = new display();
-        frame.add(window);
+        screen.add(window);
         //String view = "sign up";
         String view = "home";
         window.setView(view);
@@ -35,27 +35,27 @@ public class main {
         
         JButton addPost = new JButton("Add A Post");
 
-        frame.add(enter);
-        frame.add(checkPassword);
-        frame.add(SignUp);
-        frame.add(Password);
-        frame.add(UsernameInput);
-        frame.add(messaging);
+        screen.add(enter);
+        screen.add(checkPassword);
+        screen.add(SignUp);
+        screen.add(Password);
+        screen.add(UsernameInput);
+        screen.add(messaging);
         
-        frame.add(postSubject);
-        frame.add(postContent);
-        frame.add(addPost);
+        screen.add(postSubject);
+        screen.add(postContent);
+        screen.add(addPost);
 
-        frame.add(age);
-        frame.add(bio);
-        frame.add(name);
+        screen.add(age);
+        screen.add(bio);
+        screen.add(name);
 
-        frame.add(search);
-        frame.add(searchfield);
+        screen.add(search);
+        screen.add(searchfield);
 
-        frame.add(messageUser);
+        screen.add(messageUser);
 
-        frame.add(signout);
+        screen.add(signout);
 
         window.setTextField(UsernameInput, 1);
         window.setTextField(Password, 2);
@@ -159,11 +159,11 @@ public class main {
                             Password.setText("");
                             window.drawing();
                         }
-                        /*else if(window.view.equals("home screen"))
+                        else if(window.view.equals("home screen"))
                         {
                             window.setAddPost(false);
                             window.drawing();
-                        }*/
+                        }
                     }
                     catch (Exception e) {
                         System.out.println(e);
@@ -213,7 +213,7 @@ public class main {
                     try{
                         if(new client().checkUserExist(window.getUserChoice()) == true && new client().getData(window.getUserChoice(), "status", 0).equals("online"))
                         {
-                            //JFrame messagingFrame = new JFrame("Messaging");
+                            //Jscreen messagingscreen = new Jscreen("Messaging");
                             
                         }
                         window.drawing();
@@ -229,7 +229,6 @@ public class main {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try{
-                        window.setAddPostButton(addPost);
                         window.setAddPost(true);
                         window.drawing();
                     }
