@@ -1,6 +1,5 @@
 import java.io.*;
 import java.net.*;
-import java.io.*;
 import javax.imageio.ImageIO;
 import java.io.File;
 import java.awt.image.BufferedImage;
@@ -11,9 +10,12 @@ import com.maxmind.db.Reader.FileMode;
 import com.maxmind.geoip2.DatabaseReader;
 import com.maxmind.geoip2.DatabaseReader.Builder;
 import com.maxmind.geoip2.model.CityResponse;
-import com.maxmind.*;
 import java.util.Date;
 import java.text.SimpleDateFormat;
+import java.nio.file.Files;
+import static java.nio.file.StandardCopyOption.*;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 public class serverRunnable implements Runnable{
     BufferedReader din;
     Socket client;
@@ -304,7 +306,8 @@ public class serverRunnable implements Runnable{
     }
     public void addPost(String name, String subject, String content) throws Exception {
         BufferedWriter bw = new BufferedWriter(new FileWriter("posts" + name + ".txt"));
-        BufferedReader br = new BufferedReader(new FileReader("posts.txt"));
+        FileReader fr = new FileReader("posts.txt");
+        BufferedReader br = new BufferedReader(fr);
         File database = new File("IPdb.mmdb");
         DatabaseReader dbReader = new DatabaseReader.Builder(database).build();
         String location = "";
@@ -316,7 +319,6 @@ public class serverRunnable implements Runnable{
         } catch (Exception e) {
             location = "Local network";
         }
-
         boolean b = false;
         boolean bo = false;
         String rline;
@@ -356,12 +358,35 @@ public class serverRunnable implements Runnable{
         System.out.println("Closing post write stream");
         br.close();
         bw.close();
-        File oldpost = new File("posts.txt");
-        File newpost = new File("posts" + name + ".txt");
-        File finalpost = new File("posts.txt");
-        oldpost.delete();
-        newpost.renameTo(finalpost);
-        newpost.delete();
+        fr.close();
+        try {
+            Thread.sleep(1000);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter("posts.txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("posts" + name + ".txt"));
+        boolean f = false;
+        boolean fo = false;
+        String line;
+        while(f == false && fo == false) {
+            line = reader.readLine();
+            if (line == null) {
+                f = true;
+            } else {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        writer.close();
+        reader.close();
+        System.out.println("completing file writing for " + name);
+        File other = new File("posts" + name + ".txt");
+        other.delete();
+        //File newpost = new File("posts" + name + ".txt");
+        //Paths.get("posts.txt");
+        //Paths.get("posts" + name + ".txt");
+        
     }
     public String getPost(String name, String number) throws Exception{
         //returns the entire line of the post
