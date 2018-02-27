@@ -79,14 +79,13 @@ public class User
         for (User of : this.getFriendsList()) {
             temp = false;
             for (int i=0; i<this.schools.length; i++) {
-                for (int i2=0; i<of.getSchools().length; i2++) {
-                    if(!this.schools[i].equals(null) && !of.getSchools()[i2].equals(null))
+                for (int i2=0; i2<of.getSchools().length; i2++) {
+                    if(this.schools[i] != null && of.getSchools()[i2] != null)
                     {
                         if (this.schools[i].equals(of.getSchools()[i2])) {
                             temp=true;
                         }
                     }
-                    
                 }
             }
             if (temp) {
@@ -128,6 +127,14 @@ public class User
         for (User nf : nonfriends) {
             if (nf.getHometown().equals(this.hometown)) {
                 nfht.add(nf);
+            }
+        }
+        for(int i = 0; i < nfht.size(); i ++)
+        {
+            if(nfht.get(i).equals(this))
+            {
+                nfht.remove(i);
+                i--;
             }
         }
         if (nfht.size()>1) {
