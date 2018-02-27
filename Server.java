@@ -8,7 +8,6 @@ public class Server implements Runnable {
     public static void main(String[] args) throws Exception {
         new Server();
     }
-    //
     public Server() {
         try {
             ss = new ServerSocket(8888);

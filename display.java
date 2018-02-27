@@ -173,7 +173,16 @@ public class display extends JPanel
         super.paintComponent(g);
         if(view.equals("login"))
         {
-
+            checkpassword.setVisible(false);
+            age.setVisible(false);
+            search.setVisible(false);
+            searchfield.setVisible(false);
+            signout.setVisible(false);
+            bio.setVisible(false);
+            name.setVisible(false);
+            message.setVisible(false);
+            UserChoice.setVisible(false);
+            addapost.setVisible(false);
             g.setColor(Color.RED);
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
@@ -205,16 +214,7 @@ public class display extends JPanel
                 g.setColor(Color.RED);
                 g.drawString("Incorrect Username or Password",500, 500);
             }
-            checkpassword.setVisible(false);
-            age.setVisible(false);
-            search.setVisible(false);
-            searchfield.setVisible(false);
-            signout.setVisible(false);
-            bio.setVisible(false);
-            name.setVisible(false);
-            message.setVisible(false);
-            UserChoice.setVisible(false);
-            addapost.setVisible(false);
+
 
             UserName.setBounds(850, 400, 100, 20);
             password.setBounds(850, 600, 100, 20);

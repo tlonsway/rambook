@@ -354,12 +354,14 @@ public class serverRunnable implements Runnable{
             //bw.write(rline);
         }
         System.out.println("Closing post write stream");
+        br.close();
         bw.close();
         File oldpost = new File("posts.txt");
         File newpost = new File("posts" + name + ".txt");
         File finalpost = new File("posts.txt");
         oldpost.delete();
         newpost.renameTo(finalpost);
+        newpost.delete();
     }
     public String getPost(String name, String number) throws Exception{
         //returns the entire line of the post
