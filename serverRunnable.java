@@ -195,7 +195,7 @@ public class serverRunnable implements Runnable{
                 String name1 = in.substring(0, in.indexOf(":"));
                 in = in.substring(in.indexOf(":")+1);
                 String subject = in.substring(0, in.indexOf(":"));
-                in = in.substring(in.indexOf(":"));
+                in = in.substring(in.indexOf(":")+1);
                 String content = in;
                 try {
                     addPost(name1, subject, content);
@@ -326,8 +326,9 @@ public class serverRunnable implements Runnable{
                 System.out.println("reading line is null");
                 b = true;
             }
-            bw.write(rline);
             if (rline != null && rline.equals("}" + name)) {
+                bw.write(rline);
+                bw.newLine();
                 while (bo == false)  {
                     rline = br.readLine();
                     if (rline.equals("|")) {
@@ -335,19 +336,30 @@ public class serverRunnable implements Runnable{
                         Date now = new Date();
                         String strDate = sdfDate.format(now);
                         bw.write("]p" + (getNumPosts(name)+1) + ":" + strDate + ":" + location + ":" + subject + ":" + content); 
+                        bw.newLine();
                         bw.write("|");
-                        bo = true;     
+                        bw.newLine();
+                        bo = true;
                     } else {
                         bw.write(rline);
+                        bw.newLine();
                     }            
                 } 
+            } else if(rline != null) {
+                bw.write(rline);
+                bw.newLine();
+                System.out.println("writing " + rline);
             }
-            bw.write(rline);
+                
+            //bw.write(rline);
         }
+        System.out.println("Closing post write stream");
+        bw.close();
         File oldpost = new File("posts.txt");
         File newpost = new File("posts" + name + ".txt");
+        File finalpost = new File("posts.txt");
         oldpost.delete();
-        newpost.renameTo(oldpost);
+        newpost.renameTo(finalpost);
     }
     public String getPost(String name, String number) throws Exception{
         //returns the entire line of the post
