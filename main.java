@@ -63,6 +63,7 @@ public class main {
 
         window.setTextField(postSubject, 9);
         window.setTextField(postContent, 10);
+        window.setAddPostButton(addPost);
         
         window.setTextField(age, 4);
         window.setTextField(bio, 5);
@@ -130,7 +131,7 @@ public class main {
                         }
                         else if(window.view.equals("home screen"))
                         {
-                            new client().addPost(window.UsernameSignedIn, window.getSubjectText(),window.getContentText());
+                            //new client().addPost(window.UsernameSignedIn, window.getSubjectText(),window.getContentText());
                         }
                     }
                     catch (Exception e) {
@@ -158,11 +159,11 @@ public class main {
                             Password.setText("");
                             window.drawing();
                         }
-                        else if(window.view.equals("home screen"))
+                        /*else if(window.view.equals("home screen"))
                         {
                             window.setAddPost(false);
                             window.drawing();
-                        }
+                        }*/
                     }
                     catch (Exception e) {
                         System.out.println(e);
@@ -230,7 +231,6 @@ public class main {
                     try{
                         window.setAddPostButton(addPost);
                         window.setAddPost(true);
-                        
                         window.drawing();
                     }
                     catch(Exception e)

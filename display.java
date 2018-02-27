@@ -175,6 +175,7 @@ public class display extends JPanel
         {
             checkpassword.setVisible(false);
             age.setVisible(false);
+            addapost.setVisible(false);
             search.setVisible(false);
             searchfield.setVisible(false);
             signout.setVisible(false);
@@ -182,7 +183,6 @@ public class display extends JPanel
             name.setVisible(false);
             message.setVisible(false);
             UserChoice.setVisible(false);
-            addapost.setVisible(false);
             g.setColor(Color.RED);
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
@@ -358,24 +358,33 @@ public class display extends JPanel
             {
                g.setColor(Color.WHITE);
                g.drawString("Post Topic", 1000, 50);
-               g.drawString("Post Content", 1000, 95);
+               g.drawString("Post Content", 1000, 120);
                subjectPost.setBounds(1000, 75, 100, 20);
-               subjectPost.setVisible(true);
                subjectPost.setEditable(true);
-               contentPost.setBounds(1000, 120, 100, 20);
-               contentPost.setVisible(true);
+               
+               
+               contentPost.setBounds(1000, 145, 100, 20);
                contentPost.setEditable(true);
-               enter.setBounds(1000, 165, 100, 50);
+               
+              
+               
+               enter.setBounds(1000, 170, 100, 50);
                enter.setText("Enter");
-               enter.setVisible(true);
+               
+               
                g.setColor(Color.BLACK);
                g.fillRect(1000, 75, 100, 20);
-               g.fillRect(1000, 120, 100, 20);
-               g.fillRect(1000,165,100,50);
-               g.fillRect(1120, 165, 100,50);
+               g.fillRect(1000, 145, 100, 20);
+               g.fillRect(1000,170,100,50);
+               g.fillRect(1120, 170, 100,50);
+               
                signUp.setBounds(1120, 165, 100, 50);
                signUp.setText("Back");
+               
                signUp.setVisible(true);
+               enter.setVisible(true);
+               contentPost.setVisible(true);
+               subjectPost.setVisible(true);
             }
             addapost.setBounds(10,420,100,50);
             g.fillRect(10,420,100,50);
@@ -403,7 +412,10 @@ public class display extends JPanel
             UserChoice.setBounds(10,350, 100, 20);
             UserChoice.setVisible(true);
             UserChoice.setEditable(true);
-            
+            if(addPost == true)
+            {
+                
+            }
         }
         else if(view.equals("sign up"))
         {
