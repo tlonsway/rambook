@@ -4,11 +4,13 @@ import java.awt.*;
 import java.awt.event.*;
 public class main {
     public static void main(String[] args) {
-        JFrame screen = new JFrame("window");
-        screen.setVisible(true);
-        screen.setSize(1920, 1080);
-        screen.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame frame = new JFrame("window");
+        frame.setVisible(true);
+        frame.setSize(1920, 1080);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display window = new display();
+        JPanel screen = new JPanel();
+        frame.add(screen);
         screen.add(window);
         //String view = "sign up";
         String view = "home";
