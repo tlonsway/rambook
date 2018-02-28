@@ -190,7 +190,6 @@ public class serverRunnable implements Runnable{
                     e.printStackTrace();
                 }
             } //Processes getting total number of posts
-            
             //u:a:name:subject:content
             if (line.substring(2,3).indexOf("a") != -1) {
                 String in = line.substring(4);
@@ -267,8 +266,101 @@ public class serverRunnable implements Runnable{
         pw.close();
         po.close();
     }
-    public void setStatus() {
+    public void setStatus(String name, String status) throws Exception {
+        System.out.println("changing status for user " + name);
+        BufferedReader br = new BufferedReader(new FileReader("users.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
+        boolean b = false;
+        String rline;
+        while(b == false) {
+            rline = br.readLine();
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            } else if (rline.equals(name)) {
+                bw.write(name);
+                bw.newLine();
+                bw.write("status:" + status);
+                bw.newLine();
+            } else {
+                bw.write(rline);
+                bw.newLine();
+            }
+        }
+        bw.close();
+        br.close();
+        BufferedReader reader = new BufferedReader(new FileReader("users" + name + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"));
+        boolean fo = false;
+        boolean f = false;
+        String line;
+        while(f == false && fo == false) {
+            line = reader.readLine();
+            if (line == null) {
+                f = true;
+            } else {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        writer.close();
+        reader.close();        
+        System.out.println("completing file writing for " + name);        
+        File fl = new File("users" + name + ".txt");
+        fl.delete();
+    }
+    public void setName(String name, String oname) throws Exception{
+        System.out.println("changing name for user " + name);
+        BufferedReader br = new BufferedReader(new FileReader("users.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
+        boolean b = false;
+        String rline;
+        while(b == false) {
+            rline = br.readLine();
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            } else if (rline.equals(name)) {
+                bw.write(name);
+                bw.newLine();
+                bw.write(br.readLine()); //reading once to change the name
+                bw.newLine();
+                bw.write("name:" + oname);
+                bw.newLine();
+            } else {
+                bw.write(rline);
+                bw.newLine();
+            }
+        }
+        bw.close();
+        br.close();
+        BufferedReader reader = new BufferedReader(new FileReader("users" + name + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"));
+        boolean fo = false;
+        boolean f = false;
+        String line;
+        while(f == false && fo == false) {
+            line = reader.readLine();
+            if (line == null) {
+                f = true;
+            } else {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        writer.close();
+        reader.close();        
+        System.out.println("completing file writing for " + name);        
+        File fl = new File("users" + name + ".txt");
+        fl.delete();        
+    }
+    public void setFriends(String name, int friends) throws Exception{
         
+    }
+    public void setAge(String name, int age) throws Exception{
+        
+    }
+    public void setBio(String name, String bio) throws Exception{
         
     }
     public String userExist(String username) throws Exception{
@@ -355,18 +447,17 @@ public class serverRunnable implements Runnable{
                 bw.newLine();
                 System.out.println("writing " + rline);
             }
-                
             //bw.write(rline);
         }
         System.out.println("Closing post write stream");
         br.close();
         bw.close();
         fr.close();
-        try {
-            Thread.sleep(1000);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        //try {
+        //    Thread.sleep(1000);
+        //} catch (Exception e) {
+        //    e.printStackTrace();
+        //}
         BufferedWriter writer = new BufferedWriter(new FileWriter("posts.txt"));
         BufferedReader reader = new BufferedReader(new FileReader("posts" + name + ".txt"));
         boolean f = false;
@@ -389,7 +480,6 @@ public class serverRunnable implements Runnable{
         //File newpost = new File("posts" + name + ".txt");
         //Paths.get("posts.txt");
         //Paths.get("posts" + name + ".txt");
-        
     }
     public String getPost(String name, String number) throws Exception{
         //returns the entire line of the post
@@ -463,6 +553,4 @@ public class serverRunnable implements Runnable{
         }
         return count;
     }
-    
-    
 }
