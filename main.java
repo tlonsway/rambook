@@ -13,7 +13,7 @@ public class main {
         frame.add(screen);
         screen.add(window);
         //String view = "sign up";
-        String view = "home";
+        String view = "login";
         window.setView(view);
         JTextField UsernameInput = new JTextField();
         JTextField Password = new JTextField();
