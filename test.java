@@ -10,7 +10,7 @@ public class test
         JPanel screen = new JPanel();
         frame.add(screen);
         draw drawTest = new draw();
-        frame.add(drawTest);
+        screen.add(drawTest);
         drawTest.drawing();
     }
 }
