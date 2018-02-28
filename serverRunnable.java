@@ -104,7 +104,7 @@ public class serverRunnable implements Runnable{
                 }
             }   
         } //Decoding post tranmissions
-        
+            
         if (line.substring(0,1).indexOf("p") != -1) {
             //format - p:username:hash
             String input = line.substring(line.indexOf(":")+1);
