@@ -11,6 +11,7 @@ public class display extends JPanel
 {
     public display(){
         super();
+        setLayout(null);
     }
     String view = "";
     JTextField UserName;
@@ -199,8 +200,7 @@ public class display extends JPanel
             g.setColor(Color.WHITE);
             g.drawString("RAMBOOK", 900, 200);
 
-            signUp.setText("Sign Up");
-            enter.setText("ENTER");
+            
             g.setColor(Color.BLACK);
             g.drawRect(1000,475,100,50);
             g.drawRect(1000,575,100,50);
@@ -405,53 +405,90 @@ public class display extends JPanel
             name.setVisible(false);
             message.setVisible(false);
             UserChoice.setVisible(false);
+            subjectPost.setVisible(false);
+            contentPost.setVisible(false);
             
-            name.setBounds(600,400,100,20);
-            age.setBounds(600,500,100,20);
-            bio.setBounds(600,650,200,40);
-            name.setVisible(true);
-            age.setVisible(true);
-            bio.setVisible(true);
             
-            UserName.setBounds(850, 400, 100, 20);
-            password.setBounds(850, 600, 100, 20);
-            UserName.setEditable(true);
-            password.setEditable(true);
-            UserName.setVisible(true);
-            password.setVisible(true);
-
+            signUp.setBounds(1000, 575, 100,50);  
+            signUp.setText("Sign Up");
+            
             enter.setBounds(1000, 475, 100,50);
-            enter.setText("ENTER");
-            signUp.setBounds(1000, 575, 100,50);        
-            signUp.setText("BACK");
-            enter.setVisible(true);
+            enter.setText("Enter");
+            
+            password.setBounds(850,600,100,20);
+            password.setEditable(true);
+            
+            UserName.setBounds(850,400,100,20);
+            UserName.setEditable(true);
+            
             signUp.setVisible(true);
+            enter.setVisible(true);
+            password.setVisible(true);
+            UserName.setVisible(true);
         }
         else if(view.equals("sign up"))
         {
+            /*
+             * JTextField UserName;
+             * JTextField password;
+             * JTextField checkpassword;
+
+             * JTextField age;
+             * JTextField bio;
+             * JTextField name;
+
+             * JTextField UserChoice;
+
+             * JTextField searchfield;
+
+             * JTextField subjectPost;
+             * JTextField contentPost;
+
+             * JButton enter;
+             * JButton signUp;
+             * JButton search;
+             *JButton signout;
+             *JButton message;
+             * 
+             */
             message.setVisible(false);
             UserChoice.setVisible(false);
             addapost.setVisible(false);
+            searchfield.setVisible(false);
+            subjectPost.setVisible(false);
+            contentPost.setVisible(false);
             
             UserName.setBounds(850, 400, 100, 20);
-            password.setBounds(800, 600, 100, 20);
-            checkpassword.setBounds(1000, 600, 100, 20);
-
             UserName.setEditable(true);
+            
+            password.setBounds(800, 600, 100, 20);
             password.setEditable(true);
+            
+            checkpassword.setBounds(1000, 600, 100, 20);
             checkpassword.setEditable(true);
-
+            
+            signUp.setLocation(1000, 400);
+            signUp.setText("Back");
+            
+            enter.setLocation(1000, 475);
+            enter.setText("Enter");
+            
+            name.setBounds(600,400,100,20);
             name.setEditable(true);
+            
+            bio.setBounds(600,650,200,40);
             bio.setEditable(true);
+            
+            age.setBounds(600,500,100,20);
             age.setEditable(true);
-
+            
             UserName.setVisible(true);
             password.setVisible(true);
             checkpassword.setVisible(true);
-
+            enter.setVisible(true);
             name.setVisible(true);
-            bio.setVisible(true);
             age.setVisible(true);
+            bio.setVisible(true);
 
         }
         else if(view.equals("home screen"))
