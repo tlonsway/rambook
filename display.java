@@ -21,10 +21,10 @@ public class display extends JPanel
     JTextField UserChoice;
 
     JTextField searchfield;
-    
+
     JTextField subjectPost;
     JTextField contentPost;
-    
+
     JButton enter;
     JButton signUp;
     JButton search;
@@ -81,12 +81,12 @@ public class display extends JPanel
         else if(i == 10)
             contentPost = U;
     }
-    
+
     public void setAddPostButton(JButton u)
     {
         addapost = u;
     }
-    
+
     public void setAddPost(boolean i)
     {
         addPost = i;
@@ -215,7 +215,6 @@ public class display extends JPanel
                 g.drawString("Incorrect Username or Password",500, 500);
             }
 
-
             UserName.setBounds(850, 400, 100, 20);
             password.setBounds(850, 600, 100, 20);
             UserName.setEditable(true);
@@ -311,84 +310,75 @@ public class display extends JPanel
             int X = 1000;
             int Y = 50;
             g.setColor(Color.BLACK);
-            if(addPost == false){
-                for(int i = 1; i <= numPosts; i++)
-                {
-                    try {
-                        post = new client().getPost(Name, i);
-                    } catch (Exception e) {
-                        e.printStackTrace();
-                    }
-                    System.out.println("Post received: " + post);
-                    /*index = post.indexOf(":") + 1;
-                    date = post.substring(index, post.substring(index).indexOf(":"));
-                    index = post.substring(index).indexOf(":") + 1;
-                    location = post.substring(index, post.substring(index).indexOf(":"));
-                    index = post.substring(index).indexOf(":") + 1;
-                    subject = post.substring(index, post.substring(index).indexOf(":"));
-                    index = post.substring(index).indexOf(":") + 1;
-                    content = post.substring(index, post.substring(index).indexOf(":"));
-                    index = post.substring(index).indexOf(":") + 1;
-                     */
-                    String in = post.substring(post.indexOf(":")+1);
-                    date = in.substring(0, in.indexOf(":"));
-                    in = in.substring(in.indexOf(":")+1);
-                    location = in.substring(0, in.indexOf(":"));
-                    in = in.substring(in.indexOf(":")+1);
-                    subject = in.substring(0, in.indexOf(":"));
-                    in = in.substring(in.indexOf(":")+1);
-                    content = in;
 
-                
-                    g.drawString("Subject: " + subject,X,Y);
-                    Y += 25;
-                    g.drawString("Content: " + content,X,Y);
-                    Y += 25;
-                    g.drawString("Post Date: " + date, X, Y);
-                    Y += 25;
-                    g.drawString("Post Location: " + location, X, Y);
-                    Y += 25;
-                    g.setColor(Color.WHITE);
-                    g.drawLine(X,Y, 1920, Y);
-                    g.setColor(Color.BLACK);
-                    Y += 25;
-                }
-            }
-            else if(addPost == true)
+            for(int i = 1; i <= numPosts; i++)
             {
-               g.setColor(Color.WHITE);
-               g.drawString("Post Topic", 1000, 50);
-               g.drawString("Post Content", 1000, 120);
-               subjectPost.setBounds(1000, 75, 100, 20);
-               subjectPost.setEditable(true);
-               
-               contentPost.setBounds(1000, 145, 100, 20);
-               contentPost.setEditable(true);
-               
-              
-               
-               enter.setBounds(1000, 170, 100, 50);
-               enter.setText("Enter");
-               
-               
-               g.setColor(Color.BLACK);
-               g.fillRect(1000, 75, 100, 20);
-               g.fillRect(1000, 145, 100, 20);
-               g.fillRect(1000,170,100,50);
-               g.fillRect(1120, 170, 100,50);
-               
-               signUp.setBounds(1120, 165, 100, 50);
-               signUp.setText("Back");
-               
-               signUp.setVisible(true);
-               enter.setVisible(true);
-               contentPost.setVisible(true);
-               subjectPost.setVisible(true);
+                try {
+                    post = new client().getPost(Name, i);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                System.out.println("Post received: " + post);
+                /*index = post.indexOf(":") + 1;
+                date = post.substring(index, post.substring(index).indexOf(":"));
+                index = post.substring(index).indexOf(":") + 1;
+                location = post.substring(index, post.substring(index).indexOf(":"));
+                index = post.substring(index).indexOf(":") + 1;
+                subject = post.substring(index, post.substring(index).indexOf(":"));
+                index = post.substring(index).indexOf(":") + 1;
+                content = post.substring(index, post.substring(index).indexOf(":"));
+                index = post.substring(index).indexOf(":") + 1;
+                 */
+                String in = post.substring(post.indexOf(":")+1);
+                date = in.substring(0, in.indexOf(":"));
+                in = in.substring(in.indexOf(":")+1);
+                location = in.substring(0, in.indexOf(":"));
+                in = in.substring(in.indexOf(":")+1);
+                subject = in.substring(0, in.indexOf(":"));
+                in = in.substring(in.indexOf(":")+1);
+                content = in;
+
+                g.drawString("Subject: " + subject,X,Y);
+                Y += 25;
+                g.drawString("Content: " + content,X,Y);
+                Y += 25;
+                g.drawString("Post Date: " + date, X, Y);
+                Y += 25;
+                g.drawString("Post Location: " + location, X, Y);
+                Y += 25;
+                g.setColor(Color.WHITE);
+                g.drawLine(X,Y, 1920, Y);
+                g.setColor(Color.BLACK);
+                Y += 25;
             }
-            addapost.setBounds(10,420,100,50);
-            g.fillRect(10,420,100,50);
-            addapost.setVisible(true);
+            //---- Add post
             
+            g.setColor(Color.WHITE);
+            g.drawString("Post Topic", 300, 500);
+            g.drawString("Post Content",300,570);
+            
+            subjectPost.setBounds(300, 525, 100, 20);
+            subjectPost.setEditable(true);
+
+            contentPost.setBounds(300,595, 100, 20);
+            contentPost.setEditable(true);
+            
+            g.setColor(Color.BLACK);
+            g.fillRect(300,525,100,20);
+            g.fillRect(300,570,100,20);
+            g.fillRect(300,620,100,50);
+
+            signUp.setBounds(1120, 165, 100, 50);
+            signUp.setText("Back");
+
+            signUp.setVisible(true);
+            contentPost.setVisible(true);
+            subjectPost.setVisible(true);
+            
+            addapost.setBounds(300,620,100,50);
+            g.fillRect(300,620,100,50);
+            addapost.setVisible(true);
+            //-------------------
             search.setBounds(120,375,100,50);
             g.fillRect(120,375,100,50);
             search.setVisible(true);
@@ -411,7 +401,7 @@ public class display extends JPanel
             UserChoice.setBounds(120, 300, 100, 20);
             UserChoice.setVisible(true);
             UserChoice.setEditable(true);
-            
+
         }
         else if(view.equals("sign up"))
         {
@@ -488,26 +478,31 @@ public class display extends JPanel
                 g.setColor(Color.RED);
                 g.drawString("Username Already Taken",600,400);
             }
-            
+
         }
-        
+
     }
+
     public String getSubjectText()
     {
         return subjectPost.getText();
     }
+
     public String getContentText()
     {
         return contentPost.getText();
     }
+
     public String getSearchfieldText()
     {
         return searchfield.getText();
     }
+
     public void setUsernameSignedIn(String s)
     {
         UsernameSignedIn = s;
     }
+
     public static BufferedImage resize(BufferedImage img, int newW, int newH) { 
         Image tmp = img.getScaledInstance(newW, newH, Image.SCALE_SMOOTH);
         BufferedImage dimg = new BufferedImage(newW, newH, BufferedImage.TYPE_INT_ARGB);
