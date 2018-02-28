@@ -171,6 +171,8 @@ public class display extends JPanel
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
+        g.setColor(Color.BLUE);
+        g.drawRect(50, 50, 50, 50);
         if(view.equals("login"))
         {
             checkpassword.setVisible(false);
