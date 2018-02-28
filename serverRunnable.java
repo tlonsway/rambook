@@ -355,13 +355,151 @@ public class serverRunnable implements Runnable{
         fl.delete();        
     }
     public void setFriends(String name, int friends) throws Exception{
-        
+        System.out.println("changing friend count for user " + name);
+        BufferedReader br = new BufferedReader(new FileReader("users.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
+        boolean b = false;
+        String rline;
+        while(b == false) {
+            rline = br.readLine();
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            } else if (rline.equals(name)) {
+                bw.write(name);
+                bw.newLine();
+                bw.write(br.readLine()); //reading once to change the name
+                bw.newLine();
+                bw.write(br.readLine()); //reading twice to change the friend count
+                bw.newLine();
+                bw.write("friends:" + friends);
+                bw.newLine();
+            } else {
+                bw.write(rline);
+                bw.newLine();
+            }
+        }
+        bw.close();
+        br.close();
+        BufferedReader reader = new BufferedReader(new FileReader("users" + name + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"));
+        boolean fo = false;
+        boolean f = false;
+        String line;
+        while(f == false && fo == false) {
+            line = reader.readLine();
+            if (line == null) {
+                f = true;
+            } else {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        writer.close();
+        reader.close();        
+        System.out.println("completing file writing for " + name);        
+        File fl = new File("users" + name + ".txt");
+        fl.delete();          
     }
     public void setAge(String name, int age) throws Exception{
-        
+        System.out.println("changing age for user " + name);
+        BufferedReader br = new BufferedReader(new FileReader("users.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
+        boolean b = false;
+        String rline;
+        while(b == false) {
+            rline = br.readLine();
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            } else if (rline.equals(name)) {
+                bw.write(name);
+                bw.newLine();
+                bw.write(br.readLine()); //reading once to change the name
+                bw.newLine();
+                bw.write(br.readLine()); //reading twice to change the friend count
+                bw.newLine();
+                bw.write(br.readLine()); //reading three times to change the age
+                bw.newLine();
+                bw.write("age:" + age);
+                bw.newLine();
+            } else {
+                bw.write(rline);
+                bw.newLine();
+            }
+        }
+        bw.close();
+        br.close();
+        BufferedReader reader = new BufferedReader(new FileReader("users" + name + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"));
+        boolean fo = false;
+        boolean f = false;
+        String line;
+        while(f == false && fo == false) {
+            line = reader.readLine();
+            if (line == null) {
+                f = true;
+            } else {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        writer.close();
+        reader.close();        
+        System.out.println("completing file writing for " + name);        
+        File fl = new File("users" + name + ".txt");
+        fl.delete();                  
     }
     public void setBio(String name, String bio) throws Exception{
-        
+        System.out.println("changing bio for user " + name);
+        BufferedReader br = new BufferedReader(new FileReader("users.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
+        boolean b = false;
+        String rline;
+        while(b == false) {
+            rline = br.readLine();
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            } else if (rline.equals(name)) {
+                bw.write(name);
+                bw.newLine();
+                bw.write(br.readLine()); //reading once to change the name
+                bw.newLine();
+                bw.write(br.readLine()); //reading twice to change the friend count
+                bw.newLine();
+                bw.write(br.readLine()); //reading three times to change the age
+                bw.newLine();
+                bw.write(br.readLine()); //reading four times to change the bio
+                bw.newLine();
+                bw.write("bio:" + bio);
+                bw.newLine();
+            } else {
+                bw.write(rline);
+                bw.newLine();
+            }
+        }
+        bw.close();
+        br.close();
+        BufferedReader reader = new BufferedReader(new FileReader("users" + name + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"));
+        boolean fo = false;
+        boolean f = false;
+        String line;
+        while(f == false && fo == false) {
+            line = reader.readLine();
+            if (line == null) {
+                f = true;
+            } else {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        writer.close();
+        reader.close();        
+        System.out.println("completing file writing for " + name);        
+        File fl = new File("users" + name + ".txt");
+        fl.delete();          
     }
     public String userExist(String username) throws Exception{
         BufferedReader br = new BufferedReader(new FileReader("loginlist.txt"));
