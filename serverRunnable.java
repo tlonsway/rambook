@@ -253,6 +253,7 @@ public class serverRunnable implements Runnable{
     public void addUser(String username, String name, int age, String bio, String password) throws Exception{
         BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true));
         BufferedWriter pw = new BufferedWriter(new FileWriter("loginlist.txt", true));
+        BufferedWriter po = new BufferedWriter(new FileWriter("posts.txt", true));
         bw.append("\n" + username);
         bw.append("\nstatus:offline");
         bw.append("\nname:" + name);
@@ -261,8 +262,10 @@ public class serverRunnable implements Runnable{
         bw.append("\nbio:" + bio);
         bw.append("\n}");
         pw.append("\n" + username + ":" + password);
+        po.append("\n}" + username + "\n|");
         bw.close();
         pw.close();
+        po.close();
     }
     public void setStatus() {
         
