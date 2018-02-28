@@ -93,7 +93,7 @@ public class main {
 
                         if(window.view.equals("login"))
                         {
-                            //System.out.println((new client()).checkPassword(window.getUsername(), (window.getPassword())));
+                            System.out.println((new client()).checkPassword(window.getUsername(), (window.getPassword())));
                             if((new client()).checkPassword(window.getUsername(), window.getPassword()) == true)
                             {
                                 window.setView("home screen");
