@@ -9,6 +9,9 @@ import java.awt.image.BufferedImage;
 import java.util.*;
 public class display extends JPanel
 {
+    public display(){
+        super();
+    }
     String view = "";
     JTextField UserName;
     JTextField password;
@@ -175,16 +178,7 @@ public class display extends JPanel
         g.drawRect(50, 50, 50, 50);
         if(view.equals("login"))
         {
-            checkpassword.setVisible(false);
-            age.setVisible(false);
-            addapost.setVisible(false);
-            search.setVisible(false);
-            searchfield.setVisible(false);
-            signout.setVisible(false);
-            bio.setVisible(false);
-            name.setVisible(false);
-            message.setVisible(false);
-            UserChoice.setVisible(false);
+            
             g.setColor(Color.RED);
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
@@ -192,9 +186,9 @@ public class display extends JPanel
             g.setColor(Color.BLACK);
             g.drawRect(480,255,960,510);
             g.setColor(Color.BLACK);
-            JLabel Wordz = new JLabel();
+            //JLabel Wordz = new JLabel();
             Font f = new Font("Username: ", Font.BOLD, 20);
-            Wordz.setSize(10,20);
+            //Wordz.setSize(10,20);
             g.setFont(f);
             g.drawString(f.getName(), 850, 350);
             g.drawString("Login",500, 310);
@@ -216,19 +210,6 @@ public class display extends JPanel
                 g.setColor(Color.RED);
                 g.drawString("Incorrect Username or Password",500, 500);
             }
-
-            UserName.setBounds(850, 400, 100, 20);
-            password.setBounds(850, 600, 100, 20);
-            UserName.setEditable(true);
-            password.setEditable(true);
-            UserName.setVisible(true);
-            password.setVisible(true);
-
-            enter.setBounds(1000, 475, 100,50);
-            signUp.setBounds(1000, 575, 100,50);            
-            enter.setVisible(true);
-            signUp.setVisible(true);
-
             Font x = new Font("",Font.PLAIN, 15);
             g.setFont(x);
 
@@ -236,16 +217,11 @@ public class display extends JPanel
         }
         else if(view.equals("home screen"))
         {
-            UserName.setVisible(false);
-            password.setVisible(false);
-            contentPost.setVisible(false);
-            subjectPost.setVisible(false);
+            
             //signout.setVisible(true);
             //searchfield.setVisible(true);
             //search.setVisible(true);
-            searchfield.setEditable(true);
-            signUp.setVisible(false);
-            enter.setVisible(false);
+            
             g.setColor(new Color(239,100,50));
             g.fillRect(0,0, 1920, 1020);
             g.setColor(Color.BLACK);
@@ -321,16 +297,7 @@ public class display extends JPanel
                     e.printStackTrace();
                 }
                 System.out.println("Post received: " + post);
-                /*index = post.indexOf(":") + 1;
-                date = post.substring(index, post.substring(index).indexOf(":"));
-                index = post.substring(index).indexOf(":") + 1;
-                location = post.substring(index, post.substring(index).indexOf(":"));
-                index = post.substring(index).indexOf(":") + 1;
-                subject = post.substring(index, post.substring(index).indexOf(":"));
-                index = post.substring(index).indexOf(":") + 1;
-                content = post.substring(index, post.substring(index).indexOf(":"));
-                index = post.substring(index).indexOf(":") + 1;
-                 */
+                
                 String in = post.substring(post.indexOf(":")+1);
                 date = in.substring(0, in.indexOf(":"));
                 in = in.substring(in.indexOf(":")+1);
@@ -359,57 +326,23 @@ public class display extends JPanel
             g.drawString("Post Topic", 300, 500);
             g.drawString("Post Content",300,570);
             
-            subjectPost.setBounds(300, 525, 100, 20);
-            subjectPost.setEditable(true);
-
-            contentPost.setBounds(300,595, 100, 20);
-            contentPost.setEditable(true);
-            
             g.setColor(Color.BLACK);
             g.fillRect(300,525,100,20);
             g.fillRect(300,570,100,20);
             g.fillRect(300,620,100,50);
 
-            signUp.setBounds(1120, 165, 100, 50);
-            signUp.setText("Back");
-
-            signUp.setVisible(true);
-            contentPost.setVisible(true);
-            subjectPost.setVisible(true);
             
-            addapost.setBounds(300,620,100,50);
-            g.fillRect(300,620,100,50);
-            addapost.setVisible(true);
-            //-------------------
-            search.setBounds(120,375,100,50);
+            //--------------
             g.fillRect(120,375,100,50);
-            search.setVisible(true);
             g.drawString("View another user's page", 10, 350);
             searchfield.setBounds(10,375,100,20);
             g.fillRect(10,375,100,20);
-            searchfield.setVisible(true);
-            searchfield.setEditable(true);
-
+            
+            g.fillRect(300,620,100,50);
             //g.drawRect(400,125,100,50);
-
-            signout.setBounds(1810,10,100,50);
-            signout.setText("Sign out");
-            signout.setVisible(true);
-
-            message.setBounds(10, 275, 100, 50);
-            message.setText("Message");
-            message.setVisible(true);
-
-            UserChoice.setBounds(120, 300, 100, 20);
-            UserChoice.setVisible(true);
-            UserChoice.setEditable(true);
-
         }
         else if(view.equals("sign up"))
         {
-            message.setVisible(false);
-            UserChoice.setVisible(false);
-            addapost.setVisible(false);
             g.setColor(Color.RED);
             g.fillRect(0,0,1920, 1020);
             g.setColor(Color.WHITE);
@@ -419,39 +352,16 @@ public class display extends JPanel
             Font f = new Font("", Font.BOLD, 20);
             g.setFont(f);
             g.drawString("Sign Up",500, 310);
-            JLabel Wordz = new JLabel();
-            Wordz.setSize(10,20);
+            //JLabel Wordz = new JLabel();
+            //Wordz.setSize(10,20);
             g.drawString("Username: ", 850, 350);
             g.drawString("Password: ", 800, 550);
             g.drawString("Retype Password: ", 1000 , 550);
 
-            UserName.setBounds(850, 400, 100, 20);
-            password.setBounds(800, 600, 100, 20);
-            checkpassword.setBounds(1000, 600, 100, 20);
-
+            
             g.drawString("Name: ", 600, 375);
             g.drawString("Age: ", 600, 475);
             g.drawString("Bio: ", 600, 625);
-
-            name.setBounds(600,400,100,20);
-            age.setBounds(600,500,100,20);
-            bio.setBounds(600,650,200,40);
-
-            UserName.setEditable(true);
-            password.setEditable(true);
-            checkpassword.setEditable(true);
-
-            name.setEditable(true);
-            bio.setEditable(true);
-            age.setEditable(true);
-
-            UserName.setVisible(true);
-            password.setVisible(true);
-            checkpassword.setVisible(true);
-
-            name.setVisible(true);
-            bio.setVisible(true);
-            age.setVisible(true);
 
             g.drawRect(850,400,100,20);
             g.drawRect(800,600,100,20);
@@ -461,10 +371,7 @@ public class display extends JPanel
             g.drawRect(600,500,100,20);
             g.drawRect(600,650,200,40);
 
-            enter.setBounds(1000, 475, 100,50);
-            enter.setText("ENTER");
-            signUp.setBounds(1000,400,100,50);
-            signUp.setText("BACK");
+            
             g.drawRect(1000,400,100,50);
             g.drawRect(1000,475,100,50);
 
@@ -484,7 +391,110 @@ public class display extends JPanel
         }
 
     }
+    public void setButtons()
+    {
+        if(view.equals("login"))
+        {
+            checkpassword.setVisible(false);
+            age.setVisible(false);
+            addapost.setVisible(false);
+            search.setVisible(false);
+            searchfield.setVisible(false);
+            signout.setVisible(false);
+            bio.setVisible(false);
+            name.setVisible(false);
+            message.setVisible(false);
+            UserChoice.setVisible(false);
+            
+            name.setBounds(600,400,100,20);
+            age.setBounds(600,500,100,20);
+            bio.setBounds(600,650,200,40);
+            name.setVisible(true);
+            age.setVisible(true);
+            bio.setVisible(true);
+            
+            UserName.setBounds(850, 400, 100, 20);
+            password.setBounds(850, 600, 100, 20);
+            UserName.setEditable(true);
+            password.setEditable(true);
+            UserName.setVisible(true);
+            password.setVisible(true);
 
+            enter.setBounds(1000, 475, 100,50);
+            enter.setText("ENTER");
+            signUp.setBounds(1000, 575, 100,50);        
+            signUp.setText("BACK");
+            enter.setVisible(true);
+            signUp.setVisible(true);
+        }
+        else if(view.equals("sign up"))
+        {
+            message.setVisible(false);
+            UserChoice.setVisible(false);
+            addapost.setVisible(false);
+            
+            UserName.setBounds(850, 400, 100, 20);
+            password.setBounds(800, 600, 100, 20);
+            checkpassword.setBounds(1000, 600, 100, 20);
+
+            UserName.setEditable(true);
+            password.setEditable(true);
+            checkpassword.setEditable(true);
+
+            name.setEditable(true);
+            bio.setEditable(true);
+            age.setEditable(true);
+
+            UserName.setVisible(true);
+            password.setVisible(true);
+            checkpassword.setVisible(true);
+
+            name.setVisible(true);
+            bio.setVisible(true);
+            age.setVisible(true);
+
+        }
+        else if(view.equals("home screen"))
+        {
+            UserName.setVisible(false);
+            password.setVisible(false);
+            contentPost.setVisible(false);
+            subjectPost.setVisible(false);
+            signUp.setVisible(false);
+            enter.setVisible(false);
+            
+            subjectPost.setBounds(300, 525, 100, 20);
+            subjectPost.setEditable(true);
+            subjectPost.setVisible(true);
+            
+            contentPost.setBounds(300,595, 100, 20);
+            contentPost.setEditable(true);
+            contentPost.setVisible(true);
+            
+            signUp.setBounds(1120, 165, 100, 50);
+            signUp.setText("Back");
+            signUp.setVisible(true);
+            
+            addapost.setBounds(300,620,100,50);
+            addapost.setVisible(true);
+            
+            search.setBounds(120,375,100,50);
+            searchfield.setEditable(true);
+            search.setVisible(true);
+            
+            signout.setBounds(1810,10,100,50);
+            signout.setText("Sign out");
+            signout.setVisible(true);
+
+            message.setBounds(10, 275, 100, 50);
+            message.setText("Message");
+            message.setVisible(true);
+
+            UserChoice.setBounds(120, 300, 100, 20);
+            UserChoice.setVisible(true);
+            UserChoice.setEditable(true);
+        }
+    }
     public String getSubjectText()
     {
         return subjectPost.getText();

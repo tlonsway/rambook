@@ -9,9 +9,7 @@ public class main {
         frame.setSize(1920, 1080);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display window = new display();
-        JPanel screen = new JPanel();
-        frame.add(screen);
-        screen.add(window);
+        frame.add(window);
         //String view = "sign up";
         String view = "login";
         window.setView(view);
@@ -37,27 +35,27 @@ public class main {
         
         JButton addPost = new JButton("Add A Post");
 
-        screen.add(enter);
-        screen.add(checkPassword);
-        screen.add(SignUp);
-        screen.add(Password);
-        screen.add(UsernameInput);
-        screen.add(messaging);
+        window.add(enter);
+        window.add(checkPassword);
+        window.add(SignUp);
+        window.add(Password);
+        window.add(UsernameInput);
+        window.add(messaging);
         
-        screen.add(postSubject);
-        screen.add(postContent);
-        screen.add(addPost);
+        window.add(postSubject);
+        window.add(postContent);
+        window.add(addPost);
 
-        screen.add(age);
-        screen.add(bio);
-        screen.add(name);
+        window.add(age);
+        window.add(bio);
+        window.add(name);
 
-        screen.add(search);
-        screen.add(searchfield);
+        window.add(search);
+        window.add(searchfield);
 
-        screen.add(messageUser);
+        window.add(messageUser);
 
-        screen.add(signout);
+        window.add(signout);
 
         window.setTextField(UsernameInput, 1);
         window.setTextField(Password, 2);
@@ -98,7 +96,7 @@ public class main {
                             System.out.println((new client()).checkPassword(window.getUsername(), (window.getPassword())));
                             if((new client()).checkPassword(window.getUsername(), window.getPassword()) == true)
                             {
-                                window.setView("home screen");
+                                window.setView("home window");
                                 String currentUser = window.getUsername();
                                 window.setUsernameSignedIn(currentUser);
                                 window.setUserSignedIn(currentUser); 
@@ -110,6 +108,7 @@ public class main {
                                 window.setFailedLogin(true);
                             }
                             window.drawing();
+                            window.setButtons();
                         }
                         else if(window.view.equals("sign up"))
                         {
@@ -130,10 +129,7 @@ public class main {
                                 }
                             }
                             window.drawing();
-                        }
-                        else if(window.view.equals("home screen"))
-                        {
-                            //new client().addPost(window.UsernameSignedIn, window.getSubjectText(),window.getContentText());
+                            window.setButtons();
                         }
                     }
                     catch (Exception e) {
@@ -153,6 +149,7 @@ public class main {
                             UsernameInput.setText("");
                             Password.setText("");
                             window.drawing();
+                            window.setButtons();
                         }
                         else if(window.view.equals("sign up"))
                         {
@@ -160,11 +157,13 @@ public class main {
                             UsernameInput.setText("");
                             Password.setText("");
                             window.drawing();
+                            window.setButtons();
                         }
-                        else if(window.view.equals("home screen"))
+                        else if(window.view.equals("home window"))
                         {
                             window.setAddPost(false);
                             window.drawing();
+                            window.setButtons();
                         }
                     }
                     catch (Exception e) {
@@ -178,7 +177,7 @@ public class main {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try{
-                        window.setView("home screen");
+                        window.setView("home window");
                         String currentUser = searchfield.getText();
                         window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
                         if((new client()).checkUserExist(currentUser) == true)
@@ -192,6 +191,7 @@ public class main {
                             window.InvalidSearch = true;
                         }
                         window.drawing();
+                        window.setButtons();
                     }
                     catch(Exception e)
                     {
@@ -215,10 +215,11 @@ public class main {
                     try{
                         if(new client().checkUserExist(window.getUserChoice()) == true && new client().getData(window.getUserChoice(), "status", 0).equals("online"))
                         {
-                            //Jscreen messagingscreen = new Jscreen("Messaging");
+                            //Jwindow messagingwindow = new Jwindow("Messaging");
                             
                         }
                         window.drawing();
+                        window.setButtons();
                     }
                     catch(Exception e)
                     {
@@ -240,5 +241,6 @@ public class main {
                 }
             } );
         window.drawing();
+        window.setButtons();
     }
 }

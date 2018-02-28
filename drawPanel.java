@@ -4,10 +4,8 @@ public class drawPanel extends JPanel
 {
     JButton b1;
     JButton b2;
-    public drawPanel()
-    {
+    public drawPanel(){
         super();
-        
     }
     public void paint(Graphics g)
     {
