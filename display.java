@@ -289,8 +289,12 @@ public class display extends JPanel
             int X = 1000;
             int Y = 50;
             g.setColor(Color.BLACK);
-
-            for(int i = (numPosts-7); i <= numPosts; i++)
+            int modNumPosts = numPosts-6;
+            if (modNumPosts<1) {
+                modNumPosts = 1;
+            }
+            
+            for(int i = numPosts; i >= (modNumPosts); i--)
             {
                 try {
                     post = new client().getPost(Name, i);
