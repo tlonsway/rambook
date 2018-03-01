@@ -234,6 +234,8 @@ public class main {
                 {
                     try{
                         new client().addPost(window.UsernameSignedIn,window.getSubjectText(),window.getContentText());
+                        window.drawing();
+                        window.setButtons();
                     }
                     catch(Exception e)
                     {
