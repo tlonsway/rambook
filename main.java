@@ -189,14 +189,13 @@ public class main {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try{
-                        window.setView("home window");
                         String currentUser = searchfield.getText();
                         if((new client()).checkUserExist(currentUser) == true)
                         {
                             window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
                             window.InvalidSearch = false;
                             window.setUserView(currentUser);
-                            System.out.print("It set the user view");
+                            System.out.print("It set the user view to: " + currentUser);
                         }
                         else if((new client()).checkUserExist(currentUser) == false)
                         {
