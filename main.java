@@ -14,7 +14,7 @@ public class main {
         String view = "login";
         window.setView(view);
         JTextField UsernameInput = new JTextField();
-        JTextField Password = new JTextField();
+        JPasswordField Password = new JPasswordField();
         JTextField checkPassword = new JTextField();
         JTextField age = new JTextField();
         JTextField bio = new JTextField();
