@@ -206,6 +206,7 @@ public class main {
                 {
                     window.setView("login");
                     window.drawing();
+                    window.setButtons();
                 }
             } );
 
