@@ -82,7 +82,7 @@ public class main {
         String Usernamewindow = "";
         
         login account = new login();
-        window.setUserinfo("true", "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
+        //window.setUserinfo("true", "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
         String UserSignedIn;
         //client Client = new client();
         enter.addActionListener(new ActionListener()
@@ -96,12 +96,13 @@ public class main {
                             System.out.println((new client()).checkPassword(window.getUsername(), (window.getPassword())));
                             if((new client()).checkPassword(window.getUsername(), window.getPassword()) == true)
                             {
-                                window.setView("home window");
+                                window.setView("home screen");
                                 String currentUser = window.getUsername();
                                 window.setUsernameSignedIn(currentUser);
                                 window.setUserSignedIn(currentUser); 
                                 window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
                                 window.setUserView(currentUser);
+                                System.out.println(window.view);
                             }
                             else if((new client()).checkPassword(window.getUsername(), (window.getPassword())) == false)
                             {

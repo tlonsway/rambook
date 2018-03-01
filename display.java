@@ -226,6 +226,7 @@ public class display extends JPanel
             g.fillRect(0,0, 1920, 1020);
             g.setColor(Color.BLACK);
             //g.fillRect(10,10,200,200);
+            
             BufferedImage profile;
             try {
                 //profile = ImageIO.read(new File("default.png"));
