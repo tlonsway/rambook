@@ -2,6 +2,10 @@ import java.util.*;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
+import java.io.*;
+import javax.imageio.*;
+import java.awt.Image;
+import java.awt.image.BufferedImage;
 public class main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("RAMBOOK");
@@ -10,6 +14,13 @@ public class main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         display window = new display();
         frame.add(window);
+        File file = new File("icon.png");
+        try {
+            BufferedImage image = ImageIO.read(file); 
+            frame.setIconImage(image);
+        } catch (Exception e) {
+            e.printStackTrace();
+            }
         //String view = "sign up";
         String view = "login";
         window.setView(view);
