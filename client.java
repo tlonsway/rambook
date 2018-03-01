@@ -150,5 +150,9 @@ public class client {
         String line = run(ret);
         return Integer.parseInt(line);
     }
-
+    public void setData(String name, String type, String content) throws Exception {
+        String t = type.toLowerCase().substring(0, 1);
+        ps.println("s:" + t + ":" + content + ":" + name);
+        System.out.println("Data sent - s:" + t + ":" + content + ":" + name);
+    }
 }   

@@ -16,6 +16,7 @@ import java.nio.file.Files;
 import static java.nio.file.StandardCopyOption.*;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.lang.Integer;
 public class serverRunnable implements Runnable{
     BufferedReader din;
     Socket client;
@@ -39,9 +40,8 @@ public class serverRunnable implements Runnable{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
         if (line.substring(0,1).indexOf("g") != -1) { 
-            //
+            //g:type:name
             String input = line;
             int number = -9999;
             String name;
@@ -203,8 +203,42 @@ public class serverRunnable implements Runnable{
                 } catch (Exception e) {
                     e.printStackTrace(); 
                 }
-            }
+            } //Processes adding a post
         } //Processes data management for user posts, returns data per input
+        
+        if (line.substring(0,1).indexOf("s") != -1) {
+            //s:type:content:name
+            String input = line.substring(line.indexOf(":")+1);
+            String type = input.substring(0, input.indexOf(":"));
+            input = input.substring(input.indexOf(":")+1);
+            String content = input.substring(0, input.indexOf(":"));
+            String name = input.substring(input.indexOf(":")+1);
+            try {
+                if (type.equals("s")) {
+                    System.out.println("setting the status of " + name + " to " + content);
+                    setStatus(name, content);
+                }
+                if (type.equals("n")) {
+                    System.out.println("setting the name of " + name + " to " + content);                    
+                    setName(name, content);
+                }
+                if (type.equals("f")) {
+                    System.out.println("setting the friends of " + name + " to " + content);   
+                    setFriends(name, Integer.parseInt(content));
+                }
+                if (type.equals("a")) {
+                    System.out.println("setting the age of " + name + " to " + content);   
+                    setAge(name, Integer.parseInt(content));
+                }
+                if (type.equals("b")) {
+                    System.out.println("setting the bio of " + name + " to " + content);   
+                    setBio(name, content);
+                }
+                System.out.println("database setting complete");
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        } //Processes data modification for users database
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -282,6 +316,7 @@ public class serverRunnable implements Runnable{
                 bw.newLine();
                 bw.write("status:" + status);
                 bw.newLine();
+                br.readLine();
             } else {
                 bw.write(rline);
                 bw.newLine();
@@ -327,6 +362,7 @@ public class serverRunnable implements Runnable{
                 bw.newLine();
                 bw.write("name:" + oname);
                 bw.newLine();
+                br.readLine();
             } else {
                 bw.write(rline);
                 bw.newLine();
@@ -374,6 +410,7 @@ public class serverRunnable implements Runnable{
                 bw.newLine();
                 bw.write("friends:" + friends);
                 bw.newLine();
+                br.readLine();
             } else {
                 bw.write(rline);
                 bw.newLine();
@@ -423,7 +460,8 @@ public class serverRunnable implements Runnable{
                 bw.newLine();
                 bw.write("age:" + age);
                 bw.newLine();
-            } else {
+                br.readLine();
+            } else if (!rline.equals(name)){
                 bw.write(rline);
                 bw.newLine();
             }
@@ -474,6 +512,7 @@ public class serverRunnable implements Runnable{
                 bw.newLine();
                 bw.write("bio:" + bio);
                 bw.newLine();
+                br.readLine();
             } else {
                 bw.write(rline);
                 bw.newLine();
