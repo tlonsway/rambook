@@ -332,13 +332,13 @@ public class display extends JPanel
             g.drawString("Post Content",300,570);
             
             g.setColor(Color.BLACK);
-            g.fillRect(300,525,100,20);
-            g.fillRect(300,570,100,20);
-            g.fillRect(300,620,100,50);
+            //g.fillRect(300,525,100,20);
+            //g.fillRect(300,570,100,20);
+            //g.fillRect(300,620,100,50);
 
             
             //--------------
-            g.fillRect(120,375,100,50);
+            //g.fillRect(120,375,100,50);
             g.drawString("View another user's page", 10, 350);
             
             g.fillRect(10,375,100,20);
