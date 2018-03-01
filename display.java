@@ -241,6 +241,7 @@ public class display extends JPanel
                 System.out.println("Grabbed " + Name + "'s profile");
                 g.drawImage(resize(profile, 200, 200), 10, 10, null);
             } catch (Exception e) {
+                drawing();
                 e.printStackTrace();
             }
             Font f = new Font("", Font.BOLD, 20);
