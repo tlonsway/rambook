@@ -335,7 +335,7 @@ public class display extends JPanel
             //--------------
             g.fillRect(120,375,100,50);
             g.drawString("View another user's page", 10, 350);
-            searchfield.setBounds(10,375,100,20);
+            
             g.fillRect(10,375,100,20);
             
             g.fillRect(300,620,100,50);
@@ -515,7 +515,7 @@ public class display extends JPanel
             addapost.setBounds(300,620,100,50);
             addapost.setVisible(true);
             
-            search.setBounds(120,375,100,50);
+            searchfield.setBounds(10,375,100,20);
             searchfield.setEditable(true);
             search.setVisible(true);
             
