@@ -42,6 +42,7 @@ public class display extends JPanel
     String UserSignedIn = "";
     String userView = "";
     String UsernameSignedIn = "";
+    String currentUser = "";
     int numberOfFriends = 0;
     boolean isValidUsername = false;
     boolean enterClicked = false;
@@ -171,7 +172,12 @@ public class display extends JPanel
     {
         return UserChoice.getText();
     }
-
+    
+    public void setCurrentUser(String s)
+    {
+        currentUser = s;
+    }
+    
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
@@ -328,8 +334,8 @@ public class display extends JPanel
             //---- Add post
             
             g.setColor(Color.WHITE);
-            g.drawString("Post Topic", 300, 500);
-            g.drawString("Post Content",300,570);
+            g.drawString("Post Topic", 10, 500);
+            g.drawString("Post Content",10,570);
             
             g.setColor(Color.BLACK);
             //g.fillRect(300,525,100,20);
@@ -505,15 +511,15 @@ public class display extends JPanel
             signUp.setVisible(false);
             enter.setVisible(false);
             
-            subjectPost.setBounds(300, 525, 100, 20);
+            subjectPost.setBounds(10, 525, 100, 20);
             subjectPost.setEditable(true);
             subjectPost.setVisible(true);
             
-            contentPost.setBounds(300,595, 100, 20);
+            contentPost.setBounds(10,595, 100, 20);
             contentPost.setEditable(true);
             contentPost.setVisible(true);
             
-            addapost.setBounds(300,620,100,50);
+            addapost.setBounds(10,620,100,50);
             addapost.setVisible(true);
             
             search.setBounds(10,375,100,50);
@@ -521,7 +527,7 @@ public class display extends JPanel
             
             searchfield.setBounds(120,380,100,20);
             searchfield.setEditable(true);
-            search.setVisible(true);
+            searchfield.setVisible(true);
             
             signout.setBounds(1810,10,100,50);
             signout.setText("Sign out");

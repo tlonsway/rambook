@@ -180,9 +180,9 @@ public class main {
                     try{
                         window.setView("home window");
                         String currentUser = searchfield.getText();
-                        window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
                         if((new client()).checkUserExist(currentUser) == true)
                         {
+                            window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));
                             window.InvalidSearch = false;
                             window.setUserView(currentUser);
                             System.out.print("It set the user view");
