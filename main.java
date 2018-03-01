@@ -45,7 +45,9 @@ public class main {
         JButton messaging = new JButton("Message");
         
         JButton addPost = new JButton("Add A Post");
-
+        
+        JButton addFriend = new JButton("Add Friend");
+        JButton removeFriend = new JButton("Remove Friend");
         window.add(enter);
         window.add(checkPassword);
         window.add(SignUp);

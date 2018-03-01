@@ -349,9 +349,6 @@ public class display extends JPanel
             g.drawString("View another user's page", 10, 350);
             
             g.fillRect(10,375,100,20);
-            
-            g.fillRect(300,620,100,50);
-            //g.drawRect(400,125,100,50);
         }
         else if(view.equals("sign up"))
         {
