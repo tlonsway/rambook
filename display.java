@@ -439,29 +439,6 @@ public class display extends JPanel
         }
         else if(view.equals("sign up"))
         {
-            /*
-             * JTextField UserName;
-             * JTextField password;
-             * JTextField checkpassword;
-
-             * JTextField age;
-             * JTextField bio;
-             * JTextField name;
-
-             * JTextField UserChoice;
-
-             * JTextField searchfield;
-
-             * JTextField subjectPost;
-             * JTextField contentPost;
-
-             * JButton enter;
-             * JButton signUp;
-             * JButton search;
-             *JButton signout;
-             *JButton message;
-             * 
-             */
             message.setVisible(false);
             UserChoice.setVisible(false);
             addapost.setVisible(false);
