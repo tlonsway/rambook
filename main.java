@@ -190,6 +190,7 @@ public class main {
                 {
                     try{
                         String currentUser = searchfield.getText();
+                        System.out.println("current user is now " + currentUser);
                         if((new client()).checkUserExist(currentUser) == true)
                         {
                             window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))));

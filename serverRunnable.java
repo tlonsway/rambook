@@ -544,7 +544,10 @@ public class serverRunnable implements Runnable{
         BufferedReader br = new BufferedReader(new FileReader("loginlist.txt"));
         String exist = "false";
         String currentLine;
-        while ((currentLine = br.readLine()) != null) {
+        boolean b = false;
+        String rline;
+        while (b == false) {
+            fi (
             if (currentLine.substring(0, currentLine.indexOf(":")).equals(username))
                 exist = "true";
         }

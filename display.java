@@ -238,7 +238,7 @@ public class display extends JPanel
                 //profile = ImageIO.read(new File("default.png"));
                 System.out.println("preparing to get profile image for " + Name);
                 profile = (new client()).getProfile(Name);      
-                System.out.println("Grabbed " + name.getText() + "'s profile");
+                System.out.println("Grabbed " + Name + "'s profile");
                 g.drawImage(resize(profile, 200, 200), 10, 10, null);
             } catch (Exception e) {
                 e.printStackTrace();
