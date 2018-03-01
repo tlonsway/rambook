@@ -425,9 +425,11 @@ public class display extends JPanel
             enter.setText("Enter");
             
             password.setBounds(850,600,100,20);
+            password.setText("");
             password.setEditable(true);
             
             UserName.setBounds(850,400,100,20);
+            UserName.setText("");
             UserName.setEditable(true);
             
             signUp.setVisible(true);
@@ -445,12 +447,15 @@ public class display extends JPanel
             contentPost.setVisible(false);
             
             UserName.setBounds(850, 400, 100, 20);
+            UserName.setText("");
             UserName.setEditable(true);
             
             password.setBounds(800, 600, 100, 20);
+            password.setText("");
             password.setEditable(true);
             
             checkpassword.setBounds(1000, 600, 100, 20);
+            checkpassword.setText("");
             checkpassword.setEditable(true);
             
             signUp.setLocation(1000, 400);
@@ -460,12 +465,15 @@ public class display extends JPanel
             enter.setText("Enter");
             
             name.setBounds(600,400,100,20);
+            name.setText("");
             name.setEditable(true);
             
             bio.setBounds(600,650,200,40);
+            bio.setText("");
             bio.setEditable(true);
             
             age.setBounds(600,500,100,20);
+            age.setText("");
             age.setEditable(true);
             
             UserName.setVisible(true);
