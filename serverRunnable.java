@@ -124,7 +124,7 @@ public class serverRunnable implements Runnable{
         
         if (line.substring(0,1).indexOf("e") != -1) {
             //format - e:username
-            String user = line.substring(line.indexOf(":"));
+            String user = line.substring(line.indexOf(":")+1);
             String ret = "";
             try {
                 ret = userExist(user);
@@ -541,15 +541,21 @@ public class serverRunnable implements Runnable{
         fl.delete();          
     }
     public String userExist(String username) throws Exception{
+        System.out.println("Checking if user " + username + " exists");
         BufferedReader br = new BufferedReader(new FileReader("loginlist.txt"));
         String exist = "false";
         String currentLine;
         boolean b = false;
         String rline;
         while (b == false) {
-            fi (
-            if (currentLine.substring(0, currentLine.indexOf(":")).equals(username))
+            rline = br.readLine();            
+            if (rline == null) {
+                b = true;
+            }
+            if (rline != null && rline.substring(0, rline.indexOf(":")).equals(username)) {
                 exist = "true";
+                System.out.println("user " + username + " exists");
+            } 
         }
         return exist;         
     }
