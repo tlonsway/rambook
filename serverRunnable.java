@@ -589,7 +589,7 @@ public class serverRunnable implements Runnable{
             String country = response.getCountry().getName();
             location = city + ", " + country;
         } catch (Exception e) {
-            location = "Local network";
+            location = "Unknown";
         }
         boolean b = false;
         boolean bo = false;
