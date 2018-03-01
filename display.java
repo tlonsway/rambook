@@ -513,14 +513,13 @@ public class display extends JPanel
             contentPost.setEditable(true);
             contentPost.setVisible(true);
             
-            signUp.setBounds(1120, 165, 100, 50);
-            signUp.setText("Back");
-            signUp.setVisible(true);
-            
             addapost.setBounds(300,620,100,50);
             addapost.setVisible(true);
             
-            searchfield.setBounds(10,375,100,20);
+            search.setBounds(10,375,100,50);
+            search.setVisible(true);
+            
+            searchfield.setBounds(120,380,100,20);
             searchfield.setEditable(true);
             search.setVisible(true);
             
