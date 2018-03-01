@@ -24,7 +24,7 @@ public class client {
     }
     public client() {
         try {
-            sock = new Socket("127.0.0.1", 12524);
+            sock = new Socket("71.115.228.195", 12524);
             ps = new PrintStream(sock.getOutputStream());
             din = new BufferedReader(new InputStreamReader(sock.getInputStream()));
             is = sock.getInputStream();
