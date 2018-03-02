@@ -156,9 +156,9 @@ public class main {
                         }
                         else if(window.view.equals("settings"))
                         {
-                            //window.setData(new client().setData(window.UsernameSignedIn, "name", window.name.getText()));
-                            //window.setData(new client().setData(window.UsernameSignedIn, "bio", window.bio.getText()));
-                            //window.setData(new client().setData(window.UsernameSignedIn, "age", window.age.getText()));
+                            window.setData(new client().setData(window.UsernameSignedIn, "name", window.name.getText()));
+                            window.setData(new client().setData(window.UsernameSignedIn, "bio", window.bio.getText()));
+                            window.setData(new client().setData(window.UsernameSignedIn, "age", window.age.getText()));
                             window.setView("home screen");
                             window.drawing();
                             window.setButtons();
