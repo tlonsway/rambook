@@ -739,4 +739,9 @@ public class serverRunnable implements Runnable{
         }
         return count;
     }
+    public void addFriend(String name, String other) throws Exception{
+        BufferedWriter bw = new BufferedWriter(new FileWriter("/friends/" + name + ".txt", true));
+        bw.append(other);
+    }
+    
 }

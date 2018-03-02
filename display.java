@@ -529,9 +529,16 @@ public class display extends JPanel
             message.setText("Message");
             message.setVisible(true);
             
-            settings.setBounds(175,10,50,50);
+            settings.setBounds(1750,10,50,50);
             settings.setText("");
-            //settings.setIcon();
+            try {
+                BufferedImage im = ImageIO.read(new File("settings.png"));
+                BufferedImage pic = resize(im, 50, 50);
+                settings.setIcon(new ImageIcon(pic));
+            } catch (Exception e) {
+                e.printStackTrace();
+                }
+            //settings.setIcon("");
             settings.setVisible(true);
             
             UserChoice.setBounds(120, 325, 100, 20);
