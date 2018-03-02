@@ -529,7 +529,7 @@ public class display extends JPanel
             message.setText("Message");
             message.setVisible(true);
             
-            settings.setBounds(1750,10,50,50);
+            settings.setBounds(175,10,50,50);
             settings.setText("");
             //settings.setIcon();
             settings.setVisible(true);
