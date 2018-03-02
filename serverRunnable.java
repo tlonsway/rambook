@@ -239,6 +239,22 @@ public class serverRunnable implements Runnable{
                 e.printStackTrace();
             }
         } //Processes data modification for users database
+        
+        if (line.substring(0,1).indexOf("f") != -1) {
+            
+            //f:a:name:other
+            if (line.substring(2,3).indexOf("a") != -1) {
+                String input = line.substring(line.indexOf(":")+1);
+                input = input.substring(input.indexOf(":")+1);
+                String name = input.substring(0, input.indexOf(":"));
+                String other = input.substring(input.indexOf(":")+1);
+                try {
+                    addFriend(name, other);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -299,6 +315,8 @@ public class serverRunnable implements Runnable{
         bw.close();
         pw.close();
         po.close();
+        File file = new File("/friends/" + username + ".txt");
+        file.createNewFile();
     }
     public void setStatus(String name, String status) throws Exception {
         System.out.println("changing status for user " + name);
@@ -740,6 +758,10 @@ public class serverRunnable implements Runnable{
         return count;
     }
     public void addFriend(String name, String other) throws Exception{
+        File fl = new File("/friends/" + name + ".txt");
+        if (!fl.exists()) {
+            
+        }
         BufferedWriter bw = new BufferedWriter(new FileWriter("/friends/" + name + ".txt", true));
         bw.append(other);
     }

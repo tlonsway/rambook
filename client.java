@@ -155,4 +155,8 @@ public class client {
         ps.println("s:" + t + ":" + content + ":" + name);
         System.out.println("Data sent - s:" + t + ":" + content + ":" + name);
     }
+    public void addFriend(String name, String other) {
+        String s = "f:a:" + name + ":" + other;
+        ps.println(s);
+    }
 }   
