@@ -408,7 +408,6 @@ public class display extends JPanel
                 g.setColor(Color.RED);
                 g.drawString("Username Already Taken",600,400);
             }
-
         }
         else if(view.equals("settings"))
         {
@@ -417,7 +416,13 @@ public class display extends JPanel
             g.setColor(Color.WHITE);
             g.fillRect(480,270,960,510);
             g.setColor(Color.BLACK);
-            g.drawRect(480,270,960,510);    
+            g.drawRect(480,270,960,510);   
+            Font f = new Font("", Font.BOLD, 20);
+            g.setFont(f);
+            g.drawString("Settings",500,310);
+            g.drawString("Current Name",550,375);
+            g.drawString("Current bio",550,475);
+            g.drawString("Current age",670,375);
         }
     }
     public void setButtons()
@@ -595,10 +600,23 @@ public class display extends JPanel
             signUp.setText("Back");
             signUp.setVisible(true);
             
-            enter.setBounds(1000, 475, 100,50);
+            enter.setBounds(1100,310,100,50);
             enter.setText("Enter");
             enter.setVisible(true);
             
+            name.setBounds(550,400,100,20);
+            name.setEditable(true);
+            name.setText(new client().getData(UsernameSignedIn,"name",0));
+            
+            bio.setBounds(550,500,100,20);
+            bio.setEditable(true);
+            bio.setText(new client().getData(UsernameSignedIn,"bio",0));
+            bio.setVisible(true);
+            
+            age.setBounds(670,400,100,20);
+            age.setEditable(true);
+            age.setText(new client().getData(UsernameSignedIn,"age",0));
+            age.setVisible(true);
         }
     }
     public String getSubjectText()
