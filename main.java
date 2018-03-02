@@ -48,6 +48,9 @@ public class main {
         
         JButton addFriend = new JButton("Add Friend");
         JButton removeFriend = new JButton("Remove Friend");
+        
+        JButton settings = new JButton("");
+        
         window.add(enter);
         window.add(checkPassword);
         window.add(SignUp);
@@ -69,6 +72,7 @@ public class main {
         window.add(messageUser);
 
         window.add(signout);
+        window.add(settings);
 
         window.setTextField(UsernameInput, 1);
         window.setTextField(Password, 2);
@@ -91,6 +95,7 @@ public class main {
         window.setSignOutButton(signout);
         window.setSearchButton(search);
         window.setMessageButton(messaging);
+        window.setSettingsButton(settings);
 
         String Usernamewindow = "";
         
@@ -248,6 +253,21 @@ public class main {
                 {
                     try{
                         new client().addPost(window.UsernameSignedIn,window.getSubjectText(),window.getContentText());
+                        window.drawing();
+                        window.setButtons();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+            } );
+        settings.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent arg0) 
+                {
+                    try{
+                        window.setView("settings");
                         window.drawing();
                         window.setButtons();
                     }

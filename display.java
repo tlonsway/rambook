@@ -35,7 +35,8 @@ public class display extends JPanel
     JButton signout;
     JButton message;
     JButton addapost;
-
+    JButton settings;
+    
     String online = "";
     String Name = "";
     String aboutMe = "";
@@ -86,7 +87,12 @@ public class display extends JPanel
         else if(i == 10)
             contentPost = U;
     }
-
+    
+    public void setSettingsButton(JButton u)
+    {
+        settings = u;
+    }
+    
     public void setAddPostButton(JButton u)
     {
         addapost = u;
@@ -340,16 +346,9 @@ public class display extends JPanel
             g.drawString("Post Content",10,570);
             
             g.setColor(Color.BLACK);
-            //g.fillRect(300,525,100,20);
-            //g.fillRect(300,570,100,20);
-            //g.fillRect(300,620,100,50);
-
             
-            //--------------
-            //g.fillRect(120,375,100,50);
-            g.drawString("View another user's page", 10, 350);
-            
-            g.fillRect(10,375,100,20);
+            g.drawString("View another user's page",10,375);
+            g.drawString("Message another user",10,275);
         }
         else if(view.equals("sign up"))
         {
@@ -399,7 +398,15 @@ public class display extends JPanel
             }
 
         }
-
+        else if(view.equals("settings"))
+        {
+            g.setColor(Color.RED);
+            g.fillRect(0,0,1920,1080);
+            g.setColor(Color.WHITE);
+            g.fillRect(480,270,960,510);
+            g.setColor(Color.BLACK);
+            g.drawRect(480,270,960,510);    
+        }
     }
     public void setButtons()
     {
@@ -417,7 +424,7 @@ public class display extends JPanel
             UserChoice.setVisible(false);
             subjectPost.setVisible(false);
             contentPost.setVisible(false);
-            
+            settings.setVisible(false);
             
             signUp.setBounds(1000, 575, 100,50);  
             signUp.setText("Sign Up");
@@ -446,6 +453,7 @@ public class display extends JPanel
             searchfield.setVisible(false);
             subjectPost.setVisible(false);
             contentPost.setVisible(false);
+            settings.setVisible(false);
             
             UserName.setBounds(850, 400, 100, 20);
             UserName.setText("");
@@ -506,10 +514,10 @@ public class display extends JPanel
             addapost.setBounds(10,620,100,50);
             addapost.setVisible(true);
             
-            search.setBounds(10,375,100,50);
+            search.setBounds(10,400,100,50);
             search.setVisible(true);
             
-            searchfield.setBounds(120,380,100,20);
+            searchfield.setBounds(120,425,100,20);
             searchfield.setEditable(true);
             searchfield.setVisible(true);
             
@@ -517,13 +525,35 @@ public class display extends JPanel
             signout.setText("Sign out");
             signout.setVisible(true);
 
-            message.setBounds(10, 275, 100, 50);
+            message.setBounds(10,300, 100, 50);
             message.setText("Message");
             message.setVisible(true);
-
-            UserChoice.setBounds(120, 300, 100, 20);
+            
+            settings.setBounds(1750,10,50,50);
+            settings.setText("");
+            //settings.setIcon();
+            settings.setVisible(true);
+            
+            UserChoice.setBounds(120, 325, 100, 20);
             UserChoice.setVisible(true);
             UserChoice.setEditable(true);
+        }
+        else if(view.equals("settings"))
+        {
+            checkpassword.setVisible(false);
+            age.setVisible(false);
+            addapost.setVisible(false);
+            search.setVisible(false);
+            searchfield.setVisible(false);
+            signout.setVisible(false);
+            bio.setVisible(false);
+            name.setVisible(false);
+            message.setVisible(false);
+            UserChoice.setVisible(false);
+            subjectPost.setVisible(false);
+            contentPost.setVisible(false);
+            settings.setVisible(false);
+            
         }
     }
     public String getSubjectText()
