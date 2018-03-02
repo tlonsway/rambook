@@ -99,6 +99,7 @@ public class main {
         window.setMessageButton(messaging);
         window.setSettingsButton(settings);
         window.setRemoveFriendButton(removeFriend);
+        window.setAddFriendButton(addFriend);
         
         String Usernamewindow = "";
         
