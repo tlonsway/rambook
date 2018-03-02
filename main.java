@@ -156,9 +156,11 @@ public class main {
                         }
                         else if(window.view.equals("settings"))
                         {
-                            window.setData(new client().setData(window.UsernameSignedIn, "name", window.name.getText()));
-                            window.setData(new client().setData(window.UsernameSignedIn, "bio", window.bio.getText()));
-                            window.setData(new client().setData(window.UsernameSignedIn, "age", window.age.getText()));
+                            //if (window.getUserSignedIn() != null && window.name.getText() != null && window.bio.getText() != null && window.age.getText() != null) {
+                                new client().setData(window.UserSignedIn, "name", window.name.getText());
+                                new client().setData(window.getUserSignedIn(), "bio", window.bio.getText());
+                                new client().setData(window.getUserSignedIn(), "age", window.age.getText());
+                            //}
                             window.setView("home screen");
                             window.drawing();
                             window.setButtons();
