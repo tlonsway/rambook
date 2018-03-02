@@ -36,6 +36,8 @@ public class display extends JPanel
     JButton message;
     JButton addapost;
     JButton settings;
+    JButton addfriend;
+    JButton removefriend;
     
     String online = "";
     String Name = "";
@@ -93,6 +95,11 @@ public class display extends JPanel
         settings = u;
     }
     
+    public void setAddFriendButton(JButton u)
+    {
+        addfriend = u;
+    }
+    
     public void setAddPostButton(JButton u)
     {
         addapost = u;
@@ -112,7 +119,12 @@ public class display extends JPanel
     {
         return UserSignedIn;
     }
-
+    
+    public void setRemoveFriendButton(JButton u)
+    {
+        removefriend = u;
+    }
+    
     public void setPasswordMatch(boolean i)
     {
         passwordsMatch = i;
@@ -425,6 +437,7 @@ public class display extends JPanel
             subjectPost.setVisible(false);
             contentPost.setVisible(false);
             settings.setVisible(false);
+            addfriend.setVisible(false);
             
             signUp.setBounds(1000, 575, 100,50);  
             signUp.setText("Sign Up");
@@ -454,6 +467,7 @@ public class display extends JPanel
             subjectPost.setVisible(false);
             contentPost.setVisible(false);
             settings.setVisible(false);
+            addfriend.setVisible(false);
             
             UserName.setBounds(850, 400, 100, 20);
             UserName.setText("");
@@ -502,7 +516,19 @@ public class display extends JPanel
             subjectPost.setVisible(false);
             signUp.setVisible(false);
             enter.setVisible(false);
-            
+            addfriend.setVisible(false);
+            if(!UsernameSignedIn.equals(userView)/* && new client().isFriend(UsernameSignedIn,userView) == false*/)
+            {
+                addfriend.setBounds(500,10,100,50);
+                addfriend.setText("Add Friend");
+                addfriend.setVisible(true);
+            }
+            else if(!UsernameSignedIn.equals(userView) /*&& new client().isFriend(UsernameSignedIn,userView) == true*/)
+            {
+                removefriend.setBounds(500,10,100,50);
+                removefriend.setText("Remove Friend");
+                removefriend.setVisible(true);
+            }
             subjectPost.setBounds(10, 525, 100, 20);
             subjectPost.setEditable(true);
             subjectPost.setVisible(true);
@@ -552,7 +578,6 @@ public class display extends JPanel
             addapost.setVisible(false);
             search.setVisible(false);
             searchfield.setVisible(false);
-            signout.setVisible(false);
             bio.setVisible(false);
             name.setVisible(false);
             message.setVisible(false);
@@ -560,6 +585,19 @@ public class display extends JPanel
             subjectPost.setVisible(false);
             contentPost.setVisible(false);
             settings.setVisible(false);
+            addfriend.setVisible(false);
+            
+            signout.setBounds(1810,10,100,50);
+            signout.setText("Sign out");
+            signout.setVisible(true);
+
+            signUp.setBounds(1690,10,100,50);
+            signUp.setText("Back");
+            signUp.setVisible(true);
+            
+            enter.setBounds(1000, 475, 100,50);
+            enter.setText("Enter");
+            enter.setVisible(true);
             
         }
     }

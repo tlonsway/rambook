@@ -34,7 +34,7 @@ public class main {
         JTextField searchfield = new JTextField();
         JTextField postSubject = new JTextField();
         JTextField postContent = new JTextField();
-
+        
         JButton enter = new JButton("ENTER");
         JButton SignUp = new JButton("Create Account");
 
@@ -57,6 +57,8 @@ public class main {
         window.add(Password);
         window.add(UsernameInput);
         window.add(messaging);
+        window.add(addFriend);
+        window.add(removeFriend);
         
         window.add(postSubject);
         window.add(postContent);
@@ -96,7 +98,8 @@ public class main {
         window.setSearchButton(search);
         window.setMessageButton(messaging);
         window.setSettingsButton(settings);
-
+        window.setRemoveFriendButton(removeFriend);
+        
         String Usernamewindow = "";
         
         login account = new login();
@@ -150,6 +153,15 @@ public class main {
                             window.drawing();
                             window.setButtons();
                         }
+                        else if(window.view.equals("settings"))
+                        {
+                            //window.setData(new client().setData(window.UsernameSignedIn, "name", window.name.getText()));
+                            //window.setData(new client().setData(window.UsernameSignedIn, "bio", window.bio.getText()));
+                            //window.setData(new client().setData(window.UsernameSignedIn, "age", window.age.getText()));
+                            window.setView("home screen");
+                            window.drawing();
+                            window.setButtons();
+                        }
                     }
                     catch (Exception e) {
                         System.out.println(e);
@@ -178,9 +190,15 @@ public class main {
                             window.drawing();
                             window.setButtons();
                         }
-                        else if(window.view.equals("home window"))
+                        else if(window.view.equals("home screen"))
                         {
                             window.setAddPost(false);
+                            window.drawing();
+                            window.setButtons();
+                        }
+                        else if(window.view.equals("settings"))
+                        {
+                            window.setView("home screen");
                             window.drawing();
                             window.setButtons();
                         }
@@ -270,6 +288,19 @@ public class main {
                         window.setView("settings");
                         window.drawing();
                         window.setButtons();
+                    }
+                    catch(Exception e)
+                    {
+                        System.out.println(e);
+                    }
+                }
+            } );
+        addFriend.addActionListener(new ActionListener()
+            {
+                public void actionPerformed(ActionEvent arg0) 
+                {
+                    try{
+                        //new client().addFriend(window.UsernameSignedIn, window.userView);
                     }
                     catch(Exception e)
                     {
