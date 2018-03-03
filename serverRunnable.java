@@ -766,5 +766,11 @@ public class serverRunnable implements Runnable{
         bw.append(other + "\n");
         bw.close();
     }
+    public boolean isFriendsWith(String name, String other) throws Exception {
+        return false;
+    }
+    public String getFriends(String name) {
+        return null;
+    }
     
 }
