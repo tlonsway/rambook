@@ -267,7 +267,7 @@ public class display extends JPanel
             g.setFont(f);
             g.setColor(Color.WHITE);
             g.drawString("Username: ", 250, 25);
-            g.drawString(Name, 325, 25);
+            g.drawString(Name, 360, 25);
             g.drawString("About Me: ", 250, 95);
             String bio = WordUtils.wrap(aboutMe, 40);
             System.out.println(bio);
