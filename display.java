@@ -266,7 +266,7 @@ public class display extends JPanel
             Font biofont = new Font("", Font.ROMAN_BASELINE, 18);
             g.setFont(f);
             g.setColor(Color.WHITE);
-            g.drawString("Name: ", 250, 25);
+            g.drawString("Username: ", 250, 25);
             g.drawString(Name, 325, 25);
             g.drawString("About Me: ", 250, 95);
             String bio = WordUtils.wrap(aboutMe, 40);
@@ -601,7 +601,7 @@ public class display extends JPanel
             signUp.setText("Back");
             signUp.setVisible(true);
             
-            enter.setBounds(1400,310,100,50);
+            enter.setBounds(1200,310,100,50);
             enter.setText("Enter");
             enter.setVisible(true);
             
