@@ -158,8 +158,11 @@ public class main {
                         {
                             //if (window.getUserSignedIn() != null && window.name.getText() != null && window.bio.getText() != null && window.age.getText() != null) {
                                 new client().setData(window.UserSignedIn, "name", window.name.getText());
+                                Thread.sleep(100);
                                 new client().setData(window.getUserSignedIn(), "bio", window.bio.getText());
+                                Thread.sleep(100);
                                 new client().setData(window.getUserSignedIn(), "age", window.age.getText());
+                                Thread.sleep(100);
                             //}
                             window.setView("home screen");
                             window.drawing();
