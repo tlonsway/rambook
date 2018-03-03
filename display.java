@@ -422,7 +422,7 @@ public class display extends JPanel
             g.drawString("Settings",500,310);
             g.drawString("Current Name",550,375);
             g.drawString("Current bio",550,475);
-            g.drawString("Current age",670,375);
+            g.drawString("Current age",700,375);
         }
     }
     public void setButtons()
@@ -522,6 +522,9 @@ public class display extends JPanel
             signUp.setVisible(false);
             enter.setVisible(false);
             addfriend.setVisible(false);
+            name.setVisible(false);
+            bio.setVisible(false);
+            age.setVisible(false);
             if(!UsernameSignedIn.equals(userView)/* && new client().isFriend(UsernameSignedIn,userView) == false*/)
             {
                 addfriend.setBounds(500,10,100,50);
@@ -583,8 +586,6 @@ public class display extends JPanel
             addapost.setVisible(false);
             search.setVisible(false);
             searchfield.setVisible(false);
-            bio.setVisible(false);
-            name.setVisible(false);
             message.setVisible(false);
             UserChoice.setVisible(false);
             subjectPost.setVisible(false);
@@ -600,20 +601,21 @@ public class display extends JPanel
             signUp.setText("Back");
             signUp.setVisible(true);
             
-            enter.setBounds(1100,310,100,50);
+            enter.setBounds(1400,310,100,50);
             enter.setText("Enter");
             enter.setVisible(true);
             
             name.setBounds(550,400,100,20);
             name.setEditable(true);
             name.setText(new client().getData(UsernameSignedIn,"name",0));
+            name.setVisible(true);
             
             bio.setBounds(550,500,100,20);
             bio.setEditable(true);
             bio.setText(new client().getData(UsernameSignedIn,"bio",0));
             bio.setVisible(true);
             
-            age.setBounds(670,400,100,20);
+            age.setBounds(700,400,100,20);
             age.setEditable(true);
             age.setText(new client().getData(UsernameSignedIn,"age",0));
             age.setVisible(true);
