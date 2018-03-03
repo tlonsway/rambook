@@ -306,7 +306,7 @@ public class main {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try{
-                        //new client().addFriend(window.UsernameSignedIn, window.userView);
+                        new client().addFriend(window.UsernameSignedIn, window.userView);
                     }
                     catch(Exception e)
                     {
