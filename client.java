@@ -12,6 +12,7 @@ import javax.swing.JComponent;
 import java.awt.event.*;
 import javax.swing.SwingUtilities;
 import javax.swing.filechooser.*;
+import java.util.*;
 public class client {
     Socket sock;    
     PrintStream ps;
@@ -129,9 +130,6 @@ public class client {
     public void loadImage(String name) {
         JFileChooser chooser = new JFileChooser();
         FileNameExtensionFilter filter = new FileNameExtensionFilter("png");
-        
-        
-        
     }
     public void addPost(String name, String subject, String content) {
         String ret;
@@ -157,6 +155,29 @@ public class client {
     }
     public void addFriend(String name, String other) {
         String s = "f:a:" + name + ":" + other;
+        ps.println(s);
+    }
+    public boolean isFriendsWith(String name, String other) throws Exception{
+        String s = "f:i:" + name + ":" + other;
+        String ret = run(s);        
+        if (ret.equals("true")) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public ArrayList<String> getFriends(String name) throws Exception{
+        String s = "f:g:" + name;
+        String ret = run(s);
+        ArrayList<String> ar = new ArrayList<String>();
+        while(ret.indexOf(":") != -1) {
+            ar.add(ret.substring(0, ret.indexOf(":")));
+            ret = ret.substring(ret.indexOf(":")+1);
+        }
+        return ar;
+    }
+    public void unfriend(String name, String other) {
+        String s = "f:u:" + name + ":" + other;
         ps.println(s);
     }
 }   

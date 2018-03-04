@@ -241,7 +241,6 @@ public class serverRunnable implements Runnable{
         } //Processes data modification for users database
         
         if (line.substring(0,1).indexOf("f") != -1) {
-            
             //f:a:name:other
             if (line.substring(2,3).indexOf("a") != -1) {
                 String input = line.substring(line.indexOf(":")+1);
@@ -254,7 +253,52 @@ public class serverRunnable implements Runnable{
                     e.printStackTrace();
                 }
             }
-        }
+            
+            //f:i:name:other
+            if (line.substring(2,3).indexOf("i") != -1) {
+                String input = line.substring(line.indexOf(":")+1);
+                input = input.substring(input.indexOf(":")+1);
+                String name = input.substring(0, input.indexOf(":"));
+                String other = input.substring(input.indexOf(":")+1);
+                try {
+                    boolean b = isFriendsWith(name, other);
+                    if (b == true) {
+                        ps.println("true");
+                    } else if (b == false) {
+                        ps.println("false");
+                    }
+                }catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+            
+            //f:g:name
+            if (line.substring(2,3).indexOf("g") != -1) {
+                String input = line.substring(line.indexOf(":")+1);
+                input = input.substring(input.indexOf(":")+1);
+                String name = input;
+                try {
+                    String list = getFriends(name);
+                    ps.println(list);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+                    
+            }
+            
+            //f:u:name:other
+            if (line.substring(2,3).indexOf("u") != -1) {
+                String input = line.substring(line.indexOf(":")+1);
+                input = input.substring(input.indexOf(":")+1);
+                String name = input.substring(0, input.indexOf(":"));
+                String other = input.substring(input.indexOf(":")+1);
+                try {
+                    unfriend(name, other);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        } //Processing for data transmissions and requests relating to friends
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -763,14 +807,80 @@ public class serverRunnable implements Runnable{
             BufferedWriter www = new BufferedWriter(new FileWriter("friends/" + name + ".txt"));
         }
         BufferedWriter bw = new BufferedWriter(new FileWriter("friends/" + name + ".txt", true));
-        bw.append(other + "\n");
+        if (!isFriendsWith(name, other)) {
+            bw.append(other + "\n");
+        }
         bw.close();
     }
     public boolean isFriendsWith(String name, String other) throws Exception {
-        return false;
+        System.out.println("checking if user " + other + " is friends with " + name);
+        boolean ret;
+        if (new File("friends/" + name + ".txt").exists()) {
+            BufferedReader br = new BufferedReader(new FileReader("friends/" + name + ".txt"));
+            String rline;
+            boolean b = false;
+            ret = false;
+            while(b == false) {
+                rline = br.readLine();
+                if (rline == null) {
+                    b = true;
+                }
+                if (rline != null && rline.equals(other)) {
+                    ret = true;
+                    b = true;
+                }
+            }
+        } else {
+            ret = false;
+        }
+        return ret;
     }
-    public String getFriends(String name) {
-        return null;
+    public String getFriends(String name) throws Exception{
+        System.out.println("getting the friends for " + name);
+        String ret;
+        if (new File("friends/" + name + ".txt").exists()) {
+            BufferedReader br = new BufferedReader(new FileReader("friends/" + name + ".txt"));
+            ret = "";
+            String rline = br.readLine();
+            boolean b = false;
+            while(rline != null) {
+                if (rline != null) {
+                    ret +=  (rline + ":");
+                }
+                rline = br.readLine();            
+            }
+        } else {
+            ret = "";
+        }
+        System.out.println("Friends list for " + name + " - " + ret);
+        return ret;
     }
-    
+    public void unfriend(String name, String other) throws Exception{
+        System.out.println("Request by " + name + " to unfriend " + other);
+        BufferedReader br = new BufferedReader(new FileReader("friends/" + name + ".txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("friends/" + name + name + ".txt"));
+        String rline = br.readLine();
+        while(rline != null) {
+            if (!rline.equals(other)) {
+                bw.write(rline);
+                bw.newLine();
+            }
+            rline = br.readLine();
+        }
+        new File("friends/" + name + ".txt").delete();
+        bw.close();
+        br.close();
+        BufferedWriter writer = new BufferedWriter(new FileWriter("friends/" + name + ".txt"));
+        BufferedReader reader = new BufferedReader(new FileReader("friends/" + name + name + ".txt"));
+        String r = reader.readLine();
+        while(r != null) {
+            writer.write(r);
+            writer.newLine();
+            r = reader.readLine();
+        }
+        writer.close();
+        reader.close();
+        new File("friends/" + name + name + ".txt").delete();
+        System.out.println(other + " has been unfriended by " + name);
+    }
 }
