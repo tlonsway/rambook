@@ -20,7 +20,7 @@ public class main {
             frame.setIconImage(image);
         } catch (Exception e) {
             e.printStackTrace();
-            }
+        }
         //String view = "sign up";
         String view = "login";
         window.setView(view);
@@ -34,7 +34,9 @@ public class main {
         JTextField searchfield = new JTextField();
         JTextField postSubject = new JTextField();
         JTextField postContent = new JTextField();
-        
+        JTextField homeTown = new JTextField();
+        JTextField schools = new JTextField();
+
         JButton enter = new JButton("ENTER");
         JButton SignUp = new JButton("Create Account");
 
@@ -43,14 +45,14 @@ public class main {
         JButton signout = new JButton("Sign out");
 
         JButton messaging = new JButton("Message");
-        
+
         JButton addPost = new JButton("Add A Post");
-        
+
         JButton addFriend = new JButton("Add Friend");
         JButton removeFriend = new JButton("Remove Friend");
-        
+
         JButton settings = new JButton("");
-        
+
         window.add(enter);
         window.add(checkPassword);
         window.add(SignUp);
@@ -59,7 +61,9 @@ public class main {
         window.add(messaging);
         window.add(addFriend);
         window.add(removeFriend);
-        
+        window.add(homeTown);
+        window.add(schools);
+
         window.add(postSubject);
         window.add(postContent);
         window.add(addPost);
@@ -83,15 +87,18 @@ public class main {
         window.setTextField(postSubject, 9);
         window.setTextField(postContent, 10);
         window.setAddPostButton(addPost);
-        
+
         window.setTextField(age, 4);
         window.setTextField(bio, 5);
         window.setTextField(name, 6);
 
         window.setTextField(searchfield, 7);
-        
+
         window.setTextField(messageUser, 8);
-        
+
+        window.setTextField(homeTown,11);
+        window.setTextField(schools,12);
+
         window.setEnterButton(enter);
         window.setSignUpButton(SignUp);
         window.setSignOutButton(signout);
@@ -100,9 +107,9 @@ public class main {
         window.setSettingsButton(settings);
         window.setRemoveFriendButton(removeFriend);
         window.setAddFriendButton(addFriend);
-        
+
         String Usernamewindow = "";
-        
+
         login account = new login();
         //window.setUserinfo("true", "Tristan","I have mad hax. idhhfgfg dfewbftfreyrvbrhdfyevf", 50);
         String UserSignedIn;
@@ -135,34 +142,39 @@ public class main {
                         }
                         else if(window.view.equals("sign up"))
                         {
-                            if((new client()).checkUserExist(UsernameInput.getText()) == true)
-                                window.setSignUpValid(false, true);
-                            else 
+                            if(window.invalidCharacters() == false)
                             {
-                                window.setSignUpValid(true, true);
-                                if(Password.getText().equals(checkPassword.getText()))
-                                    window.setPasswordMatch(true);
-                                else
-                                    window.setPasswordMatch(false);
-                                if(window.passwordsMatch == true)
+                                if((new client()).checkUserExist(UsernameInput.getText()) == true)
+                                    window.setSignUpValid(false, true);
+                                else 
                                 {
-                                    String uname = UsernameInput.getText();
-                                    (new client()).addUser(uname, name.getText(), Integer.parseInt(age.getText()), bio.getText(), (Password.getText()));
-                                    window.setView("login");
+                                    window.setSignUpValid(true, true);
+                                    if(Password.getText().equals(checkPassword.getText()))
+                                        window.setPasswordMatch(true);
+                                    else
+                                        window.setPasswordMatch(false);
+                                    if(window.passwordsMatch == true)
+                                    {
+                                        String uname = UsernameInput.getText();
+                                        (new client()).addUser(uname, name.getText(), Integer.parseInt(age.getText()), bio.getText(), (Password.getText()));
+                                        window.setView("login");
+                                    }
                                 }
                             }
+                            else
+                                window.hasInvalidCharacters = true;
                             window.drawing();
                             window.setButtons();
                         }
                         else if(window.view.equals("settings"))
                         {
                             //if (window.getUserSignedIn() != null && window.name.getText() != null && window.bio.getText() != null && window.age.getText() != null) {
-                                new client().setData(window.UserSignedIn, "name", window.name.getText());
-                                Thread.sleep(100);
-                                new client().setData(window.getUserSignedIn(), "bio", window.bio.getText());
-                                Thread.sleep(100);
-                                new client().setData(window.getUserSignedIn(), "age", window.age.getText());
-                                Thread.sleep(100);
+                            new client().setData(window.UserSignedIn, "name", window.name.getText());
+                            Thread.sleep(100);
+                            new client().setData(window.getUserSignedIn(), "bio", window.bio.getText());
+                            Thread.sleep(100);
+                            new client().setData(window.getUserSignedIn(), "age", window.age.getText());
+                            Thread.sleep(100);
                             //}
                             window.setView("home screen");
                             window.drawing();
@@ -191,14 +203,14 @@ public class main {
                         else if(window.view.equals("sign up"))
                         {
                             window.setView("login");
-                            UsernameInput.setText("");
-                            Password.setText("");
+                            window.hasInvalidCharacters = false;
                             window.drawing();
                             window.setButtons();
                         }
                         else if(window.view.equals("home screen"))
                         {
                             window.setAddPost(false);
+                            window.hasInvalidCharacters = false;
                             window.drawing();
                             window.setButtons();
                         }
@@ -214,7 +226,7 @@ public class main {
                     }
                 }
             } );
-        
+
         search.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent arg0) 
@@ -260,7 +272,7 @@ public class main {
                         if(new client().checkUserExist(window.getUserChoice()) == true && new client().getData(window.getUserChoice(), "status", 0).equals("online"))
                         {
                             //Jwindow messagingwindow = new Jwindow("Messaging");
-                            
+
                         }
                         window.drawing();
                         window.setButtons();
@@ -271,7 +283,7 @@ public class main {
                     }
                 }
             } );
-         addPost.addActionListener(new ActionListener()
+        addPost.addActionListener(new ActionListener()
             {
                 public void actionPerformed(ActionEvent arg0) 
                 {

@@ -29,6 +29,9 @@ public class display extends JPanel
     JTextField subjectPost;
     JTextField contentPost;
 
+    JTextField homeTown;
+    JTextField schools;
+
     JButton enter;
     JButton signUp;
     JButton search;
@@ -38,7 +41,7 @@ public class display extends JPanel
     JButton settings;
     JButton addfriend;
     JButton removefriend;
-    
+
     String online = "";
     String Name = "";
     String aboutMe = "";
@@ -53,6 +56,7 @@ public class display extends JPanel
     boolean failedLogin = false;
     boolean InvalidSearch = false;
     boolean addPost = false;
+    boolean hasInvalidCharacters = false;
     public void drawing()
     {
         repaint();
@@ -88,18 +92,22 @@ public class display extends JPanel
             subjectPost = U;
         else if(i == 10)
             contentPost = U;
+        else if(i == 11)
+            homeTown = U;
+        else if(i ==12)
+            schools = U;
     }
-    
+
     public void setSettingsButton(JButton u)
     {
         settings = u;
     }
-    
+
     public void setAddFriendButton(JButton u)
     {
         addfriend = u;
     }
-    
+
     public void setAddPostButton(JButton u)
     {
         addapost = u;
@@ -119,12 +127,12 @@ public class display extends JPanel
     {
         return UserSignedIn;
     }
-    
+
     public void setRemoveFriendButton(JButton u)
     {
         removefriend = u;
     }
-    
+
     public void setPasswordMatch(boolean i)
     {
         passwordsMatch = i;
@@ -190,12 +198,12 @@ public class display extends JPanel
     {
         return UserChoice.getText();
     }
-    
+
     public void setCurrentUser(String s)
     {
         currentUser = s;
     }
-    
+
     public void paintComponent(Graphics g)
     {
         super.paintComponent(g);
@@ -203,7 +211,7 @@ public class display extends JPanel
         g.drawRect(50, 50, 50, 50);
         if(view.equals("login"))
         {
-            
+
             g.setColor(Color.RED);
             g.fillRect(0,0,1920,1020);
             g.setColor(Color.WHITE);
@@ -224,7 +232,6 @@ public class display extends JPanel
             g.setColor(Color.WHITE);
             g.drawString("RAMBOOK", 900, 200);
 
-            
             g.setColor(Color.BLACK);
             g.drawRect(1000,475,100,50);
             g.drawRect(1000,575,100,50);
@@ -241,16 +248,16 @@ public class display extends JPanel
         }
         else if(view.equals("home screen"))
         {
-            
+
             //signout.setVisible(true);
             //searchfield.setVisible(true);
             //search.setVisible(true);
-            
+
             g.setColor(new Color(239,100,50));
             g.fillRect(0,0, 1920, 1020);
             g.setColor(Color.BLACK);
             //g.fillRect(10,10,200,200);
-            
+
             BufferedImage profile;
             try {
                 //profile = ImageIO.read(new File("default.png"));
@@ -319,7 +326,7 @@ public class display extends JPanel
             if (modNumPosts<1) {
                 modNumPosts = 1;
             }
-            
+
             for(int i = numPosts; i >= (modNumPosts); i--)
             {
                 try {
@@ -328,7 +335,7 @@ public class display extends JPanel
                     e.printStackTrace();
                 }
                 System.out.println("Post received: " + post);
-                
+
                 String in = post.substring(post.indexOf(":")+1);
                 date = in.substring(0, in.indexOf(":"));
                 in = in.substring(in.indexOf(":")+1);
@@ -352,13 +359,13 @@ public class display extends JPanel
                 Y += 25;
             }
             //---- Add post
-            
+
             g.setColor(Color.WHITE);
             g.drawString("Post Topic", 10, 500);
             g.drawString("Post Content",10,570);
-            
+
             g.setColor(Color.BLACK);
-            
+
             g.drawString("View another user's page",10,375);
             g.drawString("Message another user",10,275);
         }
@@ -375,38 +382,45 @@ public class display extends JPanel
             g.drawString("Sign Up",500, 310);
             //JLabel Wordz = new JLabel();
             //Wordz.setSize(10,20);
-            g.drawString("Username: ", 850, 350);
-            g.drawString("Password: ", 800, 550);
-            g.drawString("Retype Password: ", 1000 , 550);
+            g.drawString("Username: ", 850, 375);
+            g.drawString("Password: ", 850, 575);
+            g.drawString("Retype Password: ", 1050 , 575);
 
-            
             g.drawString("Name: ", 600, 375);
             g.drawString("Age: ", 600, 475);
-            g.drawString("Bio: ", 600, 625);
+            g.drawString("Bio: ", 600, 575);
+            g.drawString("Hometown:",850, 475);
+            g.drawString("Schools(separated by \",\")", 600, 675);
 
             g.drawRect(850,400,100,20);
-            g.drawRect(800,600,100,20);
-            g.drawRect(1000,600,100,20);
+            g.drawRect(850,600,100,20);
+            g.drawRect(1050,600,100,20);
 
             g.drawRect(600,400,100,20);
             g.drawRect(600,500,100,20);
-            g.drawRect(600,650,200,40);
+            g.drawRect(600,600,200,20);
+            g.drawRect(600,700,200,20);
+            g.drawRect(850,500,100,20);
 
-            
             g.drawRect(1000,400,100,50);
             g.drawRect(1000,475,100,50);
 
             g.setColor(Color.WHITE);
             g.drawString("RAMBOOK", 900, 200);
+            if(hasInvalidCharacters == true)
+            {
+                g.setColor(Color.RED);
+                g.drawString("User info contains invalid characters",600,300);
+            }
             if(passwordsMatch == false)
             {
                 g.setColor(Color.RED);
-                g.drawString("Passwords Don't Match",550,620);
+                g.drawString("Passwords Don't Match",850,725);
             }
             if(isValidUsername == false && enterClicked == true)
             {
                 g.setColor(Color.RED);
-                g.drawString("Username Already Taken",600,400);
+                g.drawString("Username Already Taken",600,325);
             }
         }
         else if(view.equals("settings"))
@@ -425,6 +439,7 @@ public class display extends JPanel
             g.drawString("Current age",700,375);
         }
     }
+
     public void setButtons()
     {
         if(view.equals("login"))
@@ -443,21 +458,23 @@ public class display extends JPanel
             contentPost.setVisible(false);
             settings.setVisible(false);
             addfriend.setVisible(false);
-            
+            homeTown.setVisible(false);
+            schools.setVisible(false);
+
             signUp.setBounds(1000, 575, 100,50);  
             signUp.setText("Sign Up");
-            
+
             enter.setBounds(1000, 475, 100,50);
             enter.setText("Enter");
-            
+
             password.setBounds(850,600,100,20);
             password.setText("");
             password.setEditable(true);
-            
+
             UserName.setBounds(850,400,100,20);
             UserName.setText("");
             UserName.setEditable(true);
-            
+
             signUp.setVisible(true);
             enter.setVisible(true);
             password.setVisible(true);
@@ -473,37 +490,47 @@ public class display extends JPanel
             contentPost.setVisible(false);
             settings.setVisible(false);
             addfriend.setVisible(false);
-            
+
             UserName.setBounds(850, 400, 100, 20);
             UserName.setText("");
             UserName.setEditable(true);
-            
-            password.setBounds(800, 600, 100, 20);
+
+            password.setBounds(850, 600, 100, 20);
             password.setText("");
             password.setEditable(true);
-            
-            checkpassword.setBounds(1000, 600, 100, 20);
+
+            checkpassword.setBounds(1050, 600, 100, 20);
             checkpassword.setText("");
             checkpassword.setEditable(true);
-            
+
             signUp.setLocation(1000, 400);
             signUp.setText("Back");
-            
+
             enter.setLocation(1000, 475);
             enter.setText("Enter");
-            
+
             name.setBounds(600,400,100,20);
             name.setText("");
             name.setEditable(true);
-            
-            bio.setBounds(600,650,200,40);
+
+            bio.setBounds(600,600,200,20);
             bio.setText("");
             bio.setEditable(true);
-            
+
             age.setBounds(600,500,100,20);
             age.setText("");
             age.setEditable(true);
-            
+
+            homeTown.setBounds(850,500,100,20);
+            homeTown.setText("");
+            homeTown.setEditable(true);
+            homeTown.setVisible(true);
+
+            schools.setBounds(600,700,200,20);
+            schools.setText("");
+            schools.setEditable(true);
+            schools.setVisible(true);
+
             UserName.setVisible(true);
             password.setVisible(true);
             checkpassword.setVisible(true);
@@ -525,36 +552,43 @@ public class display extends JPanel
             name.setVisible(false);
             bio.setVisible(false);
             age.setVisible(false);
-            if(!UsernameSignedIn.equals(userView)/* && new client().isFriend(UsernameSignedIn,userView) == false*/)
-            {
-                addfriend.setBounds(500,10,100,50);
-                addfriend.setText("Add Friend");
-                addfriend.setVisible(true);
+            homeTown.setVisible(false);
+            schools.setVisible(false);
+            try{
+                if(!UsernameSignedIn.equals(userView) && new client().isFriendsWith(UsernameSignedIn,userView) == false)
+                {
+                    addfriend.setBounds(500,10,100,50);
+                    addfriend.setText("Add Friend");
+                    addfriend.setVisible(true);
+                }
+                else if(!UsernameSignedIn.equals(userView) && new client().isFriendsWith(UsernameSignedIn,userView) == true)
+                {
+                    removefriend.setBounds(500,10,100,50);
+                    removefriend.setText("Remove Friend");
+                    removefriend.setVisible(true);
+                }
             }
-            else if(!UsernameSignedIn.equals(userView) /*&& new client().isFriend(UsernameSignedIn,userView) == true*/)
-            {
-                removefriend.setBounds(500,10,100,50);
-                removefriend.setText("Remove Friend");
-                removefriend.setVisible(true);
+            catch (Exception e) {
+                e.printStackTrace();
             }
             subjectPost.setBounds(10, 525, 100, 20);
             subjectPost.setEditable(true);
             subjectPost.setVisible(true);
-            
+
             contentPost.setBounds(10,595, 100, 20);
             contentPost.setEditable(true);
             contentPost.setVisible(true);
-            
+
             addapost.setBounds(10,620,100,50);
             addapost.setVisible(true);
-            
+
             search.setBounds(10,400,100,50);
             search.setVisible(true);
-            
+
             searchfield.setBounds(120,425,100,20);
             searchfield.setEditable(true);
             searchfield.setVisible(true);
-            
+
             signout.setBounds(1810,10,100,50);
             signout.setText("Sign out");
             signout.setVisible(true);
@@ -562,7 +596,7 @@ public class display extends JPanel
             message.setBounds(10,300, 100, 50);
             message.setText("Message");
             message.setVisible(true);
-            
+
             settings.setBounds(1750,10,50,50);
             settings.setText("");
             try {
@@ -571,10 +605,10 @@ public class display extends JPanel
                 settings.setIcon(new ImageIcon(pic));
             } catch (Exception e) {
                 e.printStackTrace();
-                }
+            }
             //settings.setIcon("");
             settings.setVisible(true);
-            
+
             UserChoice.setBounds(120, 325, 100, 20);
             UserChoice.setVisible(true);
             UserChoice.setEditable(true);
@@ -592,7 +626,7 @@ public class display extends JPanel
             contentPost.setVisible(false);
             settings.setVisible(false);
             addfriend.setVisible(false);
-            
+
             signout.setBounds(1810,10,100,50);
             signout.setText("Sign out");
             signout.setVisible(true);
@@ -600,27 +634,49 @@ public class display extends JPanel
             signUp.setBounds(1690,10,100,50);
             signUp.setText("Back");
             signUp.setVisible(true);
-            
+
             enter.setBounds(1200,310,100,50);
             enter.setText("Enter");
             enter.setVisible(true);
-            
+
             name.setBounds(550,400,100,20);
             name.setEditable(true);
             name.setText(new client().getData(UsernameSignedIn,"name",0));
             name.setVisible(true);
-            
+
             bio.setBounds(550,500,100,20);
             bio.setEditable(true);
             bio.setText(new client().getData(UsernameSignedIn,"bio",0));
             bio.setVisible(true);
-            
+
             age.setBounds(700,400,100,20);
             age.setEditable(true);
             age.setText(new client().getData(UsernameSignedIn,"age",0));
             age.setVisible(true);
         }
     }
+    
+    public boolean invalidCharacters()
+    {
+        if(name.getText().indexOf(":") != -1)
+            return true;
+        if(age.getText().indexOf(":") != -1)
+            return true;
+        if(bio.getText().indexOf(":") != -1)
+            return true;
+        if(name.getText().indexOf(":") != -1)
+            return true;
+        if(password.getText().indexOf(":") != -1)
+            return true;
+        if(UserName.getText().indexOf(":") != -1)
+            return true;
+        if(homeTown.getText().indexOf(":") != -1)
+            return true;
+        if(schools.getText().indexOf(":") != -1)
+            return true;
+        return false;
+    }
+    
     public String getSubjectText()
     {
         return subjectPost.getText();
