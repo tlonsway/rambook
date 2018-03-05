@@ -45,6 +45,9 @@ public class display extends JPanel
     String online = "";
     String Name = "";
     String aboutMe = "";
+    String ageString = "";
+    String hometownName = "";
+    String schoolsName = "";
     String UserSignedIn = "";
     String userView = "";
     String UsernameSignedIn = "";
@@ -62,12 +65,15 @@ public class display extends JPanel
         repaint();
     }
 
-    public void setUserinfo(String bop,String name,String bio, int numFriends )
+    public void setUserinfo(String bop,String name,String bio, int numFriends/*,String a,String h,String s*/)
     {
         online = bop;
         Name = name;
         aboutMe = bio;
         numberOfFriends = numFriends;
+        //ageString = a;
+        //hometownName = h;
+        //schoolsName = s;
     }
 
     public void setTextField(JTextField U, int i)
@@ -97,7 +103,7 @@ public class display extends JPanel
         else if(i ==12)
             schools = U;
     }
-
+    
     public void setSettingsButton(JButton u)
     {
         settings = u;
@@ -274,7 +280,9 @@ public class display extends JPanel
             g.setFont(f);
             g.setColor(Color.WHITE);
             g.drawString("Username: ", 250, 25);
-            g.drawString(Name, 360, 25);
+            g.setColor(new Color(209, 193, 190));
+            g.drawString(Name, 380, 25);
+            g.setColor(Color.WHITE);
             g.drawString("About Me: ", 250, 95);
             String bio = WordUtils.wrap(aboutMe, 40);
             System.out.println(bio);
@@ -283,18 +291,42 @@ public class display extends JPanel
             bio += "\n";
             g.setFont(biofont);
             g.setColor(new Color(209, 193, 190));
+            int belowBioY = 120;
             for (int i=0; i<bio.length(); i++) {
                 if (bio.substring(i,i+1).indexOf("\n") != -1) {
                     g.drawString(bio.substring(last, i),250,count);          
-                    count += 30;         
+                    count += 30;
+                    belowBioY = count;
                     last = i;
                 }
             }
             g.setFont(f);
+            belowBioY -= 5;
+            g.setColor(Color.WHITE);
+            g.drawString("Age:",250,belowBioY);
+            g.setColor(new Color(209, 193, 190));
+            g.drawString(ageString,300,belowBioY);
+            g.setColor(Color.WHITE);
+            g.drawString("Hometown:",250,belowBioY);
+            belowBioY += 25;
+            g.setColor(new Color(209, 193, 190));
+            g.drawString(hometownName,250,belowBioY);
+            belowBioY += 25;
+            g.setColor(Color.WHITE);
+            g.drawString("Schools:",250,belowBioY);
+            g.setColor(new Color(209, 193, 190));
+            belowBioY += 25;
+            while(schoolsName.indexOf(",") != -1)
+            {
+                g.drawString(schoolsName.substring(0,schoolsName.indexOf(",")),250,belowBioY);
+                schoolsName = schoolsName.substring(schoolsName.indexOf(",")+1);
+                belowBioY += 25;
+            }
+            g.drawString(schoolsName,250,belowBioY);
             if(InvalidSearch == true)
             {
                 g.setColor(Color.RED);
-                g.drawString("User Doesn't Exist", 800, 170);
+                g.drawString("User Doesn't Exist", 10,450);
             }
             g.setColor(Color.WHITE);
             g.drawLine(960,0, 960, 1020);
