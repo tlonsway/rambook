@@ -21,8 +21,8 @@ public class UserFunctionalityTester
         System.out.println(legend);
         
         System.out.println("\n*** HOMETOWN ***");
-        for (User u : beyonce.getHometownFriends())
-            System.out.println(u.getName());
+        //for (User u : beyonce.getHometownFriends())
+        //    System.out.println(u.getName());
         
               
         System.out.println("\n*** MUTUAL ***");
@@ -30,8 +30,8 @@ public class UserFunctionalityTester
             System.out.println(u.getName());
         
         System.out.println("\n*** SCHOOLMATES ***");
-        for (User u : beyonce.getSchoolmates())
-            System.out.println(u.getName());
+        //for (User u : beyonce.getSchoolmates())
+        //    System.out.println(u.getName());
         
     
             
