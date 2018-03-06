@@ -171,6 +171,10 @@ public class main {
                             Thread.sleep(100);
                             new client().setData(window.getUserSignedIn(), "age", window.age.getText());
                             Thread.sleep(100);
+                            new client().setData(window.getUserSignedIn(), "hometown", window.homeTown.getText());
+                            Thread.sleep(100);
+                            new client().setData(window.getUserSignedIn(), "c", window.schools.getText());
+                            Thread.sleep(100);
                             //}
                             window.setView("home screen");
                             window.drawing();
@@ -235,6 +239,7 @@ public class main {
                             window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))),(new client().getData(currentUser,"age",0)),(new client().getData(currentUser,"name",0)),(new client().getData(currentUser,"hometown",0)),(new client().getData(currentUser,"cchoools",0)));
                             window.InvalidSearch = false;
                             window.setUserView(currentUser);
+                            window.setFriends(new client().getFriends(currentUser));
                             System.out.print("It set the user view to: " + currentUser);
                         }
                         else if((new client()).checkUserExist(currentUser) == false)

@@ -364,7 +364,7 @@ public class display extends JPanel
             }
             g.setColor(Color.WHITE);
             belowBioY += 25;
-            g.drawString("Hometown Friends:",250,belowBioY);
+            //g.drawString("Hometown Friends:",250,belowBioY);
             g.setColor(new Color(209, 193, 190));
             belowBioY += 25;
             for(String s: homeTownFriends)
@@ -746,7 +746,7 @@ public class display extends JPanel
             
             schools.setBounds(550,600,200,20);
             schools.setEditable(true);
-            schools.setText(new client().getData(UsernameSignedIn,"schools",0));
+            schools.setText(new client().getData(UsernameSignedIn,"c",0));
             schools.setVisible(true);
         }
     }

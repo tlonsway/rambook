@@ -638,7 +638,7 @@ public class serverRunnable implements Runnable{
         fl.delete();          
     }
     public void setHometown(String name, String hometown) throws Exception{
-        System.out.println("changing bio for user " + name);
+        System.out.println("changing hometown for user " + name);
         BufferedReader br = new BufferedReader(new FileReader("users.txt"));
         BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
         boolean b = false;
@@ -692,7 +692,7 @@ public class serverRunnable implements Runnable{
         fl.delete();          
     }   
     public void setSchools(String name, String schools) throws Exception{
-        System.out.println("changing bio for user " + name);
+        System.out.println("changing schools for user " + name);
         BufferedReader br = new BufferedReader(new FileReader("users.txt"));
         BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
         boolean b = false;
