@@ -333,7 +333,7 @@ public class display extends JPanel
             g.setColor(new Color(209, 193, 190));
             belowBioY += 25;
             int numSchools = 0;
-            ArrayList<String> schools = new ArrayList();
+            ArrayList<String> Userschools = new ArrayList<String>();
             while(schoolsName.indexOf(",") != -1)
             {
                 schoolsName.trim();
@@ -341,8 +341,10 @@ public class display extends JPanel
                 schoolsName = schoolsName.substring(schoolsName.indexOf(",")+1);
                 belowBioY += 25;
                 numSchools ++;
+                //Userschools.add(schoolsName.substring(0,schoolsName.indexOf(",")));
             }
             g.drawString(schoolsName,250,belowBioY);
+            //Userschools.add(schoolsName);
             numSchools ++;
             g.setColor(Color.WHITE);
             g.drawString("Friends:",550,120);
@@ -373,7 +375,7 @@ public class display extends JPanel
             ArrayList<String> schoolMates = new ArrayList<String>();
             for(String s: friends)
             {
-                //if(user.getSchoolmates(numSchools,,s) == true)
+                //if(user.getSchoolmates(numSchools,schools,s) == true)
                 //    schoolMates.add(s);
             }
             if(!userView.equals(UsernameSignedIn))
@@ -528,6 +530,8 @@ public class display extends JPanel
             g.drawString("Current Name",550,375);
             g.drawString("Current bio",550,475);
             g.drawString("Current age",700,375);
+            g.drawString("Current schools (separated by \",\")", 550,575);
+            g.drawString("Current Hometown", 700, 475);
         }
     }
 
@@ -653,7 +657,7 @@ public class display extends JPanel
                 else if(!UsernameSignedIn.equals(userView) && new client().isFriendsWith(UsernameSignedIn,userView) == true)
                 {
                     removefriend.setBounds(500,10,100,50);
-                    removefriend.setText("Remove Friend");
+                    removefriend.setText("Unfriend");
                     removefriend.setVisible(true);
                 }
             }
@@ -700,7 +704,6 @@ public class display extends JPanel
             addapost.setVisible(false);
             search.setVisible(false);
             searchfield.setVisible(false);
-            message.setVisible(false);
             UserChoice.setVisible(false);
             subjectPost.setVisible(false);
             contentPost.setVisible(false);
@@ -733,6 +736,16 @@ public class display extends JPanel
             age.setEditable(true);
             age.setText(new client().getData(UsernameSignedIn,"age",0));
             age.setVisible(true);
+            
+            homeTown.setBounds(700,500,100,20);
+            homeTown.setEditable(true);
+            homeTown.setText(new client().getData(UsernameSignedIn,"hometown",0));
+            homeTown.setVisible(true);
+            
+            schools.setBounds(550,600,200,20);
+            schools.setEditable(true);
+            schools.setText(new client().getData(UsernameSignedIn,"schools",0));
+            schools.setVisible(true);
         }
     }
     
