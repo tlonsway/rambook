@@ -52,6 +52,7 @@ public class display extends JPanel
     String userView = "";
     String UsernameSignedIn = "";
     String currentUser = "";
+    String tempName = "";
     int numberOfFriends = 0;
     boolean isValidUsername = false;
     boolean enterClicked = false;
@@ -65,13 +66,14 @@ public class display extends JPanel
         repaint();
     }
 
-    public void setUserinfo(String bop,String name,String bio, int numFriends/*,String a,String h,String s*/)
+    public void setUserinfo(String bop,String name,String bio, int numFriends,String a, String tn/*,String h,String s*/)
     {
         online = bop;
         Name = name;
         aboutMe = bio;
         numberOfFriends = numFriends;
-        //ageString = a;
+        ageString = a;
+        tempName = tn;
         //hometownName = h;
         //schoolsName = s;
     }
@@ -303,9 +305,17 @@ public class display extends JPanel
             g.setFont(f);
             belowBioY -= 5;
             g.setColor(Color.WHITE);
+            g.drawString("Name",250,belowBioY);
+            g.setColor(new Color(209, 193, 190));
+            belowBioY += 25;
+            g.drawString(tempName,250,belowBioY);
+            belowBioY += 25;
+            g.setColor(Color.WHITE);
             g.drawString("Age:",250,belowBioY);
             g.setColor(new Color(209, 193, 190));
-            g.drawString(ageString,300,belowBioY);
+            belowBioY += 25;
+            g.drawString(ageString,250,belowBioY);
+            belowBioY += 25;
             g.setColor(Color.WHITE);
             g.drawString("Hometown:",250,belowBioY);
             belowBioY += 25;
@@ -318,6 +328,7 @@ public class display extends JPanel
             belowBioY += 25;
             while(schoolsName.indexOf(",") != -1)
             {
+                schoolsName.trim();
                 g.drawString(schoolsName.substring(0,schoolsName.indexOf(",")),250,belowBioY);
                 schoolsName = schoolsName.substring(schoolsName.indexOf(",")+1);
                 belowBioY += 25;
@@ -399,7 +410,6 @@ public class display extends JPanel
             g.setColor(Color.BLACK);
 
             g.drawString("View another user's page",10,375);
-            g.drawString("Message another user",10,275);
         }
         else if(view.equals("sign up"))
         {
