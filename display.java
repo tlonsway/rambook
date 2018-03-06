@@ -332,14 +332,18 @@ public class display extends JPanel
             g.drawString("Schools:",250,belowBioY);
             g.setColor(new Color(209, 193, 190));
             belowBioY += 25;
+            int numSchools = 0;
+            ArrayList<String> schools = new ArrayList();
             while(schoolsName.indexOf(",") != -1)
             {
                 schoolsName.trim();
                 g.drawString(schoolsName.substring(0,schoolsName.indexOf(",")),250,belowBioY);
                 schoolsName = schoolsName.substring(schoolsName.indexOf(",")+1);
                 belowBioY += 25;
+                numSchools ++;
             }
             g.drawString(schoolsName,250,belowBioY);
+            numSchools ++;
             g.setColor(Color.WHITE);
             g.drawString("Friends:",550,120);
             int belowFriendsY = 155;
@@ -357,6 +361,7 @@ public class display extends JPanel
                     homeTownFriends.add(s);
             }
             g.setColor(Color.WHITE);
+            belowBioY += 25;
             g.drawString("Hometown Friends:",250,belowBioY);
             g.setColor(new Color(209, 193, 190));
             belowBioY += 25;
@@ -364,6 +369,12 @@ public class display extends JPanel
             {
                 g.drawString(s,250,belowBioY);
                 belowBioY += 25;
+            }
+            ArrayList<String> schoolMates = new ArrayList<String>();
+            for(String s: friends)
+            {
+                //if(user.getSchoolmates(numSchools,,s) == true)
+                //    schoolMates.add(s);
             }
             if(!userView.equals(UsernameSignedIn))
             {

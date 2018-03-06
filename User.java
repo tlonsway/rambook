@@ -77,7 +77,7 @@ public class User
         return false;
     }
     
-    public ArrayList<User> getSchoolmates() {
+    public ArrayList<User> getSchoolmates(int numSchools,ArrayList<String> s1, ArrayList<String> s2) {
         ArrayList<User> mutlist = new ArrayList<User>();
         boolean temp;
         for (User of : this.getFriendsList()) {
