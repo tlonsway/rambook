@@ -32,6 +32,8 @@ public class display extends JPanel
     JTextField homeTown;
     JTextField schools;
 
+    JTextField imageurl;
+    
     JButton enter;
     JButton signUp;
     JButton search;
@@ -110,6 +112,8 @@ public class display extends JPanel
             homeTown = U;
         else if(i ==12)
             schools = U;
+        else if(i == 13)
+            imageurl = U;    
     }
     
     public void setSettingsButton(JButton u)
@@ -334,16 +338,17 @@ public class display extends JPanel
             belowBioY += 25;
             int numSchools = 0;
             ArrayList<String> Userschools = new ArrayList<String>();
-            while(schoolsName.indexOf(",") != -1)
+            String stemp = schoolsName;
+            while(stemp.indexOf(",") != -1)
             {
-                schoolsName.trim();
-                g.drawString(schoolsName.substring(0,schoolsName.indexOf(",")),250,belowBioY);
-                schoolsName = schoolsName.substring(schoolsName.indexOf(",")+1);
+                stemp.trim();
+                g.drawString(stemp.substring(0,stemp.indexOf(",")),250,belowBioY);
+                stemp = stemp.substring(stemp.indexOf(",")+1);
                 belowBioY += 25;
                 numSchools ++;
                 //Userschools.add(schoolsName.substring(0,schoolsName.indexOf(",")));
             }
-            g.drawString(schoolsName,250,belowBioY);
+            g.drawString(stemp,250,belowBioY);
             //Userschools.add(schoolsName);
             numSchools ++;
             g.setColor(Color.WHITE);
@@ -532,6 +537,7 @@ public class display extends JPanel
             g.drawString("Current age",700,375);
             g.drawString("Current schools (separated by \",\")", 550,575);
             g.drawString("Current Hometown", 700, 475);
+            g.drawString("Enter image link to change profile image", 550, 675);
         }
     }
 
@@ -555,7 +561,7 @@ public class display extends JPanel
             homeTown.setVisible(false);
             schools.setVisible(false);
             removefriend.setVisible(false);
-            
+            imageurl.setVisible(false);
             signUp.setBounds(1000, 575, 100,50);  
             signUp.setText("Sign Up");
 
@@ -577,6 +583,7 @@ public class display extends JPanel
         }
         else if(view.equals("sign up"))
         {
+            imageurl.setVisible(false);
             removefriend.setVisible(false);            
             UserChoice.setVisible(false);
             addapost.setVisible(false);
@@ -637,6 +644,7 @@ public class display extends JPanel
         }
         else if(view.equals("home screen"))
         {
+            imageurl.setVisible(false);
             UserName.setVisible(false);
             password.setVisible(false);
             contentPost.setVisible(false);
@@ -649,6 +657,7 @@ public class display extends JPanel
             age.setVisible(false);
             homeTown.setVisible(false);
             schools.setVisible(false);
+            removefriend.setVisible(false);
             try{
                 if(!UsernameSignedIn.equals(userView) && new client().isFriendsWith(UsernameSignedIn,userView) == false)
                 {
@@ -701,6 +710,7 @@ public class display extends JPanel
         }
         else if(view.equals("settings"))
         {
+            imageurl.setVisible(true);
             checkpassword.setVisible(false);
             age.setVisible(false);
             addapost.setVisible(false);
@@ -748,6 +758,10 @@ public class display extends JPanel
             schools.setEditable(true);
             schools.setText(new client().getData(UsernameSignedIn,"c",0));
             schools.setVisible(true);
+            
+            imageurl.setBounds(550,700,300,20);
+            imageurl.setEditable(true);
+            imageurl.setVisible(true);
         }
     }
     

@@ -36,7 +36,8 @@ public class main {
         JTextField postContent = new JTextField();
         JTextField homeTown = new JTextField();
         JTextField schools = new JTextField();
-
+        JTextField imageurl = new JTextField();
+        
         JButton enter = new JButton("ENTER");
         JButton SignUp = new JButton("Create Account");
 
@@ -62,7 +63,8 @@ public class main {
         window.add(removeFriend);
         window.add(homeTown);
         window.add(schools);
-
+        window.add(imageurl);
+        
         window.add(postSubject);
         window.add(postContent);
         window.add(addPost);
@@ -96,6 +98,8 @@ public class main {
         window.setTextField(homeTown,11);
         window.setTextField(schools,12);
 
+        window.setTextField(imageurl, 13);
+        
         window.setEnterButton(enter);
         window.setSignUpButton(SignUp);
         window.setSignOutButton(signout);
@@ -175,6 +179,8 @@ public class main {
                             Thread.sleep(100);
                             new client().setData(window.getUserSignedIn(), "c", window.schools.getText());
                             Thread.sleep(100);
+                            new client().addImage(window.getUserSignedIn(), window.imageurl.getText());
+                            Thread.sleep(2000);
                             //}
                             window.setView("home screen");
                             window.drawing();
@@ -310,6 +316,21 @@ public class main {
                     }
                 }
             } );
+        removeFriend.addActionListener(new ActionListener()
+        {
+            public void actionPerformed(ActionEvent arg0)
+            {
+                try {
+                    new client().unfriend(window.UsernameSignedIn, window.userView);
+                    Thread.sleep(500);
+                    window.drawing();
+                    window.setButtons();
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        
         window.drawing();
         window.setButtons();
     }
