@@ -554,7 +554,8 @@ public class display extends JPanel
             addfriend.setVisible(false);
             homeTown.setVisible(false);
             schools.setVisible(false);
-
+            removefriend.setVisible(false);
+            
             signUp.setBounds(1000, 575, 100,50);  
             signUp.setText("Sign Up");
 
@@ -576,6 +577,7 @@ public class display extends JPanel
         }
         else if(view.equals("sign up"))
         {
+            removefriend.setVisible(false);            
             UserChoice.setVisible(false);
             addapost.setVisible(false);
             searchfield.setVisible(false);

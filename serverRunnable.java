@@ -313,7 +313,7 @@ public class serverRunnable implements Runnable{
             }
         } //Processing for data transmissions and requests relating to friends
         
-        if (line.substring(2,3).indexOf("o") != -1) {
+        if (line.substring(0,1).indexOf("o") != -1) {
             //o:name
             String name = line.substring(line.indexOf(":")+1);
             try {
