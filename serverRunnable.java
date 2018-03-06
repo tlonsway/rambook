@@ -80,7 +80,7 @@ public class serverRunnable implements Runnable{
         
         if (line.substring(0,1).indexOf("a") != -1) {
             //System.out.println("got this far");
-            //format - a:u:username:name:age:bio
+            //format - a:u:username:name:age:bio:hometown:schoolN0:schoolN1:schoolN2
             String input = line;
             if (line.substring(2,3).indexOf("u") != -1) {
                 String action = input.substring(0,input.indexOf(":"));
@@ -95,16 +95,19 @@ public class serverRunnable implements Runnable{
                 input = input.substring(input.indexOf(":")+1);
                 String bio = input.substring(0, input.indexOf(":"));
                 input = input.substring(input.indexOf(":")+1);
-                String password = input;
+                String password = input.substring(0, input.indexOf(":"));
+                input = input.substring(input.indexOf(":")+1);
+                String hometown = input.substring(0, input.indexOf(":"));
+                input = input.substring(input.indexOf(":")+1);
+                String schools = input;
                 System.out.println("Adding user " + username);
                 try {
-                    addUser(username, name, Integer.parseInt(age), bio, password);
+                    addUser(username, name, Integer.parseInt(age), bio, password, hometown, schools);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
             }   
-        } //Decoding post tranmissions
-            
+        } //Decoding post tranmissions            
         if (line.substring(0,1).indexOf("p") != -1) {
             //format - p:username:hash
             String input = line.substring(line.indexOf(":")+1);
@@ -234,6 +237,14 @@ public class serverRunnable implements Runnable{
                     System.out.println("setting the bio of " + name + " to " + content);   
                     setBio(name, content);
                 }
+                if (type.equals("h")) {
+                    System.out.println("setting the hometown of " + name + " to " + content);
+                    setHometown(name, content);
+                }
+                if (type.equals("c")) {
+                    System.out.println("setting the schools of " + name + " to " + content);
+                    setSchools(name, content);
+                }
                 System.out.println("database setting complete");
             } catch (Exception e) {
                 e.printStackTrace();
@@ -318,8 +329,14 @@ public class serverRunnable implements Runnable{
         } else
         if (type.equals("a")) {
             amt = 3;
-        } else {
+        } else 
+        if (type.equals("b")) {
             amt = 4;
+        } else 
+        if (type.equals("h")) {
+            amt = 5;
+        } else {
+            amt = 6;
         }
         for (int i=0; i<=amt-1; i++) {
             br.readLine();
@@ -343,7 +360,7 @@ public class serverRunnable implements Runnable{
         }
         return "false"; //returns false if the given user:pass is invalid
     }
-    public void addUser(String username, String name, int age, String bio, String password) throws Exception{
+    public void addUser(String username, String name, int age, String bio, String password, String hometown, String schools) throws Exception{
         BufferedWriter bw = new BufferedWriter(new FileWriter("users.txt", true));
         BufferedWriter pw = new BufferedWriter(new FileWriter("loginlist.txt", true));
         BufferedWriter po = new BufferedWriter(new FileWriter("posts.txt", true));
@@ -353,6 +370,8 @@ public class serverRunnable implements Runnable{
         bw.append("\nfriends:0");
         bw.append("\nage:" + age);
         bw.append("\nbio:" + bio);
+        bw.append("\nhometown:" + hometown);
+        bw.append("\nschools:" + schools);
         bw.append("\n}");
         pw.append("\n" + username + ":" + password);
         po.append("\n}" + username + "\n|");
@@ -602,6 +621,116 @@ public class serverRunnable implements Runnable{
         File fl = new File("users" + name + ".txt");
         fl.delete();          
     }
+    public void setHometown(String name, String hometown) throws Exception{
+        System.out.println("changing bio for user " + name);
+        BufferedReader br = new BufferedReader(new FileReader("users.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
+        boolean b = false;
+        String rline;
+        while(b == false) {
+            rline = br.readLine();
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            } else if (rline.equals(name)) {
+                bw.write(name);
+                bw.newLine();
+                bw.write(br.readLine()); //reading once to change the name
+                bw.newLine();
+                bw.write(br.readLine()); //reading twice to change the friend count
+                bw.newLine();
+                bw.write(br.readLine()); //reading three times to change the age
+                bw.newLine();
+                bw.write(br.readLine()); //reading four times to change the bio
+                bw.newLine();
+                bw.write(br.readLine());
+                bw.newLine();
+                bw.write("hometown:" + hometown);
+                bw.newLine();
+                br.readLine();
+            } else {
+                bw.write(rline);
+                bw.newLine();
+            }
+        }
+        bw.close();
+        br.close();
+        BufferedReader reader = new BufferedReader(new FileReader("users" + name + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"));
+        boolean fo = false;
+        boolean f = false;
+        String line;
+        while(f == false && fo == false) {
+            line = reader.readLine();
+            if (line == null) {
+                f = true;
+            } else {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        writer.close();
+        reader.close();        
+        System.out.println("completing file writing for " + name);        
+        File fl = new File("users" + name + ".txt");
+        fl.delete();          
+    }   
+    public void setSchools(String name, String schools) throws Exception{
+        System.out.println("changing bio for user " + name);
+        BufferedReader br = new BufferedReader(new FileReader("users.txt"));
+        BufferedWriter bw = new BufferedWriter(new FileWriter("users" + name + ".txt"));
+        boolean b = false;
+        String rline;
+        while(b == false) {
+            rline = br.readLine();
+            if (rline == null) {
+                System.out.println("reading line is null");
+                b = true;
+            } else if (rline.equals(name)) {
+                bw.write(name);
+                bw.newLine();
+                bw.write(br.readLine()); //reading once to change the name
+                bw.newLine();
+                bw.write(br.readLine()); //reading twice to change the friend count
+                bw.newLine();
+                bw.write(br.readLine()); //reading three times to change the age
+                bw.newLine();
+                bw.write(br.readLine()); //reading four times to change the bio
+                bw.newLine();
+                bw.write(br.readLine());
+                bw.newLine();
+                bw.write(br.readLine());
+                bw.newLine();
+                bw.write("schools:" + schools);
+                bw.newLine();
+                br.readLine();
+            } else {
+                bw.write(rline);
+                bw.newLine();
+            }
+        }
+        bw.close();
+        br.close();
+        BufferedReader reader = new BufferedReader(new FileReader("users" + name + ".txt"));
+        BufferedWriter writer = new BufferedWriter(new FileWriter("users.txt"));
+        boolean fo = false;
+        boolean f = false;
+        String line;
+        while(f == false && fo == false) {
+            line = reader.readLine();
+            if (line == null) {
+                f = true;
+            } else {
+                writer.write(line);
+                writer.newLine();
+            }
+        }
+        writer.close();
+        reader.close();        
+        System.out.println("completing file writing for " + name);        
+        File fl = new File("users" + name + ".txt");
+        fl.delete();          
+    }        
     public String userExist(String username) throws Exception{
         System.out.println("Checking if user " + username + " exists");
         BufferedReader br = new BufferedReader(new FileReader("loginlist.txt"));

@@ -84,10 +84,10 @@ public class client {
         }
         return false;
     }
-    public void addUser(String username, String name, int age, String bio, String password) throws Exception {
+    public void addUser(String username, String name, int age, String bio, String password, String hometown, String schools) throws Exception {
         System.out.println("Adding new user");
         String ret;
-        ret = "a:u:" + username + ":" + name + ":" + age + ":" + bio + ":" + login.hash(password);
+        ret = "a:u:" + username + ":" + name + ":" + age + ":" + bio + ":" + login.hash(password) + ":" + hometown + ":" + schools;
         try {
             System.out.println("Sending request to create user " + username);
             ps.println(ret);

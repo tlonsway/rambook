@@ -9,7 +9,7 @@ public class StressTest {
                 for (int i=0; i<100; i++) {
                     temp = "";
                     temp += i;
-                    (new client()).addUser(temp, temp, i, temp, temp);
+                    //(new client()).addUser(temp, temp, i, temp, temp);
                     System.out.println((new client()).checkUserExist("tristan"));
                     System.out.println((new client()).checkUserExist("wez"));
                     //(new client()).addPost(temp, temp, temp);
