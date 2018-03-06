@@ -58,7 +58,6 @@ public class main {
         window.add(SignUp);
         window.add(Password);
         window.add(UsernameInput);
-        window.add(messaging);
         window.add(addFriend);
         window.add(removeFriend);
         window.add(homeTown);
@@ -74,8 +73,6 @@ public class main {
 
         window.add(search);
         window.add(searchfield);
-
-        window.add(messageUser);
 
         window.add(signout);
         window.add(settings);
@@ -103,7 +100,6 @@ public class main {
         window.setSignUpButton(SignUp);
         window.setSignOutButton(signout);
         window.setSearchButton(search);
-        window.setMessageButton(messaging);
         window.setSettingsButton(settings);
         window.setRemoveFriendButton(removeFriend);
         window.setAddFriendButton(addFriend);
@@ -156,7 +152,7 @@ public class main {
                                     if(window.passwordsMatch == true)
                                     {
                                         String uname = UsernameInput.getText();
-                                        (new client()).addUser(uname, name.getText(), Integer.parseInt(age.getText()), bio.getText(), (Password.getText()));
+                                        (new client()).addUser(uname, name.getText(), Integer.parseInt(age.getText()), bio.getText(), (Password.getText()), homeTown.getText(), schools.getText());
                                         window.setView("login");
                                     }
                                 }
@@ -261,26 +257,6 @@ public class main {
                     window.setView("login");
                     window.drawing();
                     window.setButtons();
-                }
-            } );
-
-        messaging.addActionListener(new ActionListener()
-            {
-                public void actionPerformed(ActionEvent arg0) 
-                {
-                    try{
-                        if(new client().checkUserExist(window.getUserChoice()) == true && new client().getData(window.getUserChoice(), "status", 0).equals("online"))
-                        {
-                            //Jwindow messagingwindow = new Jwindow("Messaging");
-
-                        }
-                        window.drawing();
-                        window.setButtons();
-                    }
-                    catch(Exception e)
-                    {
-                        System.out.println(e);
-                    }
                 }
             } );
         addPost.addActionListener(new ActionListener()

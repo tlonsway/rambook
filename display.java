@@ -404,12 +404,12 @@ public class display extends JPanel
             //---- Add post
 
             g.setColor(Color.WHITE);
-            g.drawString("Post Topic", 10, 500);
-            g.drawString("Post Content",10,570);
+            g.drawString("Post Topic", 10, 400);
+            g.drawString("Post Content",10,470);
 
             g.setColor(Color.BLACK);
 
-            g.drawString("View another user's page",10,375);
+            g.drawString("View another user's page",10,275);
         }
         else if(view.equals("sign up"))
         {
@@ -494,7 +494,6 @@ public class display extends JPanel
             signout.setVisible(false);
             bio.setVisible(false);
             name.setVisible(false);
-            message.setVisible(false);
             UserChoice.setVisible(false);
             subjectPost.setVisible(false);
             contentPost.setVisible(false);
@@ -524,7 +523,6 @@ public class display extends JPanel
         }
         else if(view.equals("sign up"))
         {
-            message.setVisible(false);
             UserChoice.setVisible(false);
             addapost.setVisible(false);
             searchfield.setVisible(false);
@@ -545,7 +543,7 @@ public class display extends JPanel
             checkpassword.setText("");
             checkpassword.setEditable(true);
 
-            signUp.setLocation(1000, 400);
+            signUp.setBounds(1000, 400,100,50);
             signUp.setText("Back");
 
             enter.setLocation(1000, 475);
@@ -613,21 +611,21 @@ public class display extends JPanel
             catch (Exception e) {
                 e.printStackTrace();
             }
-            subjectPost.setBounds(10, 525, 100, 20);
+            subjectPost.setBounds(10, 425, 100, 20);
             subjectPost.setEditable(true);
             subjectPost.setVisible(true);
 
-            contentPost.setBounds(10,595, 100, 20);
+            contentPost.setBounds(10,495, 100, 20);
             contentPost.setEditable(true);
             contentPost.setVisible(true);
 
-            addapost.setBounds(10,620,100,50);
+            addapost.setBounds(10,520,100,50);
             addapost.setVisible(true);
 
-            search.setBounds(10,400,100,50);
+            search.setBounds(10,300,100,50);
             search.setVisible(true);
 
-            searchfield.setBounds(120,425,100,20);
+            searchfield.setBounds(120,325,100,20);
             searchfield.setEditable(true);
             searchfield.setVisible(true);
 
