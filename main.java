@@ -254,6 +254,7 @@ public class main {
             {
                 public void actionPerformed(ActionEvent arg0) 
                 {
+                    (new client()).signout(window.UsernameSignedIn);
                     window.setView("login");
                     window.drawing();
                     window.setButtons();
