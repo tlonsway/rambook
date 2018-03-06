@@ -259,6 +259,7 @@ public class serverRunnable implements Runnable{
                 String name = input.substring(0, input.indexOf(":"));
                 String other = input.substring(input.indexOf(":")+1);
                 try {
+                    setFriends(name, Integer.parseInt(getData(name, "f"))+1);
                     addFriend(name, other);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -304,6 +305,7 @@ public class serverRunnable implements Runnable{
                 String name = input.substring(0, input.indexOf(":"));
                 String other = input.substring(input.indexOf(":")+1);
                 try {
+                    setFriends(name, Integer.parseInt(getData(name, "f"))-1);                    
                     unfriend(name, other);
                 } catch (Exception e) {
                     e.printStackTrace();
@@ -338,8 +340,9 @@ public class serverRunnable implements Runnable{
         } else {
             amt = 6;
         }
+        System.out.println("amount of lines reading is " + amt);
         for (int i=0; i<=amt-1; i++) {
-            br.readLine();
+            System.out.println("reading: " + br.readLine());
         }
         line = br.readLine();
         System.out.println("line: " + line);

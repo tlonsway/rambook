@@ -36,6 +36,8 @@ public class client {
         }
     }
     public String getData(String name, String type, int number) {
+        //IMPORTANT: type should be "c" when requesting schools, all others are common words
+        //s:status, n:name, f:friends, a:age, b:bio, h:hometown, c:schools
         String t = type.toLowerCase().substring(0, 1);
         String ret = "";
         try {
