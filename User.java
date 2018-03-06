@@ -21,7 +21,15 @@ public class User
         
     }//END Constructor
     
-
+    public User()
+    {
+        name = "";
+        age = 0;
+        hometown = "";
+        schools = new String[5];
+        friendsList = new ArrayList<User>(); 
+    }
+    
     public void bulkAddFriends(ArrayList<User> u)
     {
         friendsList = u;
@@ -63,14 +71,10 @@ public class User
         return mutlist;
     }
 
-    public ArrayList<User> getHometownFriends() {
-        ArrayList<User> mutlist = new ArrayList<User>();
-        for (User of : this.getFriendsList()) {
-            if (this.hometown.equals(of.getHometown())) {
-                mutlist.add(of);
-            }
-        }
-        return mutlist;
+    public boolean getHometownFriends(String s1, String s2) {
+        if(new client().getData(s1,"hometown",0) == new client().getData(s2,"hometown",0))
+            return true;
+        return false;
     }
     
     public ArrayList<User> getSchoolmates() {

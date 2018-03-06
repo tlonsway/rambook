@@ -341,14 +341,38 @@ public class display extends JPanel
             }
             g.drawString(schoolsName,250,belowBioY);
             g.setColor(Color.WHITE);
-            g.drawString("Friends",550,120);
+            g.drawString("Friends:",550,120);
             int belowFriendsY = 155;
             g.setColor(new Color(209, 193, 190));
             for(String s: friends)
             {
                 g.drawString(s,550,belowFriendsY);
+                belowFriendsY += 25;
             }
-            
+            ArrayList<String> homeTownFriends = new ArrayList<String>();
+            User user = new User();
+            for(String s: friends)
+            {
+                if(user.getHometownFriends(UsernameSignedIn,s) == true)
+                    homeTownFriends.add(s);
+            }
+            g.setColor(Color.WHITE);
+            g.drawString("Hometown Friends:",250,belowBioY);
+            g.setColor(new Color(209, 193, 190));
+            belowBioY += 25;
+            for(String s: homeTownFriends)
+            {
+                g.drawString(s,250,belowBioY);
+                belowBioY += 25;
+            }
+            if(!userView.equals(UsernameSignedIn))
+            {
+                
+            }
+            else if(userView.equals(UsernameSignedIn))
+            {
+                
+            }
             if(InvalidSearch == true)
             {
                 g.setColor(Color.RED);
