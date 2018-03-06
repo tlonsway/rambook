@@ -317,6 +317,7 @@ public class serverRunnable implements Runnable{
             //o:name
             String name = line.substring(line.indexOf(":")+1);
             try {
+                System.out.println("user " + name + " is now offline");
                 setStatus(name, "offline");
             }catch (Exception e) {
                 e.printStackTrace();
@@ -367,6 +368,7 @@ public class serverRunnable implements Runnable{
         while ((currentLine = br.readLine()) != null) {
             if (currentLine.substring(0, currentLine.indexOf(":")).equals(name)) {
                 if (currentLine.substring(currentLine.indexOf(":")+1).equals(hash)) {
+                    System.out.println("user " + name + " has signed into rambook");
                     setStatus(name, "online");
                     return "true"; //returns true if the given user:pass is valid
                 }
