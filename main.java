@@ -125,7 +125,7 @@ public class main {
                                 String currentUser = window.getUsername();
                                 window.setUsernameSignedIn(currentUser);
                                 window.setUserSignedIn(currentUser); 
-                                window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))),(new client().getData(currentUser,"age",0)),(new client().getData(currentUser,"name",0)));
+                                window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))),(new client().getData(currentUser,"age",0)),(new client().getData(currentUser,"name",0)),(new client().getData(currentUser,"hometown",0)),(new client().getData(currentUser,"cchoools",0)));
                                 window.setUserView(currentUser);
                                 System.out.println(window.view);
                             }
@@ -232,7 +232,7 @@ public class main {
                         System.out.println("current user is now " + currentUser);
                         if((new client()).checkUserExist(currentUser) == true)
                         {
-                            window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))),(new client().getData(currentUser,"age",0)),(new client().getData(currentUser,"name",0)));
+                            window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))),(new client().getData(currentUser,"age",0)),(new client().getData(currentUser,"name",0)),(new client().getData(currentUser,"hometown",0)),(new client().getData(currentUser,"cchoools",0)));
                             window.InvalidSearch = false;
                             window.setUserView(currentUser);
                             System.out.print("It set the user view to: " + currentUser);

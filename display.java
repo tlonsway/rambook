@@ -66,7 +66,7 @@ public class display extends JPanel
         repaint();
     }
 
-    public void setUserinfo(String bop,String name,String bio, int numFriends,String a, String tn/*,String h,String s*/)
+    public void setUserinfo(String bop,String name,String bio, int numFriends,String a, String tn,String h,String s)
     {
         online = bop;
         Name = name;
@@ -74,8 +74,8 @@ public class display extends JPanel
         numberOfFriends = numFriends;
         ageString = a;
         tempName = tn;
-        //hometownName = h;
-        //schoolsName = s;
+        hometownName = h;
+        schoolsName = s;
     }
 
     public void setTextField(JTextField U, int i)
