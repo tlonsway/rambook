@@ -647,12 +647,8 @@ public class display extends JPanel
             signout.setText("Sign out");
             signout.setVisible(true);
 
-            message.setBounds(10,300, 100, 50);
-            message.setText("Message");
-            message.setVisible(true);
-
             settings.setBounds(1750,10,50,50);
-            settings.setText("");
+            settings.setText(null);
             try {
                 BufferedImage im = ImageIO.read(new File("settings.png"));
                 BufferedImage pic = resize(im, 50, 50);
@@ -660,12 +656,7 @@ public class display extends JPanel
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            //settings.setIcon("");
             settings.setVisible(true);
-
-            UserChoice.setBounds(120, 325, 100, 20);
-            UserChoice.setVisible(true);
-            UserChoice.setEditable(true);
         }
         else if(view.equals("settings"))
         {
