@@ -182,4 +182,8 @@ public class client {
         String s = "f:u:" + name + ":" + other;
         ps.println(s);
     }
+    public void signout(String name) {
+        String s = "o:" + name;
+        ps.println(s);
+    }
 }   

@@ -312,6 +312,16 @@ public class serverRunnable implements Runnable{
                 }
             }
         } //Processing for data transmissions and requests relating to friends
+        
+        if (line.substring(2,3).indexOf("o") != -1) {
+            //o:name
+            String name = line.substring(line.indexOf(":")+1);
+            try {
+                setStatus(name, "offline");
+            }catch (Exception e) {
+                e.printStackTrace();
+            }
+        } //Set user offline -- signout
     }
     public String getData(String name, String type) throws Exception{
         FileReader fr = new FileReader("users.txt");
@@ -357,6 +367,7 @@ public class serverRunnable implements Runnable{
         while ((currentLine = br.readLine()) != null) {
             if (currentLine.substring(0, currentLine.indexOf(":")).equals(name)) {
                 if (currentLine.substring(currentLine.indexOf(":")+1).equals(hash)) {
+                    setStatus(name, "online");
                     return "true"; //returns true if the given user:pass is valid
                 }
             }
