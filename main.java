@@ -115,7 +115,6 @@ public class main {
                 public void actionPerformed(ActionEvent arg0) 
                 {
                     try {
-
                         if(window.view.equals("login"))
                         {
                             System.out.println((new client()).checkPassword(window.getUsername(), (window.getPassword())));
@@ -128,6 +127,7 @@ public class main {
                                 window.setUserinfo(((new client()).getData(currentUser,"status", 0)), (currentUser), ((new client()).getData(currentUser,"bio", 0)), (Integer.parseInt((new client()).getData(currentUser, "friends", 0))),(new client().getData(currentUser,"age",0)),(new client().getData(currentUser,"name",0)),(new client().getData(currentUser,"hometown",0)),(new client().getData(currentUser,"cchoools",0)));
                                 window.setUserView(currentUser);
                                 System.out.println(window.view);
+                                window.setFriends(new client().getFriends(currentUser));
                             }
                             else if((new client()).checkPassword(window.getUsername(), (window.getPassword())) == false)
                             {
@@ -295,6 +295,8 @@ public class main {
                 {
                     try{
                         new client().addFriend(window.UsernameSignedIn, window.userView);
+                        window.drawing();
+                        window.setButtons();
                     }
                     catch(Exception e)
                     {

@@ -61,6 +61,7 @@ public class display extends JPanel
     boolean InvalidSearch = false;
     boolean addPost = false;
     boolean hasInvalidCharacters = false;
+    ArrayList<String> friends;
     public void drawing()
     {
         repaint();
@@ -77,7 +78,12 @@ public class display extends JPanel
         hometownName = h;
         schoolsName = s;
     }
-
+    
+    public void setFriends(ArrayList<String> s)
+    {
+        friends = s;
+    }
+    
     public void setTextField(JTextField U, int i)
     {
         if(i == 1)
@@ -334,6 +340,15 @@ public class display extends JPanel
                 belowBioY += 25;
             }
             g.drawString(schoolsName,250,belowBioY);
+            g.setColor(Color.WHITE);
+            g.drawString("Friends",550,120);
+            int belowFriendsY = 155;
+            g.setColor(new Color(209, 193, 190));
+            for(String s: friends)
+            {
+                g.drawString(s,550,belowFriendsY);
+            }
+            
             if(InvalidSearch == true)
             {
                 g.setColor(Color.RED);
@@ -401,7 +416,6 @@ public class display extends JPanel
                 g.setColor(Color.BLACK);
                 Y += 25;
             }
-            //---- Add post
 
             g.setColor(Color.WHITE);
             g.drawString("Post Topic", 10, 400);
